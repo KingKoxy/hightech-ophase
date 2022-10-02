@@ -5,7 +5,6 @@
 	export let day: IDay;
 </script>
 
-<!--TODO: gleiche Breite von Uhrzeit spalte-->
 <div class="text-lg mb-3 font-semibold">{DAY_MAP[day.index]}</div>
 <div class="border-gray-500 border-2 border-b-0">
 	{#each day.events.sort((a, b) => {
