@@ -8,8 +8,11 @@
 	"overrides": [{ "files": "*.svelte", "options": { "parser": "svelte" } }],
 	"importOrder": [
 		"^(.*)\\.svelte$",
-		"^\\$lib/(.*)$",
+		"^\\$lib\\/(?!assets)(.*)$",
+		"^\\$lib/assets/(.*)$",
 		"^\\$houdini$"
 	],
-	"importOrderSeparation": true
+	"importOrderSeparation": true,
+	"importOrderSortSpecifiers": true
+
 }

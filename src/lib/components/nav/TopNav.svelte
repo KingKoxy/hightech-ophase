@@ -1,6 +1,7 @@
 <script lang="ts">
-	import { PAGES } from '$lib/constants';
 	import NavLink from '$lib/components/nav/TopNavLink.svelte';
+
+	import { PAGES } from '$lib/constants';
 </script>
 
 <div class="text-lg sm:block hidden">

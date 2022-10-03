@@ -1,13 +1,14 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-
 	import Headline from '$lib/components/Headline.svelte';
+	import VideoItem from './VideoItem.svelte';
+
+	import { VIDEOS } from '$lib/constants';
+
+	import groupAvif from '$lib/assets/images/gruppenfoto.avif';
+	import groupJpg from '$lib/assets/images/gruppenfoto.jpg';
+	import groupWebp from '$lib/assets/images/gruppenfoto.webp';
 
 	let VideoSection;
-
-	onMount(async () => {
-		VideoSection = (await import('./VideoSection.svelte')).default;
-	});
 </script>
 
 <section class="mb-10">
@@ -26,13 +27,22 @@
 			nach =)
 		</div>
 		<img
-			src="images/gruppenfoto.jpg"
+			src={groupJpg}
 			alt="Gruppenfoto"
 			class="inline-block md:h-[300px]"
-			srcset="/images/gruppenfoto.avif,
-							/images/gruppenfoto.webp,
-							/images/gruppenfoto.jpg"
+			srcset="{groupAvif},
+							{groupWebp},
+							{groupJpg}
+							"
 		/>
+	</div>
+</section>
+<section>
+	<Headline>O-Phasenvideos</Headline>
+	<div class="flex flex-col items-center max-w-[800px]">
+		{#each VIDEOS as video, i}
+			<VideoItem class={i < VIDEOS.length - 1 ? 'mb-10' : ''} {video} />
+		{/each}
 	</div>
 </section>
 <svelte:component this={VideoSection} />

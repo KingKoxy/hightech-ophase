@@ -9,12 +9,17 @@
 	import { darkMode } from '$lib/stores';
 
 	onMount(() => {
-		if (window.matchMedia('(prefers-color-scheme: dark)').matches) darkMode.set(true);
-		else darkMode.set(false);
+		if (localStorage.getItem('theme') === 'dark') darkMode.set(true);
+		else darkMode.set(window.matchMedia('(prefers-color-scheme: dark)').matches);
 
 		darkMode.subscribe((value) => {
-			if (value) document.documentElement.classList.add('dark');
-			else document.documentElement.classList.remove('dark');
+			if (value) {
+				document.documentElement.classList.add('dark');
+				localStorage.setItem('theme', 'dark');
+			} else {
+				document.documentElement.classList.remove('dark');
+				localStorage.setItem('theme', 'light');
+			}
 		});
 	});
 </script>
@@ -25,7 +30,7 @@
 	<link href="/fonts/fonts.css" rel="stylesheet" />
 	<script>
 		if (
-			localStorage.theme === 'dark' ||
+			localStorage.getItem('theme') === 'dark' ||
 			(!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
 		) {
 			document.documentElement.classList.add('dark');
@@ -36,8 +41,8 @@
 </svelte:head>
 <main class="dark:bg-backgroundDark-500 w-full min-h-screen transition-all duration-200">
 	<Header />
-	<div class="w-full flex justify-center dark:text-white p-7 md:p-10 pt-7 xl:pt-0">
-		<div class="xl:w-[55%] w-full">
+	<div class="w-full flex justify-center dark:text-white p-7 md:p-10 pt-7 xl:pt-0 ">
+		<div class="xl:w-[55%] w-full mb-[80px]">
 			<slot />
 		</div>
 	</div>

@@ -1,6 +1,12 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import { CalendarIcon, HomeIcon, LinkIcon, UserIcon } from 'svelte-feather-icons';
+
+	import NavIcon from '../ColoredIcon.svelte';
+
+	import calendar from '$lib/assets/icons/calendar.svg';
+	import home from '$lib/assets/icons/home.svg';
+	import link from '$lib/assets/icons/link.svg';
+	import user from '$lib/assets/icons/user.svg';
 
 	export let url, name: string;
 	let active = false;
@@ -23,18 +29,20 @@
 	href={url}
 	class="navlink transform w-[25%] font-semibold {active
 		? 'scale-110 text-white'
-		: 'scale-90'} flex flex-col items-center hover:text-white transition-all hover:no-underline text-center text-sm "
+		: 'scale-90'} flex flex-col items-center hover:text-white transition-all hover:no-underline text-center text-sm"
 >
 	{#if url === '/'}
-		<HomeIcon />
+		<NavIcon class="{active ? 'bg-white' : 'bg-black'} hover:bg-white" src={home} />
 	{:else if url === '/schedule'}
-		<CalendarIcon />
+		<NavIcon class="{active ? 'bg-white' : 'bg-black'} hover:bg-white" src={calendar} />
 	{:else if url === '/about'}
-		<UserIcon />
+		<NavIcon class="{active ? 'bg-white' : 'bg-black'} hover:bg-white" src={user} />
 	{:else}
-		<LinkIcon />
+		<NavIcon class="{active ? 'bg-white' : 'bg-black'} hover:bg-white" src={link} />
 	{/if}
 	<span class="pt-1">
 		{name}
 	</span>
 </a>
+
+<style></style>
