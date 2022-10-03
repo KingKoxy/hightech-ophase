@@ -4,11 +4,11 @@
 
 <section class="mb-10">
 	<Headline>In der O-Phase</Headline>
-	<div class="md:flex">
-		<div class="inline-block md:mr-8 text-justify md:mb-0 mb-5">
+	<div class="lg:flex">
+		<div class="lg:inline lg:mr-8 text-justify lg:mb-0 mb-5">
 			Neben Freibier ;) (Nur solange der Vorrat reicht) bringt unsere Gruppe seit acht Jahren
 			erfolgreich die elektronische Feierkultur in die O-Phase. Dazu gehören Techno-Partys wie
-			Raves. Aber auch für nicht-Raver haben wir ein ausgefeiltes Programm im Angebot. Mit uns kann
+			Raves. Aber auch für Nicht-Raver haben wir ein ausgefeiltes Programm im Angebot. Mit uns kann
 			man nämlich nicht nur Feiern, sondern auch Wandern, einfach mal ein Bierchen am AKK (dem
 			Uni-eigenen Biergarten ;)) trinken, im Park brunchen, über Ethik und Philosphie diskutieren
 			und tatsächlich auch lernen und studieren :D
@@ -17,7 +17,14 @@
 			wie er ist. Durch diese Philosphie hat sich mittlerweile ein großer Freundeskreis rund um unsere
 			O-Phasengruppe entwickelt, welcher weit über die O-Phase hinaus geht. Das führt uns zu:
 		</div>
-		<img src="images/akk_rave_2022.jpg" alt="Gruppenfoto" class="inline-block md:h-[300px]" />
+		<img
+			class="lg:h-[300px]"
+			src="/images/akkRave2022.jpg"
+			alt="Akk Rave"
+			srcset="/images/akkRave2022.avif,
+							/images/akkRave2022.webp,
+							/images/akkRave2022.jpg"
+		/>
 	</div>
 </section>
 <section>
@@ -25,9 +32,12 @@
 	<div class="">
 		<div class="text-justify">
 			<img
-				src="images/Bild_Wandern_vorerst.jpg"
-				alt="Gruppenfoto"
+				src="images/wandern.jpg"
+				alt="Wandern"
 				class="md:float-right md:h-[250px] md:ml-4 md:mb-2 mb-5 w-full md:w-auto"
+				srcset="/images/wandern.avif,
+							/images/wandern.webp,
+							/images/wandern.jpg"
 			/>
 			Wir sind sehr stolz darauf als eine der einzigen O-Phasengruppen uns nicht nur auf die O-Phase
 			zu beschränken. Unsere Gruppe bietet dir einen breit gefächerten Freundeskreis in dem man sich

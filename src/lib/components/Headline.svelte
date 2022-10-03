@@ -3,3 +3,6 @@
 >
 	<slot />
 </div>
+
+<!--TODO: Bottom Bar immer ganz unten-->
+<!--TODO: DarkMode in LocalStorage-->

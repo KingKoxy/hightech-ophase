@@ -25,7 +25,14 @@
 			ersten Wahl macht, liest du am besten unter "Über uns" oder in unserem Wochenplan für die O-Phase
 			nach =)
 		</div>
-		<img src="images/Bild_Gruppenfoto2.jpg" alt="Gruppenfoto" class="inline-block md:h-[300px]" />
+		<img
+			src="images/gruppenfoto.jpg"
+			alt="Gruppenfoto"
+			class="inline-block md:h-[300px]"
+			srcset="/images/gruppenfoto.avif,
+							/images/gruppenfoto.webp,
+							/images/gruppenfoto.jpg"
+		/>
 	</div>
 </section>
 <svelte:component this={VideoSection} />
