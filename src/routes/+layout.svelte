@@ -26,6 +26,7 @@
 
 <svelte:head>
 	<title>O-Phase HiGHtech</title>
+	<meta name="description" content="Die offizielle Seite der Gruppe HiGH-tech zur O-Phase am KIT" />
 	<meta name="theme-color" content="#4ab93d" />
 	<link href="/fonts/fonts.css" rel="stylesheet" />
 	<script>
