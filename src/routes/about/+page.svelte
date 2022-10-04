@@ -11,8 +11,8 @@
 
 <section class="mb-10">
 	<Headline>In der O-Phase</Headline>
-	<div class="lg:flex">
-		<div class="lg:inline lg:mr-8 text-justify lg:mb-0 mb-5">
+	<div class="md:flex">
+		<div class="md:mr-8 text-justify md:mb-0 mb-5">
 			Neben Freibier ;) (Nur solange der Vorrat reicht) bringt unsere Gruppe seit acht Jahren
 			erfolgreich die elektronische Feierkultur in die O-Phase. Dazu gehören Techno-Partys wie
 			Raves. Aber auch für Nicht-Raver haben wir ein ausgefeiltes Programm im Angebot. Mit uns kann
@@ -24,23 +24,25 @@
 			wie er ist. Durch diese Philosphie hat sich mittlerweile ein großer Freundeskreis rund um unsere
 			O-Phasengruppe entwickelt, welcher weit über die O-Phase hinaus geht. Das führt uns zu:
 		</div>
-		<img
-			class="lg:h-[300px]"
-			src={raveJpg}
-			alt="Akk Rave"
-			srcset="{raveAvif}, {raveWebp}, {raveJpg}"
-		/>
+		<picture class="flex-shrink-0 max-w-1/2">
+			<source type="image/avif" srcset={raveAvif} />
+			<source type="image/webp" srcset={raveWebp} />
+			<img class="md:h-[300px] object-contain object-top" src={raveJpg} alt="Akk Rave" />
+		</picture>
 	</div>
 </section>
 <section>
 	<Headline>Nach der O-Phase</Headline>
 	<div class="text-justify">
-		<img
-			src={hikingJpg}
-			alt="Wandern"
-			class="md:float-right md:h-[250px] md:ml-4 md:mb-2 mb-5 w-full md:w-auto"
-			srcset="{hikingAvif}, {hikingWebp}, {hikingJpg}"
-		/>
+		<picture>
+			<source srcset={hikingAvif} type="image/avif" />
+			<source srcset={hikingWebp} type="image/webp" />
+			<img
+				src={hikingJpg}
+				alt="Wandern"
+				class="md:float-right md:h-[250px] md:ml-4 md:mb-2 mb-5 w-full md:w-auto"
+			/></picture
+		>
 		Wir sind sehr stolz darauf als eine der einzigen O-Phasengruppen uns nicht nur auf die O-Phase zu
 		beschränken. Unsere Gruppe bietet dir einen breit gefächerten Freundeskreis in dem man sich hilft
 		und unterstützt, sei es für die Uni oder Privates. Gemeinsam organisieren wir auch unter dem Semester

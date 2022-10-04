@@ -21,9 +21,10 @@
 			class="h-[70px] lg:h-[50%] flex justify-between items-center p-2 pr-5 bg-grasshopperGreen-500 shadow-lg shadow-black/30 z-10"
 		>
 			<div class="h-full flex items-center">
-				<div class="md:hidden h-full mr-3">
+				<div class="md:hidden h-full">
 					<img src={logo} class="object-contain h-full" alt="HIGHtech O-Phasen Logo" />
 				</div>
+				<h1 class="sm:hidden font-bold text-lg">O-Phase 2022</h1>
 				<Nav />
 			</div>
 
