@@ -147,10 +147,6 @@
 </section>
 
 <style>
-	a {
-		@apply text-grasshopperGreen-500;
-	}
-
 	li {
 		@apply mb-1 list-square;
 	}
