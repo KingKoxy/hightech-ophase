@@ -19,13 +19,14 @@
 		}
 	`;
 
-	let schedule = [];
+	let schedule;
 	$: schedule = queryToSchedule($scheduleQuery.data);
 </script>
 
 <Headline>Zeitplan</Headline>
 <!-- <div class="text-xl">CUMMING SOON 💦</div> -->
 <div class="md:mx-10 mt-5">
+	<!--	TODO: Loading indicator?-->
 	{#each schedule.sort((a, b) => {
 		return a.index - b.index;
 	}) as day, i}
