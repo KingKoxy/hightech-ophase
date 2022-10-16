@@ -55,8 +55,8 @@
 
 <main class="dark:bg-backgroundDark-500 w-full min-h-screen transition-all duration-200">
 	<Header />
-	<div class="w-full flex justify-center dark:text-white p-7 md:p-10 pt-7 xl:pt-0 ">
-		<div class="xl:w-[55%] w-full mb-[80px]">
+	<div class="w-full flex justify-center dark:text-white pb-[80px] sm:pb-0">
+		<div class="xl:w-[55%] h-full w-full m-7 xl:mt-0 md:m-10">
 			<slot />
 		</div>
 	</div>

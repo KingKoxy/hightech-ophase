@@ -2,13 +2,23 @@
 	import Headline from '$lib/components/Headline.svelte';
 	import VideoItem from './VideoItem.svelte';
 
-	import { VIDEOS } from '$lib/constants';
-
 	import groupAvif from '$lib/assets/images/gruppenfoto.avif';
 	import groupJpg from '$lib/assets/images/gruppenfoto.jpg';
 	import groupWebp from '$lib/assets/images/gruppenfoto.webp';
 
-	let VideoSection;
+	import { graphql } from '$houdini';
+
+	const videoQuery = graphql`
+		query GetAllVideos {
+			videoCollection {
+				items {
+					title
+					url
+				}
+			}
+		}
+	`;
+	$: videos = $videoQuery.data?.videoCollection.items ?? [];
 </script>
 
 <section class="mb-10">
@@ -37,9 +47,11 @@
 <section>
 	<Headline>O-Phasenvideos</Headline>
 	<div class="flex flex-col items-center max-w-[800px]">
-		{#each VIDEOS as video, i}
-			<VideoItem class={i < VIDEOS.length - 1 ? 'mb-10' : ''} {video} />
+		{#each videos.sort((b, a) => {
+			// Sort descending
+			return a.title.localeCompare(b.title);
+		}) ?? [] as video, i}
+			<VideoItem class={i < videos.length - 1 ? 'mb-10' : ''} {video} />
 		{/each}
 	</div>
 </section>
-<svelte:component this={VideoSection} />

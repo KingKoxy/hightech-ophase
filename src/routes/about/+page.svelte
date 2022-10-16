@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Headline from '$lib/components/Headline.svelte';
+	import ContactCard from './ContactCard.svelte';
 
 	import raveAvif from '$lib/assets/images/akkRave2022.avif';
 	import raveJpg from '$lib/assets/images/akkRave2022.jpg';
@@ -7,8 +8,36 @@
 	import hikingAvif from '$lib/assets/images/wandern.avif';
 	import hikingJpg from '$lib/assets/images/wandern.jpg';
 	import hikingWebp from '$lib/assets/images/wandern.webp';
+
+	import { graphql } from '$houdini';
+
+	const contactQuery = graphql`
+		query GetAllContacts {
+			contactCollection {
+				items {
+					name
+					phone
+				}
+			}
+		}
+	`;
+
+	$: contacts = $contactQuery.data?.contactCollection.items ?? [];
 </script>
 
+<section class="mb-10">
+	<Headline>Kontakt</Headline>
+	Bei
+	<strong>Fragen, Problemen, etc.</strong> schreibt am besten in der
+	<strong>WhatsApp-Gruppe,</strong>
+	per
+	<strong>Direktnachricht</strong> oder sprecht einfach einen der <strong>Tutoren</strong> an. Für
+	den absoluten Notfall findet ihr hier noch einmal die Nummern der
+	<strong>Hauptverantwortlichen: </strong>
+	{#each contacts as contact, i}
+		<ContactCard {contact} />
+	{/each}
+</section>
 <section class="mb-10">
 	<Headline>In der O-Phase</Headline>
 	<div class="md:flex">
