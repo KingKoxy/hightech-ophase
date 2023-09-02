@@ -6,7 +6,7 @@
 	let active = false;
 
 	page.subscribe((page) => {
-		active = '/' + page.routeId === url;
+		active = page.route.id === url;
 	});
 </script>
 
