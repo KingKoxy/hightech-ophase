@@ -8,6 +8,7 @@ const headers = {
 const config = {
 	client: './src/client',
 	apiUrl: 'https://graphql.contentful.com/content/v1/spaces/us4kti3xfg3y',
+	plugins: { 'houdini-svelte': {} },
 	scalars: {
 		DateTime: {
 			type: 'string'

@@ -11,18 +11,11 @@
 
 	import { graphql } from '$houdini';
 
-	const contactQuery = graphql`
-		query GetAllContacts {
-			contactCollection {
-				items {
-					name
-					phone
-				}
-			}
-		}
-	`;
+	export let data;
 
-	$: contacts = $contactQuery.data?.contactCollection.items ?? [];
+	$: ({ GetAllContacts } = data);
+
+	$: contacts = $GetAllContacts.data?.contactCollection.items ?? [];
 </script>
 
 <section class="mb-10">

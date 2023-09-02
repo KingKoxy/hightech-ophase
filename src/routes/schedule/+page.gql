@@ -1,0 +1,10 @@
+query GetAllEvents {
+    eventCollection {
+        items {
+            title
+            startTime
+            locationName
+            locationGoogleMapsLink
+        }
+    }
+}

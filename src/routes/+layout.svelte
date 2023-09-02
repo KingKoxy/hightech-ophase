@@ -1,6 +1,4 @@
 <script lang="ts">
-	import * as Sentry from '@sentry/browser';
-	import { BrowserTracing } from '@sentry/tracing';
 	import { onMount } from 'svelte';
 	import 'virtual:windi-devtools';
 	import 'virtual:windi.css';
@@ -9,16 +7,6 @@
 	import Header from '$lib/components/nav/Header.svelte';
 
 	import { darkMode } from '$lib/stores';
-
-	Sentry.init({
-		dsn: 'https://450ead7479fe4705a95e722ff5cf292a@o1414799.ingest.sentry.io/4503930613465088',
-		integrations: [new BrowserTracing()],
-
-		// Set tracesSampleRate to 1.0 to capture 100%
-		// of transactions for performance monitoring.
-		// We recommend adjusting this value in production
-		tracesSampleRate: 1.0
-	});
 
 	onMount(() => {
 		if (localStorage.getItem('theme') === 'dark') darkMode.set(true);

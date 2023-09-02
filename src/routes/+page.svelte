@@ -6,23 +6,15 @@
 	import groupJpg from '$lib/assets/images/gruppenfoto.jpg';
 	import groupWebp from '$lib/assets/images/gruppenfoto.webp';
 
-	import { graphql } from '$houdini';
+	export let data;
 
-	const videoQuery = graphql`
-		query GetAllVideos {
-			videoCollection {
-				items {
-					title
-					url
-				}
-			}
-		}
-	`;
-	$: videos = $videoQuery.data?.videoCollection.items ?? [];
+	$: ({ GetAllVideos } = data);
+	$: videos = $GetAllVideos?.data?.videoCollection.items ?? [];
 </script>
 
 <section class="mb-10">
 	<Headline>Willkommen</Headline>
+
 	<div class="md:flex">
 		<div class="inline-block md:mr-8 text-justify md:mb-0 mb-5">
 			Da du das hier liest, heißt das wohl, dass du bald anfängst, Informatik oder Mathe am KIT zu

@@ -5,22 +5,10 @@
 	import { queryToSchedule } from '$lib/utils';
 
 	import { graphql } from '$houdini';
+	export let data;
 
-	const scheduleQuery = graphql`
-		query GetAllEvents {
-			eventCollection {
-				items {
-					title
-					startTime
-					locationName
-					locationGoogleMapsLink
-				}
-			}
-		}
-	`;
-
-	let schedule;
-	$: schedule = queryToSchedule($scheduleQuery.data);
+	$: ({ GetAllEvents } = data);
+	$: schedule = queryToSchedule($GetAllEvents?.data) ?? [];
 </script>
 
 <Headline>Zeitplan</Headline>
