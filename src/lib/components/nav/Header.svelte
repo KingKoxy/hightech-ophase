@@ -13,14 +13,11 @@
 	let animation;
 
 	function toggleDarkMode() {
+		animation.stop();
 		if (get(darkMode)) {
-			animation.stop();
 			animation.playSegments([14, 28], true);
 		} else {
-			animation.stop();
 			animation.playSegments([0, 14], true);
-
-			animation.play();
 		}
 		darkMode.set(!get(darkMode));
 	}
@@ -31,7 +28,7 @@
 			container: animationContainer,
 			renderer: 'svg',
 			loop: false,
-			animationData: lightModeAnim // Path to your light mode animation JSON file
+			animationData: lightModeAnim
 		});
 		animation.goToAndStop(get(darkMode) ? 0 : 14, true);
 		animation.pause();
