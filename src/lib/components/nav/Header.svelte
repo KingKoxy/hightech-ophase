@@ -52,7 +52,7 @@
 				<h1 class="sm:hidden font-bold text-lg">O-Phase 2023</h1>
 				<Nav />
 			</div>
-			<div
+			<button
 				class="flex items-center relative h-[24px] w-[24px] cursor-pointer"
 				on:click={toggleDarkMode}
 				bind:this={animationContainer}
