@@ -1,5 +1,5 @@
 <script lang="ts">
-	import lottie, { AnimationItem } from 'lottie-web';
+	import lottie from 'lottie-web';
 	import { onMount } from 'svelte';
 	import { get } from 'svelte/store';
 
@@ -10,9 +10,15 @@
 	import Nav from './TopNav.svelte';
 
 	let animationContainer;
-	let animation: AnimationItem;
+	let animation;
 
 	function toggleDarkMode() {
+		animation.stop();
+		if (get(darkMode)) {
+			animation.playSegments([14, 28], true);
+		} else {
+			animation.playSegments([0, 14], true);
+		}
 		darkMode.set(!get(darkMode));
 	}
 
@@ -24,16 +30,9 @@
 			loop: false,
 			animationData: lightModeAnim
 		});
+		animation.goToAndStop(get(darkMode) ? 0 : 14, true);
+		animation.pause();
 	});
-
-	$: {
-		animation.stop();
-		if($darkMode){
-			animation.playSegments([14, 28], true);
-		} else {
-			animation.playSegments([0, 14], true);
-		}
-	}
 </script>
 
 <div class="sticky top-0 w-full flex z-50 select-none">
