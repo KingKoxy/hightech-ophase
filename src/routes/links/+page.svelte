@@ -7,10 +7,6 @@
 	<h2 class="text-xl font-semibold mb-2">In der O-Phase:</h2>
 	<ul class="ml-4">
 		<li>
-			<a href="https://www.youtube.com/channel/UC7J_ITVRdeFLo1ibDrLb2KQ">HiGHtech Youtube Channel</a
-			>
-		</li>
-		<li>
 			Die offizielle <a href="https://o-phase.com/de/ws2021/">Website</a> der Fachschaft Mathe/Info zur
 			O-Phase
 		</li>
@@ -26,6 +22,10 @@
 		<li>
 			<a href="https://campus.studium.kit.edu/">Campus Management Portal</a> - Bescheinigunen wie das
 			KVV Ticket ausdrucken, Prüfungsanmeldung, etc.
+		</li>
+		<li>
+			<a href="https://www.fsmi.uni-karlsruhe.de/odie/web/">Odie</a> - Hier findest du eine große Sammlung
+			an Altklausuren
 		</li>
 		<li>
 			<a href="https://www.kit.edu/campusplan/">Karte</a> für den Campus mit Gebäudenummern (als
@@ -73,11 +73,6 @@
 		<li>
 			<a href="https://www.fsmi.uni-karlsruhe.de/">Fachschaftsseite</a> - Hier lassen sich u.a. Klausuren
 			ausdrucken
-		</li>
-
-		<li>
-			<a href="https://www.fsmi.uni-karlsruhe.de/odie/web/">Odie</a> - Hier findest du eine große Sammlung
-			an Altklausuren
 		</li>
 		<li>
 			<a href="https://www.fsmi.uni-karlsruhe.de/Links.html"
@@ -132,6 +127,12 @@
 		</li>
 		<li>
 			<a href="https://soundcloud.com/juliuspfister"> Julius Pfister </a>
+		</li>
+		<li>
+			<a href="https://soundcloud.com/user-601516904"> Kobaltikum </a>
+		</li>
+		<li>
+			<a href="https://soundcloud.com/itsrerz"> rerz </a>
 		</li>
 	</ul>
 </section>

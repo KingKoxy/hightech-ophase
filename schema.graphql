@@ -1,574 +1,1728 @@
-"""Represents a binary file in a space. An asset can be any file type."""
-type Asset {
-  contentType(locale: String): String
-  contentfulMetadata: ContentfulMetadata!
-  description(locale: String): String
-  fileName(locale: String): String
-  height(locale: String): Int
-  linkedFrom(allowedLocales: [String]): AssetLinkingCollections
-  size(locale: String): Int
-  sys: Sys!
-  title(locale: String): String
-  url(locale: String, transform: ImageTransformOptions): String
-  width(locale: String): Int
+type Access {
+  canAccessAdmin: Boolean!
+  contacts: contactsAccess
+  events: eventsAccess
+  users: usersAccess
+  videos: videosAccess
 }
 
-type AssetCollection {
-  items: [Asset]!
-  limit: Int!
-  skip: Int!
-  total: Int!
-}
-
-input AssetFilter {
-  AND: [AssetFilter]
-  OR: [AssetFilter]
-  contentType: String
-  contentType_contains: String
-  contentType_exists: Boolean
-  contentType_in: [String]
-  contentType_not: String
-  contentType_not_contains: String
-  contentType_not_in: [String]
-  contentfulMetadata: ContentfulMetadataFilter
-  description: String
-  description_contains: String
-  description_exists: Boolean
-  description_in: [String]
-  description_not: String
-  description_not_contains: String
-  description_not_in: [String]
-  fileName: String
-  fileName_contains: String
-  fileName_exists: Boolean
-  fileName_in: [String]
-  fileName_not: String
-  fileName_not_contains: String
-  fileName_not_in: [String]
-  height: Int
-  height_exists: Boolean
-  height_gt: Int
-  height_gte: Int
-  height_in: [Int]
-  height_lt: Int
-  height_lte: Int
-  height_not: Int
-  height_not_in: [Int]
-  size: Int
-  size_exists: Boolean
-  size_gt: Int
-  size_gte: Int
-  size_in: [Int]
-  size_lt: Int
-  size_lte: Int
-  size_not: Int
-  size_not_in: [Int]
-  sys: SysFilter
-  title: String
-  title_contains: String
-  title_exists: Boolean
-  title_in: [String]
-  title_not: String
-  title_not_contains: String
-  title_not_in: [String]
-  url: String
-  url_contains: String
-  url_exists: Boolean
-  url_in: [String]
-  url_not: String
-  url_not_contains: String
-  url_not_in: [String]
-  width: Int
-  width_exists: Boolean
-  width_gt: Int
-  width_gte: Int
-  width_in: [Int]
-  width_lt: Int
-  width_lte: Int
-  width_not: Int
-  width_not_in: [Int]
-}
-
-type AssetLinkingCollections {
-  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
-}
-
-enum AssetOrder {
-  contentType_ASC
-  contentType_DESC
-  fileName_ASC
-  fileName_DESC
-  height_ASC
-  height_DESC
-  size_ASC
-  size_DESC
-  sys_firstPublishedAt_ASC
-  sys_firstPublishedAt_DESC
-  sys_id_ASC
-  sys_id_DESC
-  sys_publishedAt_ASC
-  sys_publishedAt_DESC
-  sys_publishedVersion_ASC
-  sys_publishedVersion_DESC
-  url_ASC
-  url_DESC
-  width_ASC
-  width_DESC
-}
-
-"""
-Kontaktdaten der Verantwortlichen [See type definition](https://app.contentful.com/spaces/us4kti3xfg3y/content_types/contact)
-"""
-type Contact implements Entry {
-  contentfulMetadata: ContentfulMetadata!
-  linkedFrom(allowedLocales: [String]): ContactLinkingCollections
-  name(locale: String): String
-  phone(locale: String): String
-  sys: Sys!
-}
-
-type ContactCollection {
-  items: [Contact]!
-  limit: Int!
-  skip: Int!
-  total: Int!
-}
-
-input ContactFilter {
-  AND: [ContactFilter]
-  OR: [ContactFilter]
-  contentfulMetadata: ContentfulMetadataFilter
-  name: String
-  name_contains: String
-  name_exists: Boolean
-  name_in: [String]
-  name_not: String
-  name_not_contains: String
-  name_not_in: [String]
-  phone: String
-  phone_contains: String
-  phone_exists: Boolean
-  phone_in: [String]
-  phone_not: String
-  phone_not_contains: String
-  phone_not_in: [String]
-  sys: SysFilter
-}
-
-type ContactLinkingCollections {
-  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
-}
-
-enum ContactOrder {
-  name_ASC
-  name_DESC
-  phone_ASC
-  phone_DESC
-  sys_firstPublishedAt_ASC
-  sys_firstPublishedAt_DESC
-  sys_id_ASC
-  sys_id_DESC
-  sys_publishedAt_ASC
-  sys_publishedAt_DESC
-  sys_publishedVersion_ASC
-  sys_publishedVersion_DESC
-}
-
-type ContentfulMetadata {
-  tags: [ContentfulTag]!
-}
-
-input ContentfulMetadataFilter {
-  tags: ContentfulMetadataTagsFilter
-  tags_exists: Boolean
-}
-
-input ContentfulMetadataTagsFilter {
-  id_contains_all: [String]
-  id_contains_none: [String]
-  id_contains_some: [String]
-}
-
-"""
-Represents a tag entity for finding and organizing content easily.
-    Find out more here: https://www.contentful.com/developers/docs/references/content-delivery-api/#/reference/content-tags
-"""
-type ContentfulTag {
+type Contact {
+  createdAt: DateTime
   id: String
-  name: String
+  name: String!
+  phone: String!
+  updatedAt: DateTime
+}
+
+input Contact_createdAt_operator {
+  equals: DateTime
+  exists: Boolean
+  greater_than: DateTime
+  greater_than_equal: DateTime
+  less_than: DateTime
+  less_than_equal: DateTime
+  like: DateTime
+  not_equals: DateTime
+}
+
+input Contact_id_operator {
+  all: [String]
+  contains: String
+  equals: String
+  exists: Boolean
+  in: [String]
+  like: String
+  not_equals: String
+  not_in: [String]
+}
+
+input Contact_name_operator {
+  all: [String]
+  contains: String
+  equals: String
+  in: [String]
+  like: String
+  not_equals: String
+  not_in: [String]
+}
+
+input Contact_phone_operator {
+  all: [String]
+  contains: String
+  equals: String
+  in: [String]
+  like: String
+  not_equals: String
+  not_in: [String]
+}
+
+input Contact_updatedAt_operator {
+  equals: DateTime
+  exists: Boolean
+  greater_than: DateTime
+  greater_than_equal: DateTime
+  less_than: DateTime
+  less_than_equal: DateTime
+  like: DateTime
+  not_equals: DateTime
+}
+
+input Contact_where {
+  AND: [Contact_where_and]
+  OR: [Contact_where_or]
+  createdAt: Contact_createdAt_operator
+  id: Contact_id_operator
+  name: Contact_name_operator
+  phone: Contact_phone_operator
+  updatedAt: Contact_updatedAt_operator
+}
+
+input Contact_where_and {
+  createdAt: Contact_createdAt_operator
+  id: Contact_id_operator
+  name: Contact_name_operator
+  phone: Contact_phone_operator
+  updatedAt: Contact_updatedAt_operator
+}
+
+input Contact_where_or {
+  createdAt: Contact_createdAt_operator
+  id: Contact_id_operator
+  name: Contact_name_operator
+  phone: Contact_phone_operator
+  updatedAt: Contact_updatedAt_operator
+}
+
+type Contacts {
+  docs: [Contact]
+  hasNextPage: Boolean
+  hasPrevPage: Boolean
+  limit: Int
+  nextPage: Int
+  offset: Int
+  page: Int
+  pagingCounter: Int
+  prevPage: Int
+  totalDocs: Int
+  totalPages: Int
+}
+
+type ContactsCreateAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type ContactsCreateDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type ContactsDeleteAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type ContactsDeleteDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type ContactsDocAccessFields {
+  createdAt: ContactsDocAccessFields_createdAt
+  name: ContactsDocAccessFields_name
+  phone: ContactsDocAccessFields_phone
+  updatedAt: ContactsDocAccessFields_updatedAt
+}
+
+type ContactsDocAccessFields_createdAt {
+  create: ContactsDocAccessFields_createdAt_Create
+  delete: ContactsDocAccessFields_createdAt_Delete
+  read: ContactsDocAccessFields_createdAt_Read
+  update: ContactsDocAccessFields_createdAt_Update
+}
+
+type ContactsDocAccessFields_createdAt_Create {
+  permission: Boolean!
+}
+
+type ContactsDocAccessFields_createdAt_Delete {
+  permission: Boolean!
+}
+
+type ContactsDocAccessFields_createdAt_Read {
+  permission: Boolean!
+}
+
+type ContactsDocAccessFields_createdAt_Update {
+  permission: Boolean!
+}
+
+type ContactsDocAccessFields_name {
+  create: ContactsDocAccessFields_name_Create
+  delete: ContactsDocAccessFields_name_Delete
+  read: ContactsDocAccessFields_name_Read
+  update: ContactsDocAccessFields_name_Update
+}
+
+type ContactsDocAccessFields_name_Create {
+  permission: Boolean!
+}
+
+type ContactsDocAccessFields_name_Delete {
+  permission: Boolean!
+}
+
+type ContactsDocAccessFields_name_Read {
+  permission: Boolean!
+}
+
+type ContactsDocAccessFields_name_Update {
+  permission: Boolean!
+}
+
+type ContactsDocAccessFields_phone {
+  create: ContactsDocAccessFields_phone_Create
+  delete: ContactsDocAccessFields_phone_Delete
+  read: ContactsDocAccessFields_phone_Read
+  update: ContactsDocAccessFields_phone_Update
+}
+
+type ContactsDocAccessFields_phone_Create {
+  permission: Boolean!
+}
+
+type ContactsDocAccessFields_phone_Delete {
+  permission: Boolean!
+}
+
+type ContactsDocAccessFields_phone_Read {
+  permission: Boolean!
+}
+
+type ContactsDocAccessFields_phone_Update {
+  permission: Boolean!
+}
+
+type ContactsDocAccessFields_updatedAt {
+  create: ContactsDocAccessFields_updatedAt_Create
+  delete: ContactsDocAccessFields_updatedAt_Delete
+  read: ContactsDocAccessFields_updatedAt_Read
+  update: ContactsDocAccessFields_updatedAt_Update
+}
+
+type ContactsDocAccessFields_updatedAt_Create {
+  permission: Boolean!
+}
+
+type ContactsDocAccessFields_updatedAt_Delete {
+  permission: Boolean!
+}
+
+type ContactsDocAccessFields_updatedAt_Read {
+  permission: Boolean!
+}
+
+type ContactsDocAccessFields_updatedAt_Update {
+  permission: Boolean!
+}
+
+type ContactsFields {
+  createdAt: ContactsFields_createdAt
+  name: ContactsFields_name
+  phone: ContactsFields_phone
+  updatedAt: ContactsFields_updatedAt
+}
+
+type ContactsFields_createdAt {
+  create: ContactsFields_createdAt_Create
+  delete: ContactsFields_createdAt_Delete
+  read: ContactsFields_createdAt_Read
+  update: ContactsFields_createdAt_Update
+}
+
+type ContactsFields_createdAt_Create {
+  permission: Boolean!
+}
+
+type ContactsFields_createdAt_Delete {
+  permission: Boolean!
+}
+
+type ContactsFields_createdAt_Read {
+  permission: Boolean!
+}
+
+type ContactsFields_createdAt_Update {
+  permission: Boolean!
+}
+
+type ContactsFields_name {
+  create: ContactsFields_name_Create
+  delete: ContactsFields_name_Delete
+  read: ContactsFields_name_Read
+  update: ContactsFields_name_Update
+}
+
+type ContactsFields_name_Create {
+  permission: Boolean!
+}
+
+type ContactsFields_name_Delete {
+  permission: Boolean!
+}
+
+type ContactsFields_name_Read {
+  permission: Boolean!
+}
+
+type ContactsFields_name_Update {
+  permission: Boolean!
+}
+
+type ContactsFields_phone {
+  create: ContactsFields_phone_Create
+  delete: ContactsFields_phone_Delete
+  read: ContactsFields_phone_Read
+  update: ContactsFields_phone_Update
+}
+
+type ContactsFields_phone_Create {
+  permission: Boolean!
+}
+
+type ContactsFields_phone_Delete {
+  permission: Boolean!
+}
+
+type ContactsFields_phone_Read {
+  permission: Boolean!
+}
+
+type ContactsFields_phone_Update {
+  permission: Boolean!
+}
+
+type ContactsFields_updatedAt {
+  create: ContactsFields_updatedAt_Create
+  delete: ContactsFields_updatedAt_Delete
+  read: ContactsFields_updatedAt_Read
+  update: ContactsFields_updatedAt_Update
+}
+
+type ContactsFields_updatedAt_Create {
+  permission: Boolean!
+}
+
+type ContactsFields_updatedAt_Delete {
+  permission: Boolean!
+}
+
+type ContactsFields_updatedAt_Read {
+  permission: Boolean!
+}
+
+type ContactsFields_updatedAt_Update {
+  permission: Boolean!
+}
+
+type ContactsReadAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type ContactsReadDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type ContactsUpdateAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type ContactsUpdateDocAccess {
+  permission: Boolean!
+  where: JSONObject
 }
 
 """
-A date-time string at UTC, such as 2007-12-03T10:15:30Z,
-    compliant with the 'date-time' format outlined in section 5.6 of
-    the RFC 3339 profile of the ISO 8601 standard for representation
-    of dates and times using the Gregorian calendar.
+A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
 """
 scalar DateTime
 
 """
-The 'Dimension' type represents dimensions as whole numeric values between `1` and `4000`.
+A field whose value conforms to the standard internet email address format as specified in HTML Spec: https://html.spec.whatwg.org/multipage/input.html#valid-e-mail-address.
 """
-scalar Dimension
+scalar EmailAddress
 
-interface Entry {
-  contentfulMetadata: ContentfulMetadata!
-  sys: Sys!
+type Event {
+  createdAt: DateTime
+  id: String
+  locationLink: String
+  locationName: String!
+  startDate: DateTime!
+  title: String!
+  updatedAt: DateTime
 }
 
-type EntryCollection {
-  items: [Entry]!
-  limit: Int!
-  skip: Int!
-  total: Int!
+input Event_createdAt_operator {
+  equals: DateTime
+  exists: Boolean
+  greater_than: DateTime
+  greater_than_equal: DateTime
+  less_than: DateTime
+  less_than_equal: DateTime
+  like: DateTime
+  not_equals: DateTime
 }
 
-input EntryFilter {
-  AND: [EntryFilter]
-  OR: [EntryFilter]
-  contentfulMetadata: ContentfulMetadataFilter
-  sys: SysFilter
+input Event_id_operator {
+  all: [String]
+  contains: String
+  equals: String
+  exists: Boolean
+  in: [String]
+  like: String
+  not_equals: String
+  not_in: [String]
 }
 
-enum EntryOrder {
-  sys_firstPublishedAt_ASC
-  sys_firstPublishedAt_DESC
-  sys_id_ASC
-  sys_id_DESC
-  sys_publishedAt_ASC
-  sys_publishedAt_DESC
-  sys_publishedVersion_ASC
-  sys_publishedVersion_DESC
+input Event_locationLink_operator {
+  all: [String]
+  contains: String
+  equals: String
+  exists: Boolean
+  in: [String]
+  like: String
+  not_equals: String
+  not_in: [String]
+}
+
+input Event_locationName_operator {
+  all: [String]
+  contains: String
+  equals: String
+  in: [String]
+  like: String
+  not_equals: String
+  not_in: [String]
+}
+
+input Event_startDate_operator {
+  equals: DateTime
+  greater_than: DateTime
+  greater_than_equal: DateTime
+  less_than: DateTime
+  less_than_equal: DateTime
+  like: DateTime
+  not_equals: DateTime
+}
+
+input Event_title_operator {
+  all: [String]
+  contains: String
+  equals: String
+  in: [String]
+  like: String
+  not_equals: String
+  not_in: [String]
+}
+
+input Event_updatedAt_operator {
+  equals: DateTime
+  exists: Boolean
+  greater_than: DateTime
+  greater_than_equal: DateTime
+  less_than: DateTime
+  less_than_equal: DateTime
+  like: DateTime
+  not_equals: DateTime
+}
+
+input Event_where {
+  AND: [Event_where_and]
+  OR: [Event_where_or]
+  createdAt: Event_createdAt_operator
+  id: Event_id_operator
+  locationLink: Event_locationLink_operator
+  locationName: Event_locationName_operator
+  startDate: Event_startDate_operator
+  title: Event_title_operator
+  updatedAt: Event_updatedAt_operator
+}
+
+input Event_where_and {
+  createdAt: Event_createdAt_operator
+  id: Event_id_operator
+  locationLink: Event_locationLink_operator
+  locationName: Event_locationName_operator
+  startDate: Event_startDate_operator
+  title: Event_title_operator
+  updatedAt: Event_updatedAt_operator
+}
+
+input Event_where_or {
+  createdAt: Event_createdAt_operator
+  id: Event_id_operator
+  locationLink: Event_locationLink_operator
+  locationName: Event_locationName_operator
+  startDate: Event_startDate_operator
+  title: Event_title_operator
+  updatedAt: Event_updatedAt_operator
+}
+
+type Events {
+  docs: [Event]
+  hasNextPage: Boolean
+  hasPrevPage: Boolean
+  limit: Int
+  nextPage: Int
+  offset: Int
+  page: Int
+  pagingCounter: Int
+  prevPage: Int
+  totalDocs: Int
+  totalPages: Int
+}
+
+type EventsCreateAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type EventsCreateDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type EventsDeleteAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type EventsDeleteDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type EventsDocAccessFields {
+  createdAt: EventsDocAccessFields_createdAt
+  locationLink: EventsDocAccessFields_locationLink
+  locationName: EventsDocAccessFields_locationName
+  startDate: EventsDocAccessFields_startDate
+  title: EventsDocAccessFields_title
+  updatedAt: EventsDocAccessFields_updatedAt
+}
+
+type EventsDocAccessFields_createdAt {
+  create: EventsDocAccessFields_createdAt_Create
+  delete: EventsDocAccessFields_createdAt_Delete
+  read: EventsDocAccessFields_createdAt_Read
+  update: EventsDocAccessFields_createdAt_Update
+}
+
+type EventsDocAccessFields_createdAt_Create {
+  permission: Boolean!
+}
+
+type EventsDocAccessFields_createdAt_Delete {
+  permission: Boolean!
+}
+
+type EventsDocAccessFields_createdAt_Read {
+  permission: Boolean!
+}
+
+type EventsDocAccessFields_createdAt_Update {
+  permission: Boolean!
+}
+
+type EventsDocAccessFields_locationLink {
+  create: EventsDocAccessFields_locationLink_Create
+  delete: EventsDocAccessFields_locationLink_Delete
+  read: EventsDocAccessFields_locationLink_Read
+  update: EventsDocAccessFields_locationLink_Update
+}
+
+type EventsDocAccessFields_locationLink_Create {
+  permission: Boolean!
+}
+
+type EventsDocAccessFields_locationLink_Delete {
+  permission: Boolean!
+}
+
+type EventsDocAccessFields_locationLink_Read {
+  permission: Boolean!
+}
+
+type EventsDocAccessFields_locationLink_Update {
+  permission: Boolean!
+}
+
+type EventsDocAccessFields_locationName {
+  create: EventsDocAccessFields_locationName_Create
+  delete: EventsDocAccessFields_locationName_Delete
+  read: EventsDocAccessFields_locationName_Read
+  update: EventsDocAccessFields_locationName_Update
+}
+
+type EventsDocAccessFields_locationName_Create {
+  permission: Boolean!
+}
+
+type EventsDocAccessFields_locationName_Delete {
+  permission: Boolean!
+}
+
+type EventsDocAccessFields_locationName_Read {
+  permission: Boolean!
+}
+
+type EventsDocAccessFields_locationName_Update {
+  permission: Boolean!
+}
+
+type EventsDocAccessFields_startDate {
+  create: EventsDocAccessFields_startDate_Create
+  delete: EventsDocAccessFields_startDate_Delete
+  read: EventsDocAccessFields_startDate_Read
+  update: EventsDocAccessFields_startDate_Update
+}
+
+type EventsDocAccessFields_startDate_Create {
+  permission: Boolean!
+}
+
+type EventsDocAccessFields_startDate_Delete {
+  permission: Boolean!
+}
+
+type EventsDocAccessFields_startDate_Read {
+  permission: Boolean!
+}
+
+type EventsDocAccessFields_startDate_Update {
+  permission: Boolean!
+}
+
+type EventsDocAccessFields_title {
+  create: EventsDocAccessFields_title_Create
+  delete: EventsDocAccessFields_title_Delete
+  read: EventsDocAccessFields_title_Read
+  update: EventsDocAccessFields_title_Update
+}
+
+type EventsDocAccessFields_title_Create {
+  permission: Boolean!
+}
+
+type EventsDocAccessFields_title_Delete {
+  permission: Boolean!
+}
+
+type EventsDocAccessFields_title_Read {
+  permission: Boolean!
+}
+
+type EventsDocAccessFields_title_Update {
+  permission: Boolean!
+}
+
+type EventsDocAccessFields_updatedAt {
+  create: EventsDocAccessFields_updatedAt_Create
+  delete: EventsDocAccessFields_updatedAt_Delete
+  read: EventsDocAccessFields_updatedAt_Read
+  update: EventsDocAccessFields_updatedAt_Update
+}
+
+type EventsDocAccessFields_updatedAt_Create {
+  permission: Boolean!
+}
+
+type EventsDocAccessFields_updatedAt_Delete {
+  permission: Boolean!
+}
+
+type EventsDocAccessFields_updatedAt_Read {
+  permission: Boolean!
+}
+
+type EventsDocAccessFields_updatedAt_Update {
+  permission: Boolean!
+}
+
+type EventsFields {
+  createdAt: EventsFields_createdAt
+  locationLink: EventsFields_locationLink
+  locationName: EventsFields_locationName
+  startDate: EventsFields_startDate
+  title: EventsFields_title
+  updatedAt: EventsFields_updatedAt
+}
+
+type EventsFields_createdAt {
+  create: EventsFields_createdAt_Create
+  delete: EventsFields_createdAt_Delete
+  read: EventsFields_createdAt_Read
+  update: EventsFields_createdAt_Update
+}
+
+type EventsFields_createdAt_Create {
+  permission: Boolean!
+}
+
+type EventsFields_createdAt_Delete {
+  permission: Boolean!
+}
+
+type EventsFields_createdAt_Read {
+  permission: Boolean!
+}
+
+type EventsFields_createdAt_Update {
+  permission: Boolean!
+}
+
+type EventsFields_locationLink {
+  create: EventsFields_locationLink_Create
+  delete: EventsFields_locationLink_Delete
+  read: EventsFields_locationLink_Read
+  update: EventsFields_locationLink_Update
+}
+
+type EventsFields_locationLink_Create {
+  permission: Boolean!
+}
+
+type EventsFields_locationLink_Delete {
+  permission: Boolean!
+}
+
+type EventsFields_locationLink_Read {
+  permission: Boolean!
+}
+
+type EventsFields_locationLink_Update {
+  permission: Boolean!
+}
+
+type EventsFields_locationName {
+  create: EventsFields_locationName_Create
+  delete: EventsFields_locationName_Delete
+  read: EventsFields_locationName_Read
+  update: EventsFields_locationName_Update
+}
+
+type EventsFields_locationName_Create {
+  permission: Boolean!
+}
+
+type EventsFields_locationName_Delete {
+  permission: Boolean!
+}
+
+type EventsFields_locationName_Read {
+  permission: Boolean!
+}
+
+type EventsFields_locationName_Update {
+  permission: Boolean!
+}
+
+type EventsFields_startDate {
+  create: EventsFields_startDate_Create
+  delete: EventsFields_startDate_Delete
+  read: EventsFields_startDate_Read
+  update: EventsFields_startDate_Update
+}
+
+type EventsFields_startDate_Create {
+  permission: Boolean!
+}
+
+type EventsFields_startDate_Delete {
+  permission: Boolean!
+}
+
+type EventsFields_startDate_Read {
+  permission: Boolean!
+}
+
+type EventsFields_startDate_Update {
+  permission: Boolean!
+}
+
+type EventsFields_title {
+  create: EventsFields_title_Create
+  delete: EventsFields_title_Delete
+  read: EventsFields_title_Read
+  update: EventsFields_title_Update
+}
+
+type EventsFields_title_Create {
+  permission: Boolean!
+}
+
+type EventsFields_title_Delete {
+  permission: Boolean!
+}
+
+type EventsFields_title_Read {
+  permission: Boolean!
+}
+
+type EventsFields_title_Update {
+  permission: Boolean!
+}
+
+type EventsFields_updatedAt {
+  create: EventsFields_updatedAt_Create
+  delete: EventsFields_updatedAt_Delete
+  read: EventsFields_updatedAt_Read
+  update: EventsFields_updatedAt_Update
+}
+
+type EventsFields_updatedAt_Create {
+  permission: Boolean!
+}
+
+type EventsFields_updatedAt_Delete {
+  permission: Boolean!
+}
+
+type EventsFields_updatedAt_Read {
+  permission: Boolean!
+}
+
+type EventsFields_updatedAt_Update {
+  permission: Boolean!
+}
+
+type EventsReadAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type EventsReadDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type EventsUpdateAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type EventsUpdateDocAccess {
+  permission: Boolean!
+  where: JSONObject
 }
 
 """
-An event to display in the schedule tab [See type definition](https://app.contentful.com/spaces/us4kti3xfg3y/content_types/event)
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
 """
-type Event implements Entry {
-  contentfulMetadata: ContentfulMetadata!
-  linkedFrom(allowedLocales: [String]): EventLinkingCollections
-  locationGoogleMapsLink(locale: String): String
-  locationName(locale: String): String
-  startTime(locale: String): DateTime
-  sys: Sys!
-  title(locale: String): String
-}
-
-type EventCollection {
-  items: [Event]!
-  limit: Int!
-  skip: Int!
-  total: Int!
-}
-
-input EventFilter {
-  AND: [EventFilter]
-  OR: [EventFilter]
-  contentfulMetadata: ContentfulMetadataFilter
-  locationGoogleMapsLink: String
-  locationGoogleMapsLink_contains: String
-  locationGoogleMapsLink_exists: Boolean
-  locationGoogleMapsLink_in: [String]
-  locationGoogleMapsLink_not: String
-  locationGoogleMapsLink_not_contains: String
-  locationGoogleMapsLink_not_in: [String]
-  locationName: String
-  locationName_contains: String
-  locationName_exists: Boolean
-  locationName_in: [String]
-  locationName_not: String
-  locationName_not_contains: String
-  locationName_not_in: [String]
-  startTime: DateTime
-  startTime_exists: Boolean
-  startTime_gt: DateTime
-  startTime_gte: DateTime
-  startTime_in: [DateTime]
-  startTime_lt: DateTime
-  startTime_lte: DateTime
-  startTime_not: DateTime
-  startTime_not_in: [DateTime]
-  sys: SysFilter
-  title: String
-  title_contains: String
-  title_exists: Boolean
-  title_in: [String]
-  title_not: String
-  title_not_contains: String
-  title_not_in: [String]
-}
-
-type EventLinkingCollections {
-  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
-}
-
-enum EventOrder {
-  locationGoogleMapsLink_ASC
-  locationGoogleMapsLink_DESC
-  locationName_ASC
-  locationName_DESC
-  startTime_ASC
-  startTime_DESC
-  sys_firstPublishedAt_ASC
-  sys_firstPublishedAt_DESC
-  sys_id_ASC
-  sys_id_DESC
-  sys_publishedAt_ASC
-  sys_publishedAt_DESC
-  sys_publishedVersion_ASC
-  sys_publishedVersion_DESC
-  title_ASC
-  title_DESC
-}
-
-"""The 'HexColor' type represents color in `rgb:ffffff` string format."""
-scalar HexColor
-
-enum ImageFormat {
-  AVIF
-
-  """JPG image format."""
-  JPG
-
-  """
-  Progressive JPG format stores multiple passes of an image in progressively higher detail.
-          When a progressive image is loading, the viewer will first see a lower quality pixelated version which
-          will gradually improve in detail, until the image is fully downloaded. This is to display an image as
-          early as possible to make the layout look as designed.
-  """
-  JPG_PROGRESSIVE
-
-  """PNG image format"""
-  PNG
-
-  """
-  8-bit PNG images support up to 256 colors and weigh less than the standard 24-bit PNG equivalent.
-          The 8-bit PNG format is mostly used for simple images, such as icons or logos.
-  """
-  PNG8
-
-  """WebP image format."""
-  WEBP
-}
-
-enum ImageResizeFocus {
-  """Focus the resizing on the bottom."""
-  BOTTOM
-
-  """Focus the resizing on the bottom left."""
-  BOTTOM_LEFT
-
-  """Focus the resizing on the bottom right."""
-  BOTTOM_RIGHT
-
-  """Focus the resizing on the center."""
-  CENTER
-
-  """Focus the resizing on the largest face."""
-  FACE
-
-  """Focus the resizing on the area containing all the faces."""
-  FACES
-
-  """Focus the resizing on the left."""
-  LEFT
-
-  """Focus the resizing on the right."""
-  RIGHT
-
-  """Focus the resizing on the top."""
-  TOP
-
-  """Focus the resizing on the top left."""
-  TOP_LEFT
-
-  """Focus the resizing on the top right."""
-  TOP_RIGHT
-}
-
-enum ImageResizeStrategy {
-  """
-  Crops a part of the original image to fit into the specified dimensions.
-  """
-  CROP
-
-  """
-  Resizes the image to the specified dimensions, cropping the image if needed.
-  """
-  FILL
-
-  """Resizes the image to fit into the specified dimensions."""
-  FIT
-
-  """
-  Resizes the image to the specified dimensions, padding the image if needed.
-          Uses desired background color as padding color.
-  """
-  PAD
-
-  """
-  Resizes the image to the specified dimensions, changing the original aspect ratio if needed.
-  """
-  SCALE
-
-  """Creates a thumbnail from the image."""
-  THUMB
-}
-
-input ImageTransformOptions {
-  """
-  Desired background color, used with corner radius or `PAD` resize strategy.
-          Defaults to transparent (for `PNG`, `PNG8` and `WEBP`) or white (for `JPG` and `JPG_PROGRESSIVE`).
-  """
-  backgroundColor: HexColor
-
-  """
-  Desired corner radius in pixels.
-          Results in an image with rounded corners (pass `-1` for a full circle/ellipse).
-          Defaults to `0`. Uses desired background color as padding color,
-          unless the format is `JPG` or `JPG_PROGRESSIVE` and resize strategy is `PAD`, then defaults to white.
-  """
-  cornerRadius: Int
-
-  """Desired image format. Defaults to the original image format."""
-  format: ImageFormat
-
-  """Desired height in pixels. Defaults to the original image height."""
-  height: Dimension
-
-  """
-  Desired quality of the image in percents.
-          Used for `PNG8`, `JPG`, `JPG_PROGRESSIVE` and `WEBP` formats.
-  """
-  quality: Quality
-
-  """Desired resize focus area. Defaults to `CENTER`."""
-  resizeFocus: ImageResizeFocus
-
-  """Desired resize strategy. Defaults to `FIT`."""
-  resizeStrategy: ImageResizeStrategy
-
-  """Desired width in pixels. Defaults to the original image width."""
-  width: Dimension
-}
+scalar JSON
 
 """
-The 'Quality' type represents quality as whole numeric values between `1` and `100`.
+The `JSONObject` scalar type represents JSON objects as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
 """
-scalar Quality
+scalar JSONObject
+
+type Mutation {
+  createContact(data: mutationContactInput!, draft: Boolean): Contact
+  createEvent(data: mutationEventInput!, draft: Boolean): Event
+  createUser(data: mutationUserInput!, draft: Boolean): User
+  createVideo(data: mutationVideoInput!, draft: Boolean): Video
+  deleteContact(id: String!): Contact
+  deleteEvent(id: String!): Event
+  deletePreference(key: String!): Preference
+  deleteUser(id: String!): User
+  deleteVideo(id: String!): Video
+  forgotPasswordUser(disableEmail: Boolean, email: String!, expiration: Int): Boolean!
+  loginUser(email: String, password: String): usersLoginResult
+  logoutUser: String
+  refreshTokenUser(token: String): usersRefreshedUser
+  resetPasswordUser(password: String, token: String): usersResetPassword
+  unlockUser(email: String!): Boolean!
+  updateContact(autosave: Boolean, data: mutationContactUpdateInput!, draft: Boolean, id: String!): Contact
+  updateEvent(autosave: Boolean, data: mutationEventUpdateInput!, draft: Boolean, id: String!): Event
+  updatePreference(key: String!, value: JSON): Preference
+  updateUser(autosave: Boolean, data: mutationUserUpdateInput!, draft: Boolean, id: String!): User
+  updateVideo(autosave: Boolean, data: mutationVideoUpdateInput!, draft: Boolean, id: String!): Video
+  verifyEmailUser(token: String): Boolean
+}
+
+type Preference {
+  createdAt: DateTime!
+  key: String!
+  updatedAt: DateTime!
+  value: JSON
+}
 
 type Query {
-  asset(id: String!, locale: String, preview: Boolean): Asset
-  assetCollection(limit: Int = 100, locale: String, order: [AssetOrder], preview: Boolean, skip: Int = 0, where: AssetFilter): AssetCollection
-  contact(id: String!, locale: String, preview: Boolean): Contact
-  contactCollection(limit: Int = 100, locale: String, order: [ContactOrder], preview: Boolean, skip: Int = 0, where: ContactFilter): ContactCollection
-  entryCollection(limit: Int = 100, locale: String, order: [EntryOrder], preview: Boolean, skip: Int = 0, where: EntryFilter): EntryCollection
-  event(id: String!, locale: String, preview: Boolean): Event
-  eventCollection(limit: Int = 100, locale: String, order: [EventOrder], preview: Boolean, skip: Int = 0, where: EventFilter): EventCollection
-  video(id: String!, locale: String, preview: Boolean): Video
-  videoCollection(limit: Int = 100, locale: String, order: [VideoOrder], preview: Boolean, skip: Int = 0, where: VideoFilter): VideoCollection
+  Access: Access
+  Contact(draft: Boolean, id: String!): Contact
+  Contacts(draft: Boolean, limit: Int, page: Int, sort: String, where: Contact_where): Contacts
+  Event(draft: Boolean, id: String!): Event
+  Events(draft: Boolean, limit: Int, page: Int, sort: String, where: Event_where): Events
+  Preference(key: String): Preference
+  User(draft: Boolean, id: String!): User
+  Users(draft: Boolean, limit: Int, page: Int, sort: String, where: User_where): Users
+  Video(draft: Boolean, id: String!): Video
+  Videos(draft: Boolean, limit: Int, page: Int, sort: String, where: Video_where): Videos
+  docAccessContact(id: String!): contactsDocAccess
+  docAccessEvent(id: String!): eventsDocAccess
+  docAccessUser(id: String!): usersDocAccess
+  docAccessVideo(id: String!): videosDocAccess
+  initializedUser: Boolean
+  meUser: usersMe
 }
 
-type Sys {
-  environmentId: String!
-  firstPublishedAt: DateTime
-  id: String!
-  publishedAt: DateTime
-  publishedVersion: Int
-  spaceId: String!
-}
-
-input SysFilter {
-  firstPublishedAt: DateTime
-  firstPublishedAt_exists: Boolean
-  firstPublishedAt_gt: DateTime
-  firstPublishedAt_gte: DateTime
-  firstPublishedAt_in: [DateTime]
-  firstPublishedAt_lt: DateTime
-  firstPublishedAt_lte: DateTime
-  firstPublishedAt_not: DateTime
-  firstPublishedAt_not_in: [DateTime]
+type User {
+  createdAt: DateTime
+  email: EmailAddress!
+  hash: String
   id: String
-  id_contains: String
-  id_exists: Boolean
-  id_in: [String]
-  id_not: String
-  id_not_contains: String
-  id_not_in: [String]
-  publishedAt: DateTime
-  publishedAt_exists: Boolean
-  publishedAt_gt: DateTime
-  publishedAt_gte: DateTime
-  publishedAt_in: [DateTime]
-  publishedAt_lt: DateTime
-  publishedAt_lte: DateTime
-  publishedAt_not: DateTime
-  publishedAt_not_in: [DateTime]
-  publishedVersion: Float
-  publishedVersion_exists: Boolean
-  publishedVersion_gt: Float
-  publishedVersion_gte: Float
-  publishedVersion_in: [Float]
-  publishedVersion_lt: Float
-  publishedVersion_lte: Float
-  publishedVersion_not: Float
-  publishedVersion_not_in: [Float]
+  lockUntil: DateTime
+  loginAttempts: Float
+  password: String!
+  resetPasswordExpiration: DateTime
+  resetPasswordToken: String
+  salt: String
+  updatedAt: DateTime
 }
 
-"""
-Die O-Phasen Videos [See type definition](https://app.contentful.com/spaces/us4kti3xfg3y/content_types/video)
-"""
-type Video implements Entry {
-  contentfulMetadata: ContentfulMetadata!
-  linkedFrom(allowedLocales: [String]): VideoLinkingCollections
-  sys: Sys!
-  title(locale: String): String
-  url(locale: String): String
+input User_createdAt_operator {
+  equals: DateTime
+  exists: Boolean
+  greater_than: DateTime
+  greater_than_equal: DateTime
+  less_than: DateTime
+  less_than_equal: DateTime
+  like: DateTime
+  not_equals: DateTime
 }
 
-type VideoCollection {
-  items: [Video]!
-  limit: Int!
-  skip: Int!
-  total: Int!
+input User_email_operator {
+  all: [EmailAddress]
+  contains: EmailAddress
+  equals: EmailAddress
+  in: [EmailAddress]
+  like: EmailAddress
+  not_equals: EmailAddress
+  not_in: [EmailAddress]
 }
 
-input VideoFilter {
-  AND: [VideoFilter]
-  OR: [VideoFilter]
-  contentfulMetadata: ContentfulMetadataFilter
-  sys: SysFilter
+input User_id_operator {
+  all: [String]
+  contains: String
+  equals: String
+  exists: Boolean
+  in: [String]
+  like: String
+  not_equals: String
+  not_in: [String]
+}
+
+input User_updatedAt_operator {
+  equals: DateTime
+  exists: Boolean
+  greater_than: DateTime
+  greater_than_equal: DateTime
+  less_than: DateTime
+  less_than_equal: DateTime
+  like: DateTime
+  not_equals: DateTime
+}
+
+input User_where {
+  AND: [User_where_and]
+  OR: [User_where_or]
+  createdAt: User_createdAt_operator
+  email: User_email_operator
+  id: User_id_operator
+  updatedAt: User_updatedAt_operator
+}
+
+input User_where_and {
+  createdAt: User_createdAt_operator
+  email: User_email_operator
+  id: User_id_operator
+  updatedAt: User_updatedAt_operator
+}
+
+input User_where_or {
+  createdAt: User_createdAt_operator
+  email: User_email_operator
+  id: User_id_operator
+  updatedAt: User_updatedAt_operator
+}
+
+type Users {
+  docs: [User]
+  hasNextPage: Boolean
+  hasPrevPage: Boolean
+  limit: Int
+  nextPage: Int
+  offset: Int
+  page: Int
+  pagingCounter: Int
+  prevPage: Int
+  totalDocs: Int
+  totalPages: Int
+}
+
+type UsersCreateAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type UsersCreateDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type UsersDeleteAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type UsersDeleteDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type UsersDocAccessFields {
+  createdAt: UsersDocAccessFields_createdAt
+  email: UsersDocAccessFields_email
+  password: UsersDocAccessFields_password
+  updatedAt: UsersDocAccessFields_updatedAt
+}
+
+type UsersDocAccessFields_createdAt {
+  create: UsersDocAccessFields_createdAt_Create
+  delete: UsersDocAccessFields_createdAt_Delete
+  read: UsersDocAccessFields_createdAt_Read
+  update: UsersDocAccessFields_createdAt_Update
+}
+
+type UsersDocAccessFields_createdAt_Create {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_createdAt_Delete {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_createdAt_Read {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_createdAt_Update {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_email {
+  create: UsersDocAccessFields_email_Create
+  delete: UsersDocAccessFields_email_Delete
+  read: UsersDocAccessFields_email_Read
+  update: UsersDocAccessFields_email_Update
+}
+
+type UsersDocAccessFields_email_Create {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_email_Delete {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_email_Read {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_email_Update {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_password {
+  create: UsersDocAccessFields_password_Create
+  delete: UsersDocAccessFields_password_Delete
+  read: UsersDocAccessFields_password_Read
+  update: UsersDocAccessFields_password_Update
+}
+
+type UsersDocAccessFields_password_Create {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_password_Delete {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_password_Read {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_password_Update {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_updatedAt {
+  create: UsersDocAccessFields_updatedAt_Create
+  delete: UsersDocAccessFields_updatedAt_Delete
+  read: UsersDocAccessFields_updatedAt_Read
+  update: UsersDocAccessFields_updatedAt_Update
+}
+
+type UsersDocAccessFields_updatedAt_Create {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_updatedAt_Delete {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_updatedAt_Read {
+  permission: Boolean!
+}
+
+type UsersDocAccessFields_updatedAt_Update {
+  permission: Boolean!
+}
+
+type UsersFields {
+  createdAt: UsersFields_createdAt
+  email: UsersFields_email
+  password: UsersFields_password
+  updatedAt: UsersFields_updatedAt
+}
+
+type UsersFields_createdAt {
+  create: UsersFields_createdAt_Create
+  delete: UsersFields_createdAt_Delete
+  read: UsersFields_createdAt_Read
+  update: UsersFields_createdAt_Update
+}
+
+type UsersFields_createdAt_Create {
+  permission: Boolean!
+}
+
+type UsersFields_createdAt_Delete {
+  permission: Boolean!
+}
+
+type UsersFields_createdAt_Read {
+  permission: Boolean!
+}
+
+type UsersFields_createdAt_Update {
+  permission: Boolean!
+}
+
+type UsersFields_email {
+  create: UsersFields_email_Create
+  delete: UsersFields_email_Delete
+  read: UsersFields_email_Read
+  update: UsersFields_email_Update
+}
+
+type UsersFields_email_Create {
+  permission: Boolean!
+}
+
+type UsersFields_email_Delete {
+  permission: Boolean!
+}
+
+type UsersFields_email_Read {
+  permission: Boolean!
+}
+
+type UsersFields_email_Update {
+  permission: Boolean!
+}
+
+type UsersFields_password {
+  create: UsersFields_password_Create
+  delete: UsersFields_password_Delete
+  read: UsersFields_password_Read
+  update: UsersFields_password_Update
+}
+
+type UsersFields_password_Create {
+  permission: Boolean!
+}
+
+type UsersFields_password_Delete {
+  permission: Boolean!
+}
+
+type UsersFields_password_Read {
+  permission: Boolean!
+}
+
+type UsersFields_password_Update {
+  permission: Boolean!
+}
+
+type UsersFields_updatedAt {
+  create: UsersFields_updatedAt_Create
+  delete: UsersFields_updatedAt_Delete
+  read: UsersFields_updatedAt_Read
+  update: UsersFields_updatedAt_Update
+}
+
+type UsersFields_updatedAt_Create {
+  permission: Boolean!
+}
+
+type UsersFields_updatedAt_Delete {
+  permission: Boolean!
+}
+
+type UsersFields_updatedAt_Read {
+  permission: Boolean!
+}
+
+type UsersFields_updatedAt_Update {
+  permission: Boolean!
+}
+
+type UsersReadAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type UsersReadDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type UsersUnlockAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type UsersUnlockDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type UsersUpdateAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type UsersUpdateDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type Video {
+  createdAt: DateTime
+  id: String
+  title: String!
+  updatedAt: DateTime
+  url: String!
+}
+
+input Video_createdAt_operator {
+  equals: DateTime
+  exists: Boolean
+  greater_than: DateTime
+  greater_than_equal: DateTime
+  less_than: DateTime
+  less_than_equal: DateTime
+  like: DateTime
+  not_equals: DateTime
+}
+
+input Video_id_operator {
+  all: [String]
+  contains: String
+  equals: String
+  exists: Boolean
+  in: [String]
+  like: String
+  not_equals: String
+  not_in: [String]
+}
+
+input Video_title_operator {
+  all: [String]
+  contains: String
+  equals: String
+  in: [String]
+  like: String
+  not_equals: String
+  not_in: [String]
+}
+
+input Video_updatedAt_operator {
+  equals: DateTime
+  exists: Boolean
+  greater_than: DateTime
+  greater_than_equal: DateTime
+  less_than: DateTime
+  less_than_equal: DateTime
+  like: DateTime
+  not_equals: DateTime
+}
+
+input Video_url_operator {
+  all: [String]
+  contains: String
+  equals: String
+  in: [String]
+  like: String
+  not_equals: String
+  not_in: [String]
+}
+
+input Video_where {
+  AND: [Video_where_and]
+  OR: [Video_where_or]
+  createdAt: Video_createdAt_operator
+  id: Video_id_operator
+  title: Video_title_operator
+  updatedAt: Video_updatedAt_operator
+  url: Video_url_operator
+}
+
+input Video_where_and {
+  createdAt: Video_createdAt_operator
+  id: Video_id_operator
+  title: Video_title_operator
+  updatedAt: Video_updatedAt_operator
+  url: Video_url_operator
+}
+
+input Video_where_or {
+  createdAt: Video_createdAt_operator
+  id: Video_id_operator
+  title: Video_title_operator
+  updatedAt: Video_updatedAt_operator
+  url: Video_url_operator
+}
+
+type Videos {
+  docs: [Video]
+  hasNextPage: Boolean
+  hasPrevPage: Boolean
+  limit: Int
+  nextPage: Int
+  offset: Int
+  page: Int
+  pagingCounter: Int
+  prevPage: Int
+  totalDocs: Int
+  totalPages: Int
+}
+
+type VideosCreateAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type VideosCreateDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type VideosDeleteAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type VideosDeleteDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type VideosDocAccessFields {
+  createdAt: VideosDocAccessFields_createdAt
+  title: VideosDocAccessFields_title
+  updatedAt: VideosDocAccessFields_updatedAt
+  url: VideosDocAccessFields_url
+}
+
+type VideosDocAccessFields_createdAt {
+  create: VideosDocAccessFields_createdAt_Create
+  delete: VideosDocAccessFields_createdAt_Delete
+  read: VideosDocAccessFields_createdAt_Read
+  update: VideosDocAccessFields_createdAt_Update
+}
+
+type VideosDocAccessFields_createdAt_Create {
+  permission: Boolean!
+}
+
+type VideosDocAccessFields_createdAt_Delete {
+  permission: Boolean!
+}
+
+type VideosDocAccessFields_createdAt_Read {
+  permission: Boolean!
+}
+
+type VideosDocAccessFields_createdAt_Update {
+  permission: Boolean!
+}
+
+type VideosDocAccessFields_title {
+  create: VideosDocAccessFields_title_Create
+  delete: VideosDocAccessFields_title_Delete
+  read: VideosDocAccessFields_title_Read
+  update: VideosDocAccessFields_title_Update
+}
+
+type VideosDocAccessFields_title_Create {
+  permission: Boolean!
+}
+
+type VideosDocAccessFields_title_Delete {
+  permission: Boolean!
+}
+
+type VideosDocAccessFields_title_Read {
+  permission: Boolean!
+}
+
+type VideosDocAccessFields_title_Update {
+  permission: Boolean!
+}
+
+type VideosDocAccessFields_updatedAt {
+  create: VideosDocAccessFields_updatedAt_Create
+  delete: VideosDocAccessFields_updatedAt_Delete
+  read: VideosDocAccessFields_updatedAt_Read
+  update: VideosDocAccessFields_updatedAt_Update
+}
+
+type VideosDocAccessFields_updatedAt_Create {
+  permission: Boolean!
+}
+
+type VideosDocAccessFields_updatedAt_Delete {
+  permission: Boolean!
+}
+
+type VideosDocAccessFields_updatedAt_Read {
+  permission: Boolean!
+}
+
+type VideosDocAccessFields_updatedAt_Update {
+  permission: Boolean!
+}
+
+type VideosDocAccessFields_url {
+  create: VideosDocAccessFields_url_Create
+  delete: VideosDocAccessFields_url_Delete
+  read: VideosDocAccessFields_url_Read
+  update: VideosDocAccessFields_url_Update
+}
+
+type VideosDocAccessFields_url_Create {
+  permission: Boolean!
+}
+
+type VideosDocAccessFields_url_Delete {
+  permission: Boolean!
+}
+
+type VideosDocAccessFields_url_Read {
+  permission: Boolean!
+}
+
+type VideosDocAccessFields_url_Update {
+  permission: Boolean!
+}
+
+type VideosFields {
+  createdAt: VideosFields_createdAt
+  title: VideosFields_title
+  updatedAt: VideosFields_updatedAt
+  url: VideosFields_url
+}
+
+type VideosFields_createdAt {
+  create: VideosFields_createdAt_Create
+  delete: VideosFields_createdAt_Delete
+  read: VideosFields_createdAt_Read
+  update: VideosFields_createdAt_Update
+}
+
+type VideosFields_createdAt_Create {
+  permission: Boolean!
+}
+
+type VideosFields_createdAt_Delete {
+  permission: Boolean!
+}
+
+type VideosFields_createdAt_Read {
+  permission: Boolean!
+}
+
+type VideosFields_createdAt_Update {
+  permission: Boolean!
+}
+
+type VideosFields_title {
+  create: VideosFields_title_Create
+  delete: VideosFields_title_Delete
+  read: VideosFields_title_Read
+  update: VideosFields_title_Update
+}
+
+type VideosFields_title_Create {
+  permission: Boolean!
+}
+
+type VideosFields_title_Delete {
+  permission: Boolean!
+}
+
+type VideosFields_title_Read {
+  permission: Boolean!
+}
+
+type VideosFields_title_Update {
+  permission: Boolean!
+}
+
+type VideosFields_updatedAt {
+  create: VideosFields_updatedAt_Create
+  delete: VideosFields_updatedAt_Delete
+  read: VideosFields_updatedAt_Read
+  update: VideosFields_updatedAt_Update
+}
+
+type VideosFields_updatedAt_Create {
+  permission: Boolean!
+}
+
+type VideosFields_updatedAt_Delete {
+  permission: Boolean!
+}
+
+type VideosFields_updatedAt_Read {
+  permission: Boolean!
+}
+
+type VideosFields_updatedAt_Update {
+  permission: Boolean!
+}
+
+type VideosFields_url {
+  create: VideosFields_url_Create
+  delete: VideosFields_url_Delete
+  read: VideosFields_url_Read
+  update: VideosFields_url_Update
+}
+
+type VideosFields_url_Create {
+  permission: Boolean!
+}
+
+type VideosFields_url_Delete {
+  permission: Boolean!
+}
+
+type VideosFields_url_Read {
+  permission: Boolean!
+}
+
+type VideosFields_url_Update {
+  permission: Boolean!
+}
+
+type VideosReadAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type VideosReadDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type VideosUpdateAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type VideosUpdateDocAccess {
+  permission: Boolean!
+  where: JSONObject
+}
+
+type contactsAccess {
+  create: ContactsCreateAccess
+  delete: ContactsDeleteAccess
+  fields: ContactsFields
+  read: ContactsReadAccess
+  update: ContactsUpdateAccess
+}
+
+type contactsDocAccess {
+  create: ContactsCreateDocAccess
+  delete: ContactsDeleteDocAccess
+  fields: ContactsDocAccessFields
+  read: ContactsReadDocAccess
+  update: ContactsUpdateDocAccess
+}
+
+type eventsAccess {
+  create: EventsCreateAccess
+  delete: EventsDeleteAccess
+  fields: EventsFields
+  read: EventsReadAccess
+  update: EventsUpdateAccess
+}
+
+type eventsDocAccess {
+  create: EventsCreateDocAccess
+  delete: EventsDeleteDocAccess
+  fields: EventsDocAccessFields
+  read: EventsReadDocAccess
+  update: EventsUpdateDocAccess
+}
+
+input mutationContactInput {
+  createdAt: String
+  name: String!
+  phone: String!
+  updatedAt: String
+}
+
+input mutationContactUpdateInput {
+  createdAt: String
+  name: String
+  phone: String
+  updatedAt: String
+}
+
+input mutationEventInput {
+  createdAt: String
+  locationLink: String
+  locationName: String!
+  startDate: String!
+  title: String!
+  updatedAt: String
+}
+
+input mutationEventUpdateInput {
+  createdAt: String
+  locationLink: String
+  locationName: String
+  startDate: String
   title: String
-  title_contains: String
-  title_exists: Boolean
-  title_in: [String]
-  title_not: String
-  title_not_contains: String
-  title_not_in: [String]
+  updatedAt: String
+}
+
+input mutationUserInput {
+  createdAt: String
+  email: String!
+  hash: String
+  lockUntil: String
+  loginAttempts: Float
+  password: String!
+  resetPasswordExpiration: String
+  resetPasswordToken: String
+  salt: String
+  updatedAt: String
+}
+
+input mutationUserUpdateInput {
+  createdAt: String
+  email: String
+  hash: String
+  lockUntil: String
+  loginAttempts: Float
+  password: String
+  resetPasswordExpiration: String
+  resetPasswordToken: String
+  salt: String
+  updatedAt: String
+}
+
+input mutationVideoInput {
+  createdAt: String
+  title: String!
+  updatedAt: String
+  url: String!
+}
+
+input mutationVideoUpdateInput {
+  createdAt: String
+  title: String
+  updatedAt: String
   url: String
-  url_contains: String
-  url_exists: Boolean
-  url_in: [String]
-  url_not: String
-  url_not_contains: String
-  url_not_in: [String]
 }
 
-type VideoLinkingCollections {
-  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+type usersAccess {
+  create: UsersCreateAccess
+  delete: UsersDeleteAccess
+  fields: UsersFields
+  read: UsersReadAccess
+  unlock: UsersUnlockAccess
+  update: UsersUpdateAccess
 }
 
-enum VideoOrder {
-  sys_firstPublishedAt_ASC
-  sys_firstPublishedAt_DESC
-  sys_id_ASC
-  sys_id_DESC
-  sys_publishedAt_ASC
-  sys_publishedAt_DESC
-  sys_publishedVersion_ASC
-  sys_publishedVersion_DESC
-  title_ASC
-  title_DESC
-  url_ASC
-  url_DESC
+type usersDocAccess {
+  create: UsersCreateDocAccess
+  delete: UsersDeleteDocAccess
+  fields: UsersDocAccessFields
+  read: UsersReadDocAccess
+  unlock: UsersUnlockDocAccess
+  update: UsersUpdateDocAccess
+}
+
+type usersJWT {
+  collection: String!
+  email: EmailAddress!
+}
+
+type usersLoginResult {
+  exp: Int
+  token: String
+  user: User
+}
+
+type usersMe {
+  collection: String
+  exp: Int
+  token: String
+  user: User
+}
+
+type usersRefreshedUser {
+  exp: Int
+  refreshedToken: String
+  user: usersJWT
+}
+
+type usersResetPassword {
+  token: String
+  user: User
+}
+
+type videosAccess {
+  create: VideosCreateAccess
+  delete: VideosDeleteAccess
+  fields: VideosFields
+  read: VideosReadAccess
+  update: VideosUpdateAccess
+}
+
+type videosDocAccess {
+  create: VideosCreateDocAccess
+  delete: VideosDeleteDocAccess
+  fields: VideosDocAccessFields
+  read: VideosReadDocAccess
+  update: VideosUpdateDocAccess
 }
