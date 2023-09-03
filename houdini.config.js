@@ -7,14 +7,16 @@ const headers = {
 /** @type {import('houdini').ConfigFile} */
 const config = {
 	client: './src/client',
-	apiUrl: 'https://graphql.contentful.com/content/v1/spaces/us4kti3xfg3y',
 	plugins: { 'houdini-svelte': {} },
 	scalars: {
 		DateTime: {
 			type: 'string'
 		}
 	},
-	schemaPollHeaders: headers
+	watchSchema: {
+		headers: headers,
+		url: 'https://graphql.contentful.com/content/v1/spaces/us4kti3xfg3y'
+	}
 };
 
 export default config;
