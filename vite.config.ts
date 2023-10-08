@@ -1,11 +1,9 @@
 import { sveltekit } from '@sveltejs/kit/vite';
-import houdini from 'houdini/vite';
-import type { UserConfig } from 'vite';
+import { defineConfig } from 'vite';
 import WindiCSS from 'vite-plugin-windicss';
+import houdini from 'houdini/vite';
 
-const config: UserConfig = {
+export default defineConfig({
 	envPrefix: ['VITE_', 'CONTENTFUL_'],
 	plugins: [houdini(), sveltekit(), WindiCSS()]
-};
-
-export default config;
+});

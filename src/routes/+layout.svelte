@@ -52,16 +52,16 @@
 </main>
 
 <style global>
-	a:not(.navlink) {
-		@apply relative hover:no-underline text-grasshopperGreen-500;
-	}
+    a:not(.navlink) {
+        @apply relative hover:no-underline text-grasshopperGreen-500;
+    }
 
-	a:not(.navlink)::after {
-		content: '';
-		@apply bg-grasshopperGreen-500 absolute transition-all duration-300 h-px w-0 left-0 bottom-0;
-	}
+    a:not(.navlink)::after {
+        content: '';
+        @apply bg-grasshopperGreen-500 absolute transition-all duration-300 h-px w-0 left-0 bottom-0;
+    }
 
-	a:not(.navlink):hover::after {
-		@apply w-full;
-	}
+    a:not(.navlink):hover::after {
+        @apply w-full;
+    }
 </style>

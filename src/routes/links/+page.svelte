@@ -132,9 +132,6 @@
 			<a href="https://soundcloud.com/user-601516904"> Kobaltikum </a>
 		</li>
 		<li>
-			<a href="https://soundcloud.com/electra-twins"> Electra Twins </a>
-		</li>
-  <li>
 			<a href="https://soundcloud.com/itsrerz"> rerz </a>
 		</li>
 	</ul>

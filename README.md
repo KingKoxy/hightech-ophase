@@ -4,8 +4,7 @@ Dies ist der Code der Website der O-Phasengruppe HiGHtech am Karlsruher Institut
 
 ## Grundlegendes
 
-Die Website ist in **Svelte**, einem JS-Framework mithilfe von **SvelteKit** geschrieben. Für das Styling wird **
-WindiCSS** verwendet, welches auf
+Die Website ist in **Svelte**, einem JS-Framework mithilfe von **SvelteKit** geschrieben. Für das Styling wird **WindiCSS** verwendet, welches auf
 Tailwind basiert.
 Bisher wird lediglich der Schedule von [Contentful](https://www.contentful.com/) gefetcht. Mithilfe von **Vercel** kann
 die Seite
