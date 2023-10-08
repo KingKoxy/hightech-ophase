@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/ophase-hightech.iml" filepath="$PROJECT_DIR$/.idea/ophase-hightech.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/ophase-svelte-kit.iml" filepath="$PROJECT_DIR$/.idea/ophase-svelte-kit.iml" />
     </modules>
   </component>
 </project>
