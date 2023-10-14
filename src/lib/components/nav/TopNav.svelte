@@ -13,6 +13,3 @@
 		{/if}
 	{/each}
 </div>
-<div class="sm:hidden block text-xl font-semibold flex items-center">
-	<!--{PAGES[active]}-->
-</div>

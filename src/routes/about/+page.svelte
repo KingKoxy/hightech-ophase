@@ -15,31 +15,37 @@
 	$: queryData = data?.GetAllContacts;
 
 	$: contacts = $queryData?.data?.contactCollection.items ?? [];
+
+	$: isOPhase = new Date().getMonth() === 9;
 </script>
 
-<section class="mb-10">
-	<Headline>Kontakt</Headline>
-	Bei
-	<strong>Fragen, Problemen, etc.</strong> schreibt am besten in der
-	<strong>WhatsApp-Gruppe,</strong>
-	per
-	<strong>Direktnachricht</strong> oder sprecht einfach einen der <strong>Tutoren</strong> an. Für
-	den absoluten Notfall findet ihr hier noch einmal die Nummern der
-	<strong>Hauptverantwortlichen: </strong>
-	{#each contacts as contact}
-		<ContactCard {contact} />
-	{/each}
-</section>
+{#if isOPhase}
+	<section class="mb-10">
+		<Headline>Kontakt</Headline>
+		Bei
+		<strong>Fragen, Problemen, etc.</strong> schreibt am besten in der
+		<strong>WhatsApp-Gruppe,</strong>
+		per
+		<strong>Direktnachricht</strong> oder sprecht einfach einen der <strong>Tutoren</strong> an. Für
+		den absoluten Notfall findet ihr hier noch einmal die Nummern der
+		<strong>Hauptverantwortlichen: </strong>
+		{#each contacts as contact}
+			<ContactCard {contact} />
+		{/each}
+	</section>
+{/if}
 <section class="mb-10">
 	<Headline>In der O-Phase</Headline>
 	<div class="md:flex">
 		<div class="md:mr-8 text-justify md:mb-0 mb-5">
-			Neben Freibier ;) (Nur solange der Vorrat reicht) bringt unsere Gruppe seit acht Jahren
-			erfolgreich die elektronische Feierkultur in die O-Phase. Dazu gehören Techno-Partys wie
-			Raves. Aber auch für Nicht-Raver haben wir ein ausgefeiltes Programm im Angebot. Mit uns kann
-			man nämlich nicht nur Feiern, sondern auch Wandern, einfach mal ein Bierchen am AKK (dem
-			Uni-eigenen Biergarten ;)) trinken, im Park brunchen, über Ethik und Philosophie diskutieren
-			und tatsächlich auch lernen und studieren :D
+			Unsere Gruppe ist seit 2014 erfolgreich dabei, die elektronische Feierkultur in die O-Phase zu
+			integrieren. Dabei bieten wir euch nicht nur Freibier (solange der Vorrat reicht 😉), sondern
+			auch eine Möglichkeit neue Freunde fürs Studium und fürs Leben zu finden. Wir organisieren
+			Techno-Partys wie Raves, die nicht nur Raver ansprechen, sondern auch für Nicht-Raver einiges
+			zu bieten haben. Aber das ist noch nicht alles! Neben dem ausgelassenen Feiern, haben wir auch
+			ein vielfältiges Programm parat. Du kannst mit uns wandern, entspannt ein Bierchen im
+			Uni-eigenen Biergarten AKK genießen, im Park brunchen, an lebhaften Diskussionen über Ethik
+			und Philosophie teilnehmen und tatsächlich auch lernen und studieren 😄
 			<br /><br />
 			Besonders viel Wert legen wir auf ein harmonisches Miteinander in dem jeder so akzeptiert wird,
 			wie er ist. Durch diese Philosophie hat sich mittlerweile ein großer Freundeskreis rund um unsere
@@ -68,18 +74,15 @@
 		beschränken. Unsere Gruppe bietet dir einen breit gefächerten Freundeskreis in dem man sich hilft
 		und unterstützt, sei es für die Uni oder Privates. Gemeinsam organisieren wir auch unter dem Semester
 		regelmäßig Events, wie Partys oder Raves, Wanderungen und Urlaube. Wer sich hier besonders engagieren
-		möchte, kann das auch in unserer Hochschulgruppe, welche zum Beispiel den halbjährigen Rave (Glühwein-
-		oder Frühlingsrave) am AKK organisiert, bei dem wir das letzte Mal über 2000 Besucher hatten. Es
-		findet sich aber auch immer eine gute Gruppe, um auf andere Partys oder Festivals zu gehen, nicht
-		nur (wenn auch hauptsächlich) im elektronischen Bereich. Zusätzlich dazu gibt es viele Teilgruppen
-		unserer Gemeinschaft die regelmäßig Zusammenkünfte organisieren, wie den Lesekreis, in dem Texte
-		aller Art gelesen und anschließend diskutiert werden, oder den Utopia-Brunch, bei dem wir für einige
-		Stunden der Welt entkommen, unser Essen teilen und einfach wir selbst sind. Jeden Mittwoch ist außerdem
-		Barabend in der K2 Bar und bei gutem Wetter sind wir regelmäßig im Fasanengarten aufzufinden und
-		gut zu erkennen an lauten Bässen, die wir quer durch den Park wummern lassen.
+		möchte, kann das auch in unserer Hochschulgruppe. Diese organisiert zum Beispiel die halbjährigen
+		Raves am AKK, bei denen wir das letzte Mal über 2000 Besucher hatten. Es findet sich aber auch immer
+		eine gute Gruppe, um auf andere Partys oder Festivals zu gehen, nicht nur (wenn auch hauptsächlich)
+		im elektronischen Bereich. Jeden Mittwoch ist außerdem Barabend in der K2 Bar und bei gutem Wetter
+		sind wir regelmäßig im Fasanengarten aufzufinden und gut zu erkennen an lauten Bässen, die wir quer
+		durch den Park wummern lassen.
 		<br /><br />
-		Wenn du also jemanden suchst, mit dem du lernen, feiern oder auch einfach nur ein (oder zehn) gemütliche(s)
-		Bier trinken kannst, dann bist du bei uns gold-(oder besser grün-)richtig ;)
+		Wenn du also jemanden suchst, mit dem du lernen, feiern oder auch einfach nur ein (oder zehn) gemütliches
+		Bier trinken kannst, dann bist du bei uns grün-richtig 😉
 		<br /><br />
 		Und nicht vergessen: Wir sind HiGH! ... tech...
 	</div>

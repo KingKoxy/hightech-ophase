@@ -12,8 +12,8 @@
 
 <a
 	href={url}
-	class="navlink mx-1 mb-2 hover:no-underline hover:text-white transition-all {active
-		? 'text-white font-semibold'
+	class="font-bold navlink mx-3 mb-2 hover:no-underline hover:text-white transition-all {active
+		? 'text-white'
 		: ''}"
 >
 	<slot />

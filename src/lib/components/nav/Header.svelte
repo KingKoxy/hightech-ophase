@@ -1,5 +1,5 @@
 <script lang="ts">
-	import lottie from 'lottie-web';
+	import lottie, { AnimationItem } from 'lottie-web';
 	import { onMount } from 'svelte';
 	import { get } from 'svelte/store';
 
@@ -10,7 +10,7 @@
 	import Nav from './TopNav.svelte';
 
 	let animationContainer;
-	let animation;
+	let animation: AnimationItem;
 
 	function toggleDarkMode() {
 		animation.stop();
@@ -30,7 +30,7 @@
 			loop: false,
 			animationData: lightModeAnim
 		});
-		animation.goToAndStop(get(darkMode) ? 0 : 14, true);
+		animation.goToAndStop(get(darkMode)??true ? 14 : 0, true);
 		animation.pause();
 	});
 </script>
