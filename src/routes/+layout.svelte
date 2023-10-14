@@ -53,12 +53,12 @@
 			out:fade={{ duration: 200 }}
 			class="w-full flex justify-center dark:text-white"
 		>
-			<div class="xl:w-[55%] h-full w-full m-7 xl:mt-0 md:m-10">
+			<div class="xl:w-[55%] h-full w-full mb-0 m-7 md:mb-0 xl:mt-0 md:m-10">
 				<slot />
 			</div>
 		</div>
 		{#if $page.route.id !== '/imprint'}
-			<footer class="p-3 flex justify-center">
+			<footer class="p-3 mt-2 flex justify-center">
 				<a href="/imprint">Impressum</a>
 			</footer>
 		{/if}

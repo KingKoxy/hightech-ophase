@@ -13,12 +13,6 @@
 	let animation: AnimationItem;
 
 	function toggleDarkMode() {
-		animation.stop();
-		if (get(darkMode)) {
-			animation.playSegments([14, 28], true);
-		} else {
-			animation.playSegments([0, 14], true);
-		}
 		darkMode.set(!get(darkMode));
 	}
 
@@ -30,9 +24,16 @@
 			loop: false,
 			animationData: lightModeAnim
 		});
-		animation.goToAndStop(get(darkMode)??true ? 14 : 0, true);
-		animation.pause();
 	});
+
+	$: {
+		animation.stop();
+		if($darkMode){
+			animation.playSegments([14, 28], true);
+		} else {
+			animation.playSegments([0, 14], true);
+		}
+	}
 </script>
 
 <div class="sticky top-0 w-full flex z-50 select-none">

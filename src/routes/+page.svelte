@@ -26,8 +26,8 @@
 			Anders als andere Fakultäten, ist die Umsetzung der O-Phase bei uns Informatikern nicht nur zentral
 			von der Fachschaft organisiert, sondern von den verschiedensten O-Phasengruppen, welche alle ihr
 			eigenes Programm haben und unabhängig von Studierenden organisiert sind. Was uns als Gruppe zur
-			ersten Wahl macht, liest du am besten unter "Über uns" oder in unserem Wochenplan für die O-Phase
-			nach =)
+			ersten Wahl macht, liest du am besten unter <a href='/about'>Über uns</a> oder in unserem <a href='/schedule'>Wochenplan</a> für die O-Phase
+			nach
 		</div>
 
 		<picture class="flex-shrink-0 max-w-1/2">

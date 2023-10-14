@@ -1,6 +1,6 @@
 export const PAGES = {
 	'/': 'Home',
-	'/schedule': 'Zeitplan',
+	'/schedule': 'Wochenplan',
 	'/about': 'Über uns',
 	'/links': 'Links'
 };
