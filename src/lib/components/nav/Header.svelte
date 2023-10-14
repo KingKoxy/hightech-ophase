@@ -1,13 +1,13 @@
 <script lang="ts">
-	import { get } from 'svelte/store';
 	import lottie from 'lottie-web';
-	import lightModeAnim from '$lib/assets/animations/lightMode.json';
-	import Nav from './TopNav.svelte';
+	import { onMount } from 'svelte';
+	import { get } from 'svelte/store';
 
+	import lightModeAnim from '$lib/assets/animations/lightMode.json';
+	import logo from '$lib/assets/icons/logo.svg';
 	import { darkMode } from '$lib/stores';
 
-	import logo from '$lib/assets/icons/logo.svg';
-	import { onMount } from 'svelte';
+	import Nav from './TopNav.svelte';
 
 	let animationContainer;
 	let animation;

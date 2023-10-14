@@ -1,6 +1,5 @@
 <script lang="ts">
 	import BottomNavLink from '$lib/components/nav/BottomNavLink.svelte';
-
 	import { PAGES } from '$lib/constants';
 </script>
 

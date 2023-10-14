@@ -1,14 +1,14 @@
 <script lang="ts">
 	import Headline from '$lib/components/Headline.svelte';
-	import DayItem from './DayItem.svelte';
-
 	import { queryToSchedule } from '$lib/utils';
 
-	import { graphql } from '$houdini';
-	export let data;
+	import type { PageData } from './$houdini';
+	import DayItem from './DayItem.svelte';
 
-	$: ({ GetAllEvents } = data);
-	$: schedule = queryToSchedule($GetAllEvents?.data) ?? [];
+	export let data: PageData;
+
+	$: queryData = data?.GetAllEvents;
+	$: schedule = queryToSchedule($queryData?.data) ?? [];
 </script>
 
 <Headline>Zeitplan</Headline>

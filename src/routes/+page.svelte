@@ -1,15 +1,16 @@
 <script lang="ts">
-	import Headline from '$lib/components/Headline.svelte';
-	import VideoItem from './VideoItem.svelte';
-
 	import groupAvif from '$lib/assets/images/gruppenfoto.avif';
 	import groupJpg from '$lib/assets/images/gruppenfoto.jpg';
 	import groupWebp from '$lib/assets/images/gruppenfoto.webp';
+	import Headline from '$lib/components/Headline.svelte';
 
-	export let data;
+	import type { PageData } from './$houdini';
+	import VideoItem from './VideoItem.svelte';
 
-	$: ({ GetAllVideos } = data);
-	$: videos = $GetAllVideos?.data?.videoCollection.items ?? [];
+	export let data: PageData;
+
+	$: queryData = data?.GetAllVideos;
+	$: videos = $queryData?.data?.videoCollection.items ?? [];
 </script>
 
 <section class="mb-10">

@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-
 	import calendarBlack from '$lib/assets/icons/nav/black/calendar.svg';
 	import homeBlack from '$lib/assets/icons/nav/black/home.svg';
 	import linkBlack from '$lib/assets/icons/nav/black/link.svg';

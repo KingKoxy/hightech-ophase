@@ -1,6 +1,5 @@
 <script lang="ts">
 	import NavLink from '$lib/components/nav/TopNavLink.svelte';
-
 	import { PAGES } from '$lib/constants';
 </script>
 

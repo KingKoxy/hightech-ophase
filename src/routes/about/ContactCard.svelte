@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { IContact } from '../../lib/types';
+	import type { IContact } from '$lib/types';
 
 	export let contact: IContact;
 </script>

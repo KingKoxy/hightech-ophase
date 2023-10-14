@@ -1,8 +1,8 @@
 query GetAllVideos {
-    videoCollection {
-        items {
-            title
-            url
-        }
-    }
+	videoCollection {
+		items {
+			title
+			url
+		}
+	}
 }
