@@ -20,7 +20,6 @@
 		for (let calendarEvent of queryToEvents($queryData?.data)) {
 			calendar.createEvent(calendarEvent);
 		}
-		console.log(calendar.toString());
 		const blob = calendar.toBlob();
 		const link = document.createElement('a');
 		link.href = window.URL.createObjectURL(blob);
