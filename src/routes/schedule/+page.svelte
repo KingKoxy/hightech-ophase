@@ -1,10 +1,11 @@
 <script lang="ts">
+	import ical from 'ical-generator';
+
 	import exportBlack from '$lib/assets/icons/exportBlack.svg';
 	import exportWhite from '$lib/assets/icons/exportWhite.svg';
 	import Headline from '$lib/components/Headline.svelte';
-	import { queryToICal } from '$lib/ical';
 	import { darkMode } from '$lib/stores.js';
-	import { queryToSchedule } from '$lib/utils';
+	import { queryToEvents,queryToSchedule } from '$lib/utils';
 
 	import type { PageData } from './$houdini';
 	import DayItem from './DayItem.svelte';
@@ -15,11 +16,17 @@
 	$: schedule = queryToSchedule($queryData?.data) ?? [];
 
 	function exportCalendar() {
-		const blob = queryToICal($queryData?.data);
+		const calendar = ical({ name: 'Wochenplan O-Phase' });
+		for (let calendarEvent of queryToEvents($queryData?.data)) {
+			calendar.createEvent(calendarEvent);
+		}
+		console.log(calendar.toString());
+		const blob = calendar.toBlob();
 		const link = document.createElement('a');
 		link.href = window.URL.createObjectURL(blob);
 		link.download = 'Wochenplan.ics';
 		link.click();
+
 	}
 </script>
 
