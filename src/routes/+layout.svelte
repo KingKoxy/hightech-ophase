@@ -10,8 +10,6 @@
 	import Header from '$lib/components/nav/Header.svelte';
 	import { darkMode } from '$lib/stores';
 
-	export let data: { url: string };
-
 	onMount(() => {
 		if (localStorage.getItem('theme') === 'dark') darkMode.set(true);
 		else darkMode.set(window.matchMedia('(prefers-color-scheme: dark)').matches);

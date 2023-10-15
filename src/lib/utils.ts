@@ -1,3 +1,5 @@
+import type { ICalEventData } from 'ical-generator';
+
 import type { IDay } from '$lib/types';
 
 export function queryToSchedule(data: {
@@ -44,4 +46,69 @@ export function queryToSchedule(data: {
 		});
 	}
 	return days;
+}
+
+export function queryToEvents(data: {
+	eventCollection: {
+		items: {
+			startTime: string;
+			title: string;
+			locationName: string;
+			locationGoogleMapsLink: string;
+		}[];
+	};
+}): ICalEventData[] {
+	const events = data.eventCollection.items;
+	events.sort((a, b) => a.startTime.localeCompare(b.startTime));
+	const ret: ICalEventData[] = [];
+	for (let i = 0; i < events.length; i++) {
+		const currentElement = events[i];
+		const nextElement = events[i + 1];
+
+		let endDate;
+
+		if (nextElement) {
+			const currentStartDate = new Date(currentElement.startTime);
+			const nextStartDate = new Date(nextElement.startTime);
+
+			// Überprüfen, ob das Startdatum des nächsten Elements an einem anderen Tag liegt
+			if (
+				currentStartDate.getDate() !== nextStartDate.getDate() ||
+				currentStartDate.getMonth() !== nextStartDate.getMonth() ||
+				currentStartDate.getFullYear() !== nextStartDate.getFullYear()
+			) {
+				// Das Startdatum des nächsten Elements liegt an einem anderen Tag
+				endDate = new Date(
+					currentStartDate.getFullYear(),
+					currentStartDate.getMonth(),
+					currentStartDate.getDate(),
+					24,
+					0,
+					0
+				);
+			} else {
+				// Das Startdatum des nächsten Elements liegt am selben Tag
+				endDate = nextStartDate;
+			}
+		} else {
+			// Es gibt kein nächstes Element, also fügen wir 24 Uhr hinzu
+			const currentStartDate = new Date(currentElement.startTime);
+			endDate = new Date(
+				currentStartDate.getFullYear(),
+				currentStartDate.getMonth(),
+				currentStartDate.getDate(),
+				24,
+				0,
+				0
+			);
+		}
+		ret.push({
+			start: new Date(currentElement.startTime),
+			end: endDate,
+			summary: currentElement.title,
+			location: currentElement.locationName
+		});
+	}
+
+	return ret;
 }
