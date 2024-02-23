@@ -19,6 +19,9 @@
 <section class="mb-5">
 	<h2 class="text-xl font-semibold mb-2">Im Studium:</h2>
 	<ul class="ml-4">
+<li>
+			<a href="https://bubatzkarte.de/#14/49.0154/8.4151">Bubatzkarte</a> - Karte mit Zonen in denen Cannabis konsumiert werden darf
+		</li>
 		<li>
 			<a href="https://campus.studium.kit.edu/">Campus Management Portal</a> - Bescheinigunen wie das
 			KVV Ticket ausdrucken, Prüfungsanmeldung, etc.
