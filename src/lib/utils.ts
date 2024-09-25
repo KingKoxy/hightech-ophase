@@ -1,6 +1,6 @@
 import type { ICalEventData } from 'ical-generator';
 
-import type { IDay } from '$lib/types';
+import type { IDay, IEvent } from '$lib/types';
 
 export function queryToSchedule(data: {
 	eventCollection: {
@@ -14,35 +14,41 @@ export function queryToSchedule(data: {
 }): IDay[] {
 	if (!data) return [] as IDay[];
 	const items = data.eventCollection.items;
-	const dayMap = new Map<
-		number,
-		{ title: string; startTime: string; location: string; locationLink: string }[]
-	>();
+	const dayMap = new Map<string, IEvent[]>();
 
 	for (const item of items) {
 		const date = new Date(item.startTime);
+
+		// Map for example 01:00 club events to the day before
+		const mappingDate = new Date();
+		mappingDate.setTime(date.getTime() - 2 * 60 * 60 * 1000);
+
 		const startTime = date.toLocaleTimeString(['de'], {
 			hour: '2-digit',
 			minute: '2-digit'
 		});
+		const mappingDateKey = mappingDate.toISOString().split('T')[0];
 
-		//For anyone wondering: https://stackoverflow.com/questions/4467539/javascript-modulo-gives-a-negative-result-for-negative-numbers
-		const weekDay = (((date.getDay() - 1) % 7) + 7) % 7;
-		const events = dayMap.get(weekDay) ?? [];
+		const events: IEvent[] = dayMap.get(mappingDateKey) ?? [];
 		events.push({
 			title: item.title,
 			startTime,
 			location: item.locationName,
-			locationLink: item.locationGoogleMapsLink
+			locationLink: item.locationGoogleMapsLink,
+			date: date
 		});
-		dayMap.set(weekDay, events);
+		dayMap.set(mappingDateKey, events);
 	}
 
 	const days: IDay[] = [];
-	for (const [key, value] of dayMap) {
+	for (const [dateString, events] of dayMap) {
+		events.sort((a, b) => a.date.toISOString().localeCompare(b.date.toISOString()));
+		const date = new Date(dateString);
+		const weekDayIndex = date.getDay();
 		days.push({
-			index: key,
-			events: value
+			date: date,
+			weekdayIndex: weekDayIndex,
+			events: events
 		});
 	}
 	return days;

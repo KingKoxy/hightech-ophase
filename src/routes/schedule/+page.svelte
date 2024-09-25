@@ -27,6 +27,13 @@
 		link.click();
 
 	}
+
+	const currentDate=new Date();
+
+	// Update the current date every minute
+	setInterval(()=>{
+		currentDate.setTime(Date.now());
+	}, 60000);
 </script>
 
 <Headline>
@@ -44,10 +51,10 @@
 <!-- <div class="text-xl">CUMMING SOON 💦</div> -->
 <div class="md:mx-10 mt-5">
 	{#each schedule.sort((a, b) => {
-		return a.index - b.index;
+		return a.date.toISOString().localeCompare(b.date.toISOString());
 	}) as day, i}
 		<div class:mb-10={i < schedule.length - 1}>
-			<DayItem {day} />
+			<DayItem {day} {currentDate}/>
 		</div>
 	{/each}
 </div>

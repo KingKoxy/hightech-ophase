@@ -7,7 +7,7 @@
 	<h2 class="text-xl font-semibold mb-2">In der O-Phase:</h2>
 	<ul class="ml-4">
 		<li>
-			Die offizielle <a href="https://o-phase.com/de/ws2021/">Website</a> der Fachschaft Mathe/Info zur
+			Die offizielle <a href="https://o-phase.com/de/">Website</a> der Fachschaft Mathe/Info zur
 			O-Phase
 		</li>
 		<li>
@@ -142,7 +142,7 @@
 		</li>
 	</ul>
 </section>
-<section>
+<!--<section>
 	<h2 class="text-xl font-semibold mb-2">Weitere Links:</h2>
 	<ul class="ml-4 mt-2">
 		<li>
@@ -151,7 +151,7 @@
 			> - ein tolles Trinkspiel (unbedingt ausprobieren!)
 		</li>
 	</ul>
-</section>
+</section>-->
 
 <style>
 	li {

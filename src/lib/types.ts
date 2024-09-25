@@ -1,5 +1,6 @@
 export interface IDay {
-	index: number; // starts with monday: 0, tuesday: 1, ...
+	date: Date;
+	weekdayIndex: number;
 	events: IEvent[];
 }
 
@@ -8,6 +9,7 @@ export interface IEvent {
 	startTime: string;
 	location: string;
 	locationLink?: string;
+	date: Date;
 }
 
 export interface IContact {

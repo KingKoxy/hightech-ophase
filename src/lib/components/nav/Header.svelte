@@ -1,5 +1,4 @@
 <script lang="ts">
-	import lottie from 'lottie-web';
 	import { onMount } from 'svelte';
 	import { get } from 'svelte/store';
 
@@ -22,7 +21,8 @@
 		darkMode.set(!get(darkMode));
 	}
 
-	onMount(() => {
+	onMount(async () => {
+		const lottie = (await import('lottie-web')).default;
 		// Load the initial light mode animation
 		animation = lottie.loadAnimation({
 			container: animationContainer,

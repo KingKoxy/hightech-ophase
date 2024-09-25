@@ -8,3 +8,5 @@ node_modules
 !.env.example
 
 $houdini
+/.idea/git_toolbox_blame.xml
+/.idea/material_theme_project_new.xml
