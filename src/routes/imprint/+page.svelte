@@ -6,8 +6,8 @@
 Angaben gemäß § 5 TMG <br /><br />
 
 Konrad Knappe<br />
-Steinmetzstr. 6<br />
-76227 Karlsruhe<br /><br />
+Buchtzigstraße 50<br />
+76275 Etllingen<br /><br />
 
 <strong>Kontakt</strong><br />
 Telefon: 0151 20272968<br />
