@@ -16,7 +16,7 @@
 
 	$: contacts = $queryData?.data?.contactCollection.items ?? [];
 
-	$: isOPhase = new Date().getMonth() === 9;
+	$: isOPhase = new Date().getMonth() === 8 || new Date().getMonth() === 9;
 </script>
 
 {#if isOPhase}
