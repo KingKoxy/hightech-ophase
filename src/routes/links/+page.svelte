@@ -153,8 +153,8 @@
 	</ul>
 </section>-->
 
-<style>
+<style lang="postcss">
 	li {
-		@apply mb-1 list-square;
+		@apply mb-1 list-[square];
 	}
 </style>

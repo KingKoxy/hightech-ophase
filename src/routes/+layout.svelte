@@ -1,6 +1,5 @@
 <script lang="ts">
-	import 'virtual:windi-devtools';
-	import 'virtual:windi.css';
+	import '../app.css';
 
 	import { onMount } from 'svelte';
 	import { fade } from 'svelte/transition';
@@ -63,17 +62,17 @@
 	<BottomNav />
 </main>
 
-<style global>
-	a:not(.navlink) {
+<style lang="postcss">
+	:global(a:not(.navlink)) {
 		@apply relative text-grasshopperGreen-500;
 	}
 
-	a:not(.navlink)::after {
+	:global(a:not(.navlink)::after) {
 		content: '';
 		@apply bg-grasshopperGreen-500 absolute transition-all duration-300 h-px w-0 left-0 bottom-0;
 	}
 
-	a:not(.navlink):hover::after {
+	:global(a:not(.navlink):hover::after) {
 		@apply w-full;
 	}
 </style>

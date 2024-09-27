@@ -1,14 +1,13 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { get, writable } from 'svelte/store';
-
 	import lightModeAnim from '$lib/assets/animations/lightMode.json';
 	import { darkMode } from '$lib/stores';
 
 	import Nav from './TopNav.svelte';
 	import { contentfulClient } from '$lib/client';
 
-	let animationContainer;
+	let animationContainer: HTMLElement;
 	let animation;
 
 	function toggleDarkMode() {
@@ -30,7 +29,7 @@
 			loop: false,
 			animationData: lightModeAnim
 		});
-		animation.goToAndStop(get(darkMode) ? 0 : 14, true);
+		animation.goToAndStop(get(darkMode) ? 14 : 0, true);
 		animation.pause();
 	});
 

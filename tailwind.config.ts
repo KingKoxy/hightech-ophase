@@ -1,6 +1,6 @@
-import { defineConfig } from 'windicss/helpers';
-
-export default defineConfig({
+import { type Config } from 'tailwindcss';
+export default {
+	content: ['./src/**/*.{html,js,svelte,ts}'],
 	darkMode: 'class',
 	theme: {
 		extend: {
@@ -17,6 +17,7 @@ export default defineConfig({
 					500: '#00040e'
 				}
 			}
-		}
-	}
-});
+		},
+	},
+	plugins: []
+} satisfies Config;

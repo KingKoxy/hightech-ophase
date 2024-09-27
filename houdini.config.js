@@ -1,8 +1,10 @@
-const headers = {
-	Authorization: (env) => {
-		return `Bearer ${env.CONTENTFUL_ACCESS_TOKEN}`;
-	}
-};
+function headers(env) {
+	return { Authorization: `Bearer ${env.CONTENTFUL_ACCESS_TOKEN}` };
+}
+
+function url(env) {
+	return 'https://graphql.contentful.com/content/v1/spaces/' + env.CONTENTFUL_SPACE_ID;
+}
 
 /** @type {import('houdini').ConfigFile} */
 const config = {
@@ -17,8 +19,8 @@ const config = {
 		}
 	},
 	watchSchema: {
-		headers: headers,
-		url: 'https://graphql.contentful.com/content/v1/spaces/us4kti3xfg3y'
+		url: url,
+		headers: headers
 	}
 };
 

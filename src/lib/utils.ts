@@ -9,6 +9,7 @@ export function queryToSchedule(data: GetAllEvents$result): IDay[] {
 	const dayMap = new Map<string, IEvent[]>();
 
 	for (const item of items) {
+		if(!item || !item.startTime || !item.title || !item.locationName || !item.locationGoogleMapsLink) continue;
 		const date = new Date(item.startTime);
 
 		// Map for example 01:00 club events to the day before
