@@ -6,8 +6,11 @@ const headers = {
 
 /** @type {import('houdini').ConfigFile} */
 const config = {
-	client: './src/client',
-	plugins: { 'houdini-svelte': {} },
+	plugins: {
+		'houdini-svelte': {
+			client: './src/lib/client.ts'
+		}
+	},
 	scalars: {
 		DateTime: {
 			type: 'string'

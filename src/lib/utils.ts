@@ -1,18 +1,10 @@
 import type { ICalEventData } from 'ical-generator';
 
+import type { GetAllEvents$result } from '$houdini';
 import type { IDay, IEvent } from '$lib/types';
 
-export function queryToSchedule(data: {
-	eventCollection: {
-		items: {
-			startTime: string;
-			title: string;
-			locationName: string;
-			locationGoogleMapsLink: string;
-		}[];
-	};
-}): IDay[] {
-	if (!data) return [] as IDay[];
+export function queryToSchedule(data: GetAllEvents$result): IDay[] {
+	if (!data || !data.eventCollection) return [] as IDay[];
 	const items = data.eventCollection.items;
 	const dayMap = new Map<string, IEvent[]>();
 
