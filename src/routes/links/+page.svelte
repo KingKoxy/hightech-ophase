@@ -11,7 +11,7 @@
 			O-Phase
 		</li>
 		<li>
-			<a href="https://www.asta-kit.de/de/notunterkuenfte">AStA-Notunterkünfte</a> - Unterfkünfte im
+			<a href="https://www.asta-kit.de/de/notunterkuenfte">AStA-Notunterkünfte</a> - Unterkünfte im
 			HaDiKo (Oststadt) für alle, die während der O-Phase noch keinen Schlafplatz in KA haben
 		</li>
 	</ul>
@@ -23,7 +23,7 @@
 			<a href="https://bubatzkarte.de/#14/49.0154/8.4151">Bubatzkarte</a> - Karte mit Zonen in denen Cannabis konsumiert werden darf
 		</li>
 		<li>
-			<a href="https://campus.studium.kit.edu/">Campus Management Portal</a> - Bescheinigunen wie das
+			<a href="https://campus.studium.kit.edu/">Campus Management Portal</a> - Bescheinigungen wie das
 			KVV Ticket ausdrucken, Prüfungsanmeldung, etc.
 		</li>
 		<li>

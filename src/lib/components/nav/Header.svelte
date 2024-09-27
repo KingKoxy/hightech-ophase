@@ -8,7 +8,7 @@
 	import { contentfulClient } from '$lib/client';
 
 	let animationContainer: HTMLElement;
-	let animation;
+	let animation; //Type is AnimationItem from lottie-web but if the type is imported lottie tries to manipulate the document which fails because its ssr
 
 	function toggleDarkMode() {
 		animation.stop();
@@ -36,7 +36,7 @@
 	const logo = writable<string>();
 
 	contentfulClient.getAsset('7dtuCnKBcp0Qw62DjPCW5F').then((asset) => {
-		if(!asset.fields.file) return;
+		if (!asset.fields.file) return;
 		logo.set(asset.fields.file.url);
 	});
 </script>

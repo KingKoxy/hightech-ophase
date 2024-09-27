@@ -16,3 +16,8 @@ export interface IContact {
 	name: string;
 	phone: string;
 }
+
+export interface IVideo {
+	title: string;
+	url: string;
+}

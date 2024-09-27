@@ -1,5 +1,7 @@
 <script lang="ts">
-	export let video: { url: string; title: string };
+	import type { IVideo } from '$lib/types';
+
+	export let video: IVideo;
 </script>
 
 <!--56.25% für 16:9-->

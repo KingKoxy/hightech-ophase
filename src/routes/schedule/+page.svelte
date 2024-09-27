@@ -5,7 +5,7 @@
 	import exportWhite from '$lib/assets/icons/exportWhite.svg';
 	import Headline from '$lib/components/Headline.svelte';
 	import { darkMode } from '$lib/stores.js';
-	import { queryToEvents,queryToSchedule } from '$lib/utils';
+	import { queryToEvents, queryToSchedule } from '$lib/utils';
 
 	import type { PageData } from './$houdini';
 	import DayItem from './DayItem.svelte';
@@ -13,25 +13,24 @@
 	export let data: PageData;
 
 	$: queryData = data?.GetAllEvents;
-	$: schedule = queryToSchedule($queryData?.data) ?? [];
+	$: schedule = $queryData?.data ? queryToSchedule($queryData.data) : [];
 
 	function exportCalendar() {
 		const calendar = ical({ name: 'Wochenplan O-Phase' });
-		for (let calendarEvent of queryToEvents($queryData?.data)) {
+		for (let calendarEvent of $queryData?.data ? queryToEvents($queryData.data) : []) {
 			calendar.createEvent(calendarEvent);
 		}
-		const blob = calendar.toBlob();
+		const calendarText = calendar.toString();
 		const link = document.createElement('a');
-		link.href = window.URL.createObjectURL(blob);
+		link.href = 'data:text/plain;charset=utf-8,' + encodeURIComponent(calendarText);
 		link.download = 'Wochenplan.ics';
 		link.click();
-
 	}
 
-	const currentDate=new Date();
+	const currentDate = new Date();
 
 	// Update the current date every minute
-	setInterval(()=>{
+	setInterval(() => {
 		currentDate.setTime(Date.now());
 	}, 60000);
 </script>
@@ -54,7 +53,7 @@
 		return a.date.toISOString().localeCompare(b.date.toISOString());
 	}) as day, i}
 		<div class:mb-10={i < schedule.length - 1}>
-			<DayItem {day} {currentDate}/>
+			<DayItem {day} {currentDate} />
 		</div>
 	{/each}
 </div>

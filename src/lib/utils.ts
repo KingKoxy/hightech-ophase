@@ -1,7 +1,8 @@
 import type { ICalEventData } from 'ical-generator';
 
-import type { GetAllEvents$result } from '$houdini';
-import type { IDay, IEvent } from '$lib/types';
+import type { IContact, IDay, IEvent, IVideo } from '$lib/types';
+
+import type { GetAllContacts$result, GetAllEvents$result, GetAllVideos$result } from '$houdini';
 
 export function queryToSchedule(data: GetAllEvents$result): IDay[] {
 	if (!data || !data.eventCollection) return [] as IDay[];
@@ -9,7 +10,14 @@ export function queryToSchedule(data: GetAllEvents$result): IDay[] {
 	const dayMap = new Map<string, IEvent[]>();
 
 	for (const item of items) {
-		if(!item || !item.startTime || !item.title || !item.locationName || !item.locationGoogleMapsLink) continue;
+		if (
+			!item ||
+			!item.startTime ||
+			!item.title ||
+			!item.locationName ||
+			!item.locationGoogleMapsLink
+		)
+			continue;
 		const date = new Date(item.startTime);
 
 		// Map for example 01:00 club events to the day before
@@ -47,18 +55,13 @@ export function queryToSchedule(data: GetAllEvents$result): IDay[] {
 	return days;
 }
 
-export function queryToEvents(data: {
-	eventCollection: {
-		items: {
-			startTime: string;
-			title: string;
-			locationName: string;
-			locationGoogleMapsLink: string;
-		}[];
-	};
-}): ICalEventData[] {
+export function queryToEvents(data: GetAllEvents$result): ICalEventData[] {
+	if (!data || !data.eventCollection) return [] as ICalEventData[];
 	const events = data.eventCollection.items;
-	events.sort((a, b) => a.startTime.localeCompare(b.startTime));
+	events.sort((a, b) => {
+		if (!a?.startTime || !b?.startTime) return 0;
+		return a.startTime.localeCompare(b.startTime);
+	});
 	const ret: ICalEventData[] = [];
 	for (let i = 0; i < events.length; i++) {
 		const currentElement = events[i];
@@ -67,6 +70,7 @@ export function queryToEvents(data: {
 		let endDate;
 
 		if (nextElement) {
+			if (!currentElement?.startTime || !nextElement.startTime) continue;
 			const currentStartDate = new Date(currentElement.startTime);
 			const nextStartDate = new Date(nextElement.startTime);
 
@@ -91,6 +95,7 @@ export function queryToEvents(data: {
 			}
 		} else {
 			// Es gibt kein nächstes Element, also fügen wir 24 Uhr hinzu
+			if (!currentElement?.startTime) continue;
 			const currentStartDate = new Date(currentElement.startTime);
 			endDate = new Date(
 				currentStartDate.getFullYear(),
@@ -101,6 +106,8 @@ export function queryToEvents(data: {
 				0
 			);
 		}
+		if (!currentElement?.startTime || !currentElement.title || !currentElement.locationName)
+			continue;
 		ret.push({
 			start: new Date(currentElement.startTime),
 			end: endDate,
@@ -109,5 +116,32 @@ export function queryToEvents(data: {
 		});
 	}
 
+	return ret;
+}
+
+export function queryToContacts(data: GetAllContacts$result): IContact[] {
+	if (!data || !data.contactCollection) return [] as IContact[];
+	const contacts = data.contactCollection.items;
+	const ret: IContact[] = [];
+	for (const contact of contacts) {
+		if (!contact || !contact.name || !contact.phone) continue;
+		ret.push({
+			name: contact.name,
+			phone: contact.phone
+		});
+	}
+	return ret;
+}
+export function queryToVideos(data: GetAllVideos$result): IVideo[] {
+	if (!data || !data.videoCollection) return [] as IVideo[];
+	const videos = data.videoCollection.items;
+	const ret: IVideo[] = [];
+	for (const video of videos) {
+		if (!video || !video.title || !video.url) continue;
+		ret.push({
+			title: video.title,
+			url: video.url
+		});
+	}
 	return ret;
 }

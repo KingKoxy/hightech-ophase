@@ -7,7 +7,7 @@ Angaben gemäß § 5 TMG <br /><br />
 
 Konrad Knappe<br />
 Buchtzigstraße 50<br />
-76275 Etllingen<br /><br />
+76275 Ettlingen<br /><br />
 
 <strong>Kontakt</strong><br />
 Telefon: 0151 20272968<br />

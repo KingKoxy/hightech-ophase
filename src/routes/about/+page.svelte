@@ -9,12 +9,13 @@
 
 	import type { PageData } from './$houdini';
 	import ContactCard from './ContactCard.svelte';
+	import { queryToContacts } from '$lib/utils';
 
 	export let data: PageData;
 
 	$: queryData = data?.GetAllContacts;
 
-	$: contacts = $queryData?.data?.contactCollection.items ?? [];
+	$: contacts = $queryData?.data ? queryToContacts($queryData.data) : [];
 
 	$: isOPhase = new Date().getMonth() === 8 || new Date().getMonth() === 9;
 </script>
