@@ -18,7 +18,6 @@
 
 	if (day.date.toISOString().split('T')[0] === todayMinus3.toISOString().split('T')[0]) {
 		for (let i = 0; i < events.length - 1; i++) {
-			console.log(currentDate.toISOString(), events[i].date.toISOString());
 			if (currentDate < events[i+1].date) {
 				activeIndex = i;
 				break;

@@ -6,11 +6,10 @@
 </script>
 
 <div
-	class="grid  border-b-2 grid-cols-[64px,1fr] border-gray-500 {active ? 'bg-grasshopperGreen-500 text-white' : ''}"
+	class="grid  border-b-2 grid-cols-[64px,1fr] border-gray-500 {active ? 'bg-[#4ab93d40] text-white' : ''}"
 >
 	<div
 		class="flex justify-center items-center p-3 border-gray-500 border-r-2"
-		class:bg-grasshopperGreen-500={active}
 	>
 		{event.startTime}
 	</div>
