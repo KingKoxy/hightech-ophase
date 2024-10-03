@@ -9,6 +9,7 @@
 
 	import type { PageData } from './$houdini';
 	import DayItem from './DayItem.svelte';
+	import { onMount } from 'svelte';
 
 	export let data: PageData;
 
@@ -27,12 +28,15 @@
 		link.click();
 	}
 
-	const currentDate = new Date();
+	let currentDate = new Date();
 
-	// Update the current date every minute
-	setInterval(() => {
-		currentDate.setTime(Date.now());
-	}, 60000);
+	onMount(() => {
+		// Update the current date every 10s
+		const interval = setInterval(() => {
+			currentDate = new Date();
+		}, 10000);
+		return () => clearInterval(interval);
+	});
 </script>
 
 <Headline>
