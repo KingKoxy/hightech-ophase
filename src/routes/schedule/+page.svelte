@@ -22,10 +22,13 @@
 			calendar.createEvent(calendarEvent);
 		}
 		const calendarText = calendar.toString();
+		const blob = new Blob([calendarText], { type: 'text/calendar' });
+		const url = URL.createObjectURL(blob);
 		const link = document.createElement('a');
-		link.href = 'data:text/plain;charset=utf-8,' + encodeURIComponent(calendarText);
+		link.href = url
 		link.download = 'Wochenplan.ics';
 		link.click();
+		URL.revokeObjectURL(url);
 	}
 
 	let currentDate = new Date();
