@@ -1,8 +1,8 @@
 export const PAGES = {
-	'/': 'Home',
-	'/schedule': 'Wochenplan',
-	'/about': 'Über uns',
-	'/links': 'Links'
+	'/': { name: 'Start', icon: 'icon-home' },
+	'/schedule': { name: 'Wochenplan', icon: 'icon-calendar' },
+	'/later': { name: 'Danach', icon: 'icon-users' },
+	'/links': { name: 'Links', icon: 'icon-link' }
 };
 
 export const DAY_MAP: Record<number, string> = {
