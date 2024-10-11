@@ -1,8 +1,0 @@
-query GetAllContacts {
-	contactCollection {
-		items {
-			name
-			phone
-		}
-	}
-}

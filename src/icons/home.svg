@@ -12,7 +12,7 @@
    version="1.1"
    id="svg6"
    sodipodi:docname="home.svg"
-   inkscape:version="1.2.2 (b0a84865, 2022-12-01)"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -30,20 +30,21 @@
      inkscape:deskcolor="#505050"
      showgrid="false"
      inkscape:zoom="9.8333333"
-     inkscape:cx="12"
-     inkscape:cy="12"
+     inkscape:cx="12.050847"
+     inkscape:cy="11.949153"
      inkscape:window-width="1309"
      inkscape:window-height="456"
      inkscape:window-x="0"
-     inkscape:window-y="25"
+     inkscape:window-y="27"
      inkscape:window-maximized="0"
-     inkscape:current-layer="svg6" />
+     inkscape:current-layer="svg6"
+     inkscape:pageshadow="0" />
   <path
-     d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"
-     id="path2"
-     style="stroke:#ffffff" />
-  <polyline
-     points="9 22 9 12 15 12 15 22"
-     id="polyline4"
-     style="stroke:#ffffff" />
+     style="color:#000000;fill:#ffffff;-inkscape-stroke:none;stroke:none"
+     d="m 11.386719,1.2109375 -9.0000002,7 A 1.0001,1.0001 0 0 0 2,9 v 11 c 0,1.645008 1.354992,3 3,3 h 14 c 1.645008,0 3,-1.354992 3,-3 V 9 A 1.0001,1.0001 0 0 0 21.613281,8.2109375 l -9,-7 a 1.0001,1.0001 0 0 0 -1.226562,0 z M 12,3.2675781 20,9.4882813 V 20 c 0,0.564129 -0.435871,1 -1,1 H 5 C 4.4358712,21 4,20.564129 4,20 V 9.4882813 Z"
+     id="path2" />
+  <path
+     style="color:#000000;fill:#ffffff;-inkscape-stroke:none;stroke:none"
+     d="m 9,11 a 1.0001,1.0001 0 0 0 -1,1 v 10 a 1,1 0 0 0 1,1 1,1 0 0 0 1,-1 v -9 h 4 v 9 a 1,1 0 0 0 1,1 1,1 0 0 0 1,-1 V 12 a 1.0001,1.0001 0 0 0 -1,-1 z"
+     id="polyline4" />
 </svg>

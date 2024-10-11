@@ -21,5 +21,7 @@ Jede Page ist durch einen Ordner im Ordner `src/routes` repräsentiert. Die jewe
 Seite. Weitere nur in dieser Page benötigte Komponenten werden im selben Ordner abgelegt. Allgemeine Komponenten
 befinden sich im Ordner `src/lib/components`. Statische Assets werden im Ordner `src/static` abgelegt.
 
-Um eine GraphQL-Query auf einer Seite zu verwenden. muss diese in einer Datei namens `+page.graphql` im selben Ordner wie die `+page.svelte`-Datei abgelegt werden. 
+Um eine GraphQL-Query auf einer Seite zu verwenden. muss diese in einer Datei namens `+page.graphql` im selben Ordner wie die `+page.svelte`-Datei abgelegt werden.
 Baut man dann das Projekt erzeugt Houdini automatisch die entsprechenden Hooks, die in der Svelte-Datei verwendet werden können und zudem noch passende Types.
+
+Die Icons stammen von Feather Icons und wurden mit icomoon.io in eine Iconfont umgewandelt.
