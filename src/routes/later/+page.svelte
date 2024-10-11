@@ -80,9 +80,9 @@
 		</li>
 	</ul>
 </section>
-<section>
+<!--<section>
 	<Headline>Eindrücke von Events</Headline>
-</section>
+</section>-->
 
 <style lang="postcss">
 	li {
