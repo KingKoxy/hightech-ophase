@@ -91,9 +91,9 @@
 <section>
 	<Headline>Eindrücke von Events</Headline>
 	<div class="grid md:grid-cols-2 gap-5">
-		{#each data.imageUrls as url}
-			<div class="flex justify-center">
-				<img src="{url}?w=480" alt="Bild" />
+		{#each data.images as image}
+			<div class="flex justify-center items-center">
+				<img src="{image.url}?w=480" class="object-contain" alt={image.fileName} />
 			</div>
 		{/each}
 	</div>

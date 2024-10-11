@@ -151,13 +151,13 @@ export function queryToVideos(data: GetAllVideos$result | null): IVideo[] {
 	return ret;
 }
 
-export function queryToUrls(data: GetAllImages$result | null): string[] {
-	if (!data || !data.imageCollection) return [] as string[];
+export function queryToImages(data: GetAllImages$result | null) {
+	if (!data || !data.imageCollection) return [];
 	const images = data.imageCollection.items;
-	const ret: string[] = [];
+	const ret = [];
 	for (const image of images) {
-		if (!image?.asset?.url) continue;
-		ret.push(image.asset.url);
+		if (!image?.asset) continue;
+		ret.push(image.asset);
 	}
 	return ret;
 }

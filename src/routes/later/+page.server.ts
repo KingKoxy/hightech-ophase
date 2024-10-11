@@ -1,4 +1,4 @@
-import { queryToUrls } from '$lib/utils';
+import { queryToImages } from '$lib/utils';
 
 import { GetAllImagesStore } from '$houdini';
 
@@ -7,6 +7,6 @@ export async function load(event) {
 
 	const images = await imageStore.fetch({ event });
 	return {
-		imageUrls: queryToUrls(images.data)
+		images: queryToImages(images.data)
 	};
 }
