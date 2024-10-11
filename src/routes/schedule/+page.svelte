@@ -33,19 +33,21 @@
 	});
 </script>
 
-<Headline>
-	<button class="text-3xl font-semibold flex gap-2" on:click={exportCalendar}>
-		Wochenplan
-		<i class="icon-export"/>
-	</button>
-</Headline>
-<!-- <div class="text-xl">CUMMING SOON 💦</div> -->
-<div class="md:mx-10 mt-5">
-	{#each data.schedule.sort((a, b) => {
-		return a.date.toISOString().localeCompare(b.date.toISOString());
-	}) as day, i}
-		<div class:mb-10={i < data.schedule.length - 1}>
-			<DayItem {day} {currentDate} />
-		</div>
-	{/each}
-</div>
+<section>
+	<Headline>
+		<button class="text-3xl font-semibold flex gap-2" on:click={exportCalendar}>
+			Wochenplan
+			<i class="icon-export" />
+		</button>
+	</Headline>
+	<!-- <div class="text-xl">CUMMING SOON 💦</div> -->
+	<div class="md:mx-10 mt-5">
+		{#each data.schedule.sort((a, b) => {
+			return a.date.toISOString().localeCompare(b.date.toISOString());
+		}) as day, i}
+			<div class:mb-10={i < data.schedule.length - 1}>
+				<DayItem {day} {currentDate} />
+			</div>
+		{/each}
+	</div>
+</section>

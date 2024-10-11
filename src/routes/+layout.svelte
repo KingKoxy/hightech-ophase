@@ -1,6 +1,6 @@
 <script lang="ts">
 	import '../app.css';
-
+	import '../icons.css';
 	import { onMount } from 'svelte';
 	import { fade } from 'svelte/transition';
 
@@ -49,7 +49,7 @@
 		out:fade={{ duration: 200 }}
 		class="w-full flex justify-center dark:text-white"
 	>
-		<div class="xl:w-[55%] h-full w-full mb-0 m-7 md:mb-0 xl:mt-0 md:m-10">
+		<div class="xl:w-[55%] h-full w-full mb-0 m-7 md:mb-0 xl:mt-0 md:m-10 flex gap-10 flex-col">
 			<slot />
 		</div>
 	</div>
@@ -64,7 +64,7 @@
 
 <style lang="postcss">
 	:global(a:not(.navlink)) {
-		@apply relative text-grasshopperGreen-500;
+		@apply relative text-grasshopperGreen-500 font-bold;
 	}
 
 	:global(a:not(.navlink)::after) {
