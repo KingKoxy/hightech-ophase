@@ -11,7 +11,7 @@ export async function load(event) {
 	]);
 
 	return {
-		contacts: contacts.data ? queryToContacts(contacts.data) : [],
-		videos: videos.data ? queryToVideos(videos.data) : []
+		contacts: queryToContacts(contacts.data),
+		videos: queryToVideos(videos.data)
 	};
 }

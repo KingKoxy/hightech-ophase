@@ -2,9 +2,14 @@ import type { ICalEventData } from 'ical-generator';
 
 import type { IContact, IDay, IEvent, IVideo } from '$lib/types';
 
-import type { GetAllContacts$result, GetAllEvents$result, GetAllVideos$result } from '$houdini';
+import type {
+	GetAllContacts$result,
+	GetAllEvents$result,
+	GetAllImages$result,
+	GetAllVideos$result
+} from '$houdini';
 
-export function queryToSchedule(data: GetAllEvents$result): IDay[] {
+export function queryToSchedule(data: GetAllEvents$result | null): IDay[] {
 	if (!data || !data.eventCollection) return [] as IDay[];
 	const items = data.eventCollection.items;
 	const dayMap = new Map<string, IEvent[]>();
@@ -55,7 +60,7 @@ export function queryToSchedule(data: GetAllEvents$result): IDay[] {
 	return days;
 }
 
-export function queryToEvents(data: GetAllEvents$result): ICalEventData[] {
+export function queryToEvents(data: GetAllEvents$result | null): ICalEventData[] {
 	if (!data || !data.eventCollection) return [] as ICalEventData[];
 	const events = data.eventCollection.items;
 	events.sort((a, b) => {
@@ -119,7 +124,7 @@ export function queryToEvents(data: GetAllEvents$result): ICalEventData[] {
 	return ret;
 }
 
-export function queryToContacts(data: GetAllContacts$result): IContact[] {
+export function queryToContacts(data: GetAllContacts$result | null): IContact[] {
 	if (!data || !data.contactCollection) return [] as IContact[];
 	const contacts = data.contactCollection.items;
 	const ret: IContact[] = [];
@@ -132,7 +137,7 @@ export function queryToContacts(data: GetAllContacts$result): IContact[] {
 	}
 	return ret;
 }
-export function queryToVideos(data: GetAllVideos$result): IVideo[] {
+export function queryToVideos(data: GetAllVideos$result | null): IVideo[] {
 	if (!data || !data.videoCollection) return [] as IVideo[];
 	const videos = data.videoCollection.items;
 	const ret: IVideo[] = [];
@@ -142,6 +147,17 @@ export function queryToVideos(data: GetAllVideos$result): IVideo[] {
 			title: video.title,
 			url: video.url
 		});
+	}
+	return ret;
+}
+
+export function queryToUrls(data: GetAllImages$result | null): string[] {
+	if (!data || !data.imageCollection) return [] as string[];
+	const images = data.imageCollection.items;
+	const ret: string[] = [];
+	for (const image of images) {
+		if (!image?.asset?.url) continue;
+		ret.push(image.asset.url);
 	}
 	return ret;
 }

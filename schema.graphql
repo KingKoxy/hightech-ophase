@@ -93,6 +93,7 @@ input AssetFilter {
 
 type AssetLinkingCollections {
   entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+  imageCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ImageCollection
 }
 
 enum AssetOrder {
@@ -328,6 +329,32 @@ enum EventOrder {
 """The 'HexColor' type represents color in `rgb:ffffff` string format."""
 scalar HexColor
 
+"""
+[See type definition](https://app.contentful.com/spaces/us4kti3xfg3y/content_types/image)
+"""
+type Image implements Entry & _Node {
+  _id: ID!
+  asset(locale: String, preview: Boolean): Asset
+  contentfulMetadata: ContentfulMetadata!
+  linkedFrom(allowedLocales: [String]): ImageLinkingCollections
+  sys: Sys!
+}
+
+type ImageCollection {
+  items: [Image]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+input ImageFilter {
+  AND: [ImageFilter]
+  OR: [ImageFilter]
+  asset_exists: Boolean
+  contentfulMetadata: ContentfulMetadataFilter
+  sys: SysFilter
+}
+
 enum ImageFormat {
   AVIF
 
@@ -353,6 +380,21 @@ enum ImageFormat {
 
   """WebP image format."""
   WEBP
+}
+
+type ImageLinkingCollections {
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+}
+
+enum ImageOrder {
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
 }
 
 enum ImageResizeFocus {
@@ -470,6 +512,8 @@ type Query {
   entryCollection(limit: Int = 100, locale: String, order: [EntryOrder], preview: Boolean, skip: Int = 0, where: EntryFilter): EntryCollection
   event(id: String!, locale: String, preview: Boolean): Event
   eventCollection(limit: Int = 100, locale: String, order: [EventOrder], preview: Boolean, skip: Int = 0, where: EventFilter): EventCollection
+  image(id: String!, locale: String, preview: Boolean): Image
+  imageCollection(limit: Int = 100, locale: String, order: [ImageOrder], preview: Boolean, skip: Int = 0, where: ImageFilter): ImageCollection
   video(id: String!, locale: String, preview: Boolean): Video
   videoCollection(limit: Int = 100, locale: String, order: [VideoOrder], preview: Boolean, skip: Int = 0, where: VideoFilter): VideoCollection
 }

@@ -3,6 +3,8 @@
 	import raveWebp from '$lib/assets/images/akkRave2022.webp';
 	import raveJpg from '$lib/assets/images/akkRave2022.jpg';
 	import Headline from '$lib/components/Headline.svelte';
+
+	export let data;
 </script>
 
 <section>
@@ -20,18 +22,24 @@
 		Wir sind sehr stolz darauf als eine der einzigen O-Phasengruppen uns nicht nur auf die O-Phase zu
 		beschränken. Die Meisten, wenn nicht sogar alle unserer Tutoren sind Mitglieder in der
 		<strong>Hochschulgruppe "Die Naturfreunde am KIT"</strong>. Unsere Gruppe bietet dir einen breit
-		gefächerten <strong>Freundeskreis</strong> in dem man sich <strong>hilft und unterstützt</strong>, sei es für die Uni oder
-		Privates. Gemeinsam organisieren wir auch unter dem Semester regelmäßig Events, wie <strong>Partys oder
-		Raves, Wanderungen und Urlaube</strong>. Dazu zählen zum Beispiel die <strong>halbjährigen Raves am AKK</strong>, bei
-		denen wir das letzte Mal über 2000 Besucher hatten. Es findet sich aber auch immer eine gute
-		Gruppe, um auf <strong>andere Partys oder Festivals</strong> zu gehen, nicht nur (wenn auch hauptsächlich) im
-		elektronischen Bereich. Jeden Mittwoch ist außerdem <strong>Barabend in der K2 Bar</strong> und bei gutem Wetter
-		sind wir <strong>regelmäßig im Fasanengarten</strong> aufzufinden und gut zu erkennen an lauten Bässen, die wir
-		quer durch den Park wummern lassen.
+		gefächerten <strong>Freundeskreis</strong> in dem man sich
+		<strong>hilft und unterstützt</strong>, sei es für die Uni oder Privates. Gemeinsam organisieren
+		wir auch unter dem Semester regelmäßig Events, wie
+		<strong>Partys oder Raves, Wanderungen und Urlaube</strong>. Dazu zählen zum Beispiel die
+		<strong>halbjährigen Raves am AKK</strong>, bei denen wir das letzte Mal über 2000 Besucher
+		hatten. Es findet sich aber auch immer eine gute Gruppe, um auf
+		<strong>andere Partys oder Festivals</strong>
+		zu gehen, nicht nur (wenn auch hauptsächlich) im elektronischen Bereich. Jeden Mittwoch ist außerdem
+		<strong>Barabend in der K2 Bar</strong>
+		und bei gutem Wetter sind wir
+		<strong>regelmäßig im Fasanengarten</strong>
+		aufzufinden und gut zu erkennen an lauten Bässen, die wir quer durch den Park wummern lassen.
 		<br /><br />
-		Wenn du also jemanden suchst, mit dem du <strong>lernen, feiern</strong> oder auch einfach nur ein (oder zehn) <strong>gemütliches
-		Bier trinken</strong> kannst, dann bist du bei uns grün-richtig 😉. Tritt nach der O-Phase einfach unserer
-		<strong>WhatsApp-Gruppe</strong> bei und komm am besten direkt zum nächsten Event vorbei. Wir freuen uns auf dich!
+		Wenn du also jemanden suchst, mit dem du <strong>lernen, feiern</strong> oder auch einfach nur
+		ein (oder zehn) <strong>gemütliches Bier trinken</strong> kannst, dann bist du bei uns
+		grün-richtig 😉. Tritt nach der O-Phase einfach unserer
+		<strong>WhatsApp-Gruppe</strong> bei und komm am besten direkt zum nächsten Event vorbei. Wir freuen
+		uns auf dich!
 	</div>
 </section>
 <section>
@@ -80,9 +88,16 @@
 		</li>
 	</ul>
 </section>
-<!--<section>
+<section>
 	<Headline>Eindrücke von Events</Headline>
-</section>-->
+	<div class="grid md:grid-cols-2 gap-5">
+		{#each data.imageUrls as url}
+			<div class="flex justify-center">
+				<img src="{url}?w=480" alt="Bild" />
+			</div>
+		{/each}
+	</div>
+</section>
 
 <style lang="postcss">
 	li {

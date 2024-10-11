@@ -1,0 +1,9 @@
+query GetAllImages {
+	imageCollection {
+		items {
+			asset {
+				url
+			}
+		}
+	}
+}
