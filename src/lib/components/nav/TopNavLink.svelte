@@ -11,7 +11,7 @@
 
 <a
 	href={url}
-	class="font-bold navlink mx-3 mb-2 hover:no-underline flex items-center hover:text-white transition-all gap-1.5 {active
+	class="font-bold navlink mx-3 hover:no-underline flex items-center hover:text-white transition-all gap-1.5 {active
 		? 'text-white'
 		: ''}"
 >

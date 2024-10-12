@@ -90,10 +90,10 @@
 </section>
 <section>
 	<Headline>Eindrücke von Events</Headline>
-	<div class="grid md:grid-cols-2 gap-5">
+	<div class="flex flex-wrap justify-center m-[-0.75rem]">
 		{#each data.images as image}
-			<div class="flex justify-center items-center">
-				<img src="{image.url}?w=480" class="object-contain" alt={image.fileName} />
+			<div class="md:w-1/3 p-3 sm:w-1/2 w-full">
+				<img src="{image.url}?w=480" class="object-contain w-full h-auto" alt={image.fileName} />
 			</div>
 		{/each}
 	</div>
