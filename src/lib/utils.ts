@@ -23,7 +23,6 @@ export function queryToSchedule(data: GetAllEvents$result | null): IDay[] {
 			!item.locationGoogleMapsLink
 		)
 			continue;
-		console.log(item.startTime);
 		const date = new Date(item.startTime);
 
 		// Map for example 01:00 club events to the day before
