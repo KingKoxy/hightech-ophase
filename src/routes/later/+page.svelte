@@ -19,13 +19,14 @@
 				class="md:float-right md:h-[250px] md:ml-4 md:mb-2 mb-5 w-full md:w-auto"
 			/>
 		</picture>
-		Wir sind sehr stolz darauf als eine der einzigen O-Phasengruppen uns nicht nur auf die O-Phase zu
-		beschränken. Die Meisten, wenn nicht sogar alle unserer Tutoren sind Mitglieder in der
+		Wir sind sehr stolz darauf uns als eine der einzigen O-Phasengruppen nicht nur auf die O-Phase zu
+		beschränken. Die meisten unserer Tutoren sind Mitglieder in der
 		<strong>Hochschulgruppe "Die Naturfreunde am KIT"</strong>. Unsere Gruppe bietet dir einen breit
 		gefächerten <strong>Freundeskreis</strong> in dem man sich
 		<strong>hilft und unterstützt</strong>, sei es für die Uni oder Privates. Gemeinsam organisieren
 		wir auch unter dem Semester regelmäßig Events, wie
-		<strong>Partys oder Raves, Wanderungen und Urlaube</strong>. Dazu zählen zum Beispiel die
+		<strong>Partys oder Raves, Wanderungen, Müllsammelaktionen, Glühweinverkäufe und Urlaube</strong
+		>. Zu den größten unserer Veranstaltungen zählen zum Beispiel die
 		<strong>halbjährigen Raves am AKK</strong>, bei denen wir das letzte Mal über 2000 Besucher
 		hatten. Es findet sich aber auch immer eine gute Gruppe, um auf
 		<strong>andere Partys oder Festivals</strong>

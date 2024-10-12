@@ -19,15 +19,15 @@
 	<Headline>Willkommen</Headline>
 	<div class="md:flex">
 		<div class="inline-block md:mr-8 text-justify md:mb-0 mb-5">
-			Da du das hier liest, heißt das wohl, dass du bald anfängst, <strong
+			Da du das hier liest, heißt das wohl, dass du bald anfängst <strong
 				>Informatik oder Mathe am KIT</strong
 			>
 			zu studieren. Bei uns in Karlsruhe beginnt das Studium immer mit einer Woche ohne Vorlesungen,
 			der sog. <a href="https://o-phase.com">O-Phase</a>
 			(kurz für Orientierungsphase), in der euch die Uni und Karlsruhe gezeigt werden.
 			<br /><br />
-			Anders als andere Fakultäten, ist die Umsetzung der O-Phase bei uns Informatikern nicht nur zentral
-			von der Fachschaft organisiert, sondern von den
+			Anders als bei anderen Fakultäten ist die Umsetzung der O-Phase bei uns Informatikern nicht nur zentral
+			von der Fachschaft organisiert, sondern vor allem von den
 			<strong>verschiedenen O-Phasengruppen</strong>, welche alle ihr eigenes Programm haben und
 			unabhängig von Studierenden organisiert sind. Was uns als Gruppe zur
 			<strong>ersten Wahl</strong> macht, liest du am besten weiter unten oder in unserem
@@ -54,11 +54,11 @@
 			Beispiel eine <strong>Kneipentour</strong>, bei der wir euch die wichtigsten Kneipen und Bars
 			Karlsruhes zeigen. Aber das ist noch nicht alles!
 			<br />
-			Neben dem ausgelassenen Feiern, haben wir auch ein <strong>vielfältiges Programm</strong>
+			Neben den ausgelassenen Feiern, haben wir auch ein <strong>vielfältiges Programm</strong>
 			parat. Du kannst mit uns <strong>wandern</strong>, entspannt ein Bierchen im
-			<strong>Uni-eigenen Biergarten AKK</strong>
+			<strong>Campusbiergarten AKK</strong>
 			genießen, im Park <strong>brunchen</strong>, an <strong>lebhaften Diskussionen</strong> über
-			Ethik und Philosophie teilnehmen und tatsächlich auch <strong>lernen und studieren</strong> 😄
+			Ethik und Philosophie teilnehmen und tatsächlich auch <strong>lernen und studieren</strong> 😄.
 			<br /><br />
 			Besonders viel Wert legen wir auf ein <strong>harmonisches Miteinander</strong> in dem jeder
 			so akzeptiert wird, wie er ist. Durch diese Philosophie hat sich mittlerweile ein
@@ -68,7 +68,7 @@
 			geht. Mehr dazu kannst du unter
 			<a href="/later">{PAGES['/later'].name}</a> nachlesen.
 			<br /><br />
-			Und nicht vergessen: Wir sind <strong>HiGH!</strong> ... tech...
+			Und nicht vergessen: Wir sind <strong class="text-2xl">HiGH!</strong> ...<span class="text-xs">tech</span>
 		</div>
 		<picture class="flex-shrink-0 max-w-1/2">
 			<source type="image/avif" srcset={hikingAvif} />
