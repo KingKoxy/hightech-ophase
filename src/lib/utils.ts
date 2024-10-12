@@ -23,6 +23,7 @@ export function queryToSchedule(data: GetAllEvents$result | null): IDay[] {
 			!item.locationGoogleMapsLink
 		)
 			continue;
+		console.log(item.startTime);
 		const date = new Date(item.startTime);
 
 		// Map for example 01:00 club events to the day before
@@ -31,7 +32,8 @@ export function queryToSchedule(data: GetAllEvents$result | null): IDay[] {
 
 		const startTime = date.toLocaleTimeString(['de'], {
 			hour: '2-digit',
-			minute: '2-digit'
+			minute: '2-digit',
+			timeZone: 'Europe/Berlin'
 		});
 		const mappingDateKey = mappingDate.toISOString().split('T')[0];
 
