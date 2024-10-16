@@ -38,7 +38,7 @@
 		<picture class="flex-shrink-0 max-w-1/2">
 			<source type="image/avif" srcset={groupAvif} />
 			<source type="image/webp" srcset={groupWebp} />
-			<img class="md:h-[300px] object-contain object-top" src={groupJpg} alt="Gruppenfoto" />
+			<img class="md:h-[300px] object-contain object-top" src={groupJpg} alt="Gruppenfoto" height="300" width="450"/>
 		</picture>
 	</div>
 </section>
@@ -77,7 +77,7 @@
 		<picture class="flex-shrink-0 max-w-1/2">
 			<source type="image/avif" srcset={hikingAvif} />
 			<source type="image/webp" srcset={hikingWebp} />
-			<img class="md:h-[300px] object-contain object-top" src={hikingJpg} alt="Akk Rave" />
+			<img class="md:h-[300px] object-contain object-top" src={hikingJpg} alt="Akk Rave" height="300" width="400"/>
 		</picture>
 	</div>
 </section>

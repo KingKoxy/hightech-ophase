@@ -18,6 +18,8 @@
 				src={raveJpg}
 				alt="Wandern"
 				class="md:float-right md:h-[250px] md:ml-4 md:mb-2 mb-5 w-full md:w-auto"
+				height="250"
+				width="375"
 			/>
 		</picture>
 		Wir sind sehr stolz darauf uns als eine der einzigen O-Phasengruppen nicht nur auf die O-Phase zu
@@ -100,7 +102,12 @@
 		<div class="flex flex-wrap justify-center m-[-0.75rem]">
 			{#each images as image}
 				<div class="md:w-1/3 p-3 sm:w-1/2 w-full">
-					<img src="{image.url}?w=480" class="object-contain w-full h-auto" alt={image.fileName} />
+					<img
+						src="{image.url}?w=480"
+						class="object-contain w-full h-auto"
+						alt={image.fileName}
+						width="480"
+					/>
 				</div>
 			{/each}
 		</div>
