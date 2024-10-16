@@ -63,6 +63,7 @@
 				<Nav />
 			</div>
 			<button
+				aria-label="Toggle Dark Mode"
 				class="flex items-center relative h-[24px] w-[24px] cursor-pointer"
 				on:click={toggleDarkMode}
 				bind:this={animationContainer}
