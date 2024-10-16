@@ -5,13 +5,11 @@ import { GetAllContactsStore, GetAllVideosStore } from '$houdini';
 export async function load(event) {
 	const contactStore = new GetAllContactsStore();
 	const videoStore = new GetAllVideosStore();
-	const [contacts, videos] = await Promise.all([
-		contactStore.fetch({ event }),
-		videoStore.fetch({ event })
-	]);
+	const contactsPromise = contactStore.fetch({ event }).then((d) => queryToContacts(d.data));
+	const videosPromise = videoStore.fetch({ event }).then((d) => queryToVideos(d.data));
 
 	return {
-		contacts: queryToContacts(contacts.data),
-		videos: queryToVideos(videos.data)
+		contactsPromise,
+		videosPromise
 	};
 }

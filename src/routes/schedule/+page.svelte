@@ -4,12 +4,13 @@
 	import Headline from '$lib/components/Headline.svelte';
 	import DayItem from './DayItem.svelte';
 	import { onMount } from 'svelte';
+	import LoadingSpinner from '$lib/components/LoadingSpinner.svelte';
 
 	export let data;
 
-	function exportCalendar() {
+	async function exportCalendar() {
 		const calendar = ical({ name: 'Wochenplan O-Phase' });
-		for (let calendarEvent of data.events) {
+		for (let calendarEvent of await data.eventsPromise) {
 			calendar.createEvent(calendarEvent);
 		}
 		const calendarText = calendar.toString();
@@ -42,12 +43,18 @@
 	</Headline>
 	<!-- <div class="text-xl">CUMMING SOON 💦</div> -->
 	<div class="md:mx-10 mt-5">
-		{#each data.schedule.sort((a, b) => {
-			return a.date.toISOString().localeCompare(b.date.toISOString());
-		}) as day, i}
-			<div class:mb-10={i < data.schedule.length - 1}>
-				<DayItem {day} {currentDate} />
+		{#await data.schedulePromise}
+			<div class="flex w-full p-10 items-center justify-center h-full">
+				<LoadingSpinner />
 			</div>
-		{/each}
+		{:then schedule}
+			{#each schedule.sort((a, b) => {
+				return a.date.toISOString().localeCompare(b.date.toISOString());
+			}) as day, i}
+				<div class:mb-10={i < schedule.length - 1}>
+					<DayItem {day} {currentDate} />
+				</div>
+			{/each}
+		{/await}
 	</div>
 </section>

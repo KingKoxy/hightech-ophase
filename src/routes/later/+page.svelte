@@ -3,6 +3,7 @@
 	import raveWebp from '$lib/assets/images/akkRave2022.webp';
 	import raveJpg from '$lib/assets/images/akkRave2022.jpg';
 	import Headline from '$lib/components/Headline.svelte';
+	import LoadingSpinner from '$lib/components/LoadingSpinner.svelte';
 
 	export let data;
 </script>
@@ -91,13 +92,19 @@
 </section>
 <section>
 	<Headline>Eindrücke von Events</Headline>
-	<div class="flex flex-wrap justify-center m-[-0.75rem]">
-		{#each data.images as image}
-			<div class="md:w-1/3 p-3 sm:w-1/2 w-full">
-				<img src="{image.url}?w=480" class="object-contain w-full h-auto" alt={image.fileName} />
-			</div>
-		{/each}
-	</div>
+	{#await data.imagesPromise}
+		<div class="flex w-full p-10 items-center justify-center h-full">
+			<LoadingSpinner />
+		</div>
+	{:then images}
+		<div class="flex flex-wrap justify-center m-[-0.75rem]">
+			{#each images as image}
+				<div class="md:w-1/3 p-3 sm:w-1/2 w-full">
+					<img src="{image.url}?w=480" class="object-contain w-full h-auto" alt={image.fileName} />
+				</div>
+			{/each}
+		</div>
+	{/await}
 </section>
 
 <style lang="postcss">

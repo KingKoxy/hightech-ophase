@@ -4,9 +4,11 @@ import { GetAllEventsStore } from '$houdini';
 
 export async function load(event) {
 	const eventStore = new GetAllEventsStore();
-	const events = await eventStore.fetch({ event });
+	const events = eventStore.fetch({ event });
+	const schedulePromise = events.then((d) => queryToSchedule(d.data));
+	const eventsPromise = events.then((d) => queryToEvents(d.data));
 	return {
-		schedule: queryToSchedule(events.data),
-		events: queryToEvents(events.data)
+		schedulePromise,
+		eventsPromise
 	};
 }
