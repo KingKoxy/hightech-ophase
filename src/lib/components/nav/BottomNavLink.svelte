@@ -5,7 +5,7 @@
 	let active = false;
 
 	page.subscribe((page) => {
-		active = page.route.id === url;
+		active = page.url.pathname === url;
 	});
 </script>
 
