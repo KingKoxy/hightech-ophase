@@ -5,15 +5,22 @@
 	import Headline from '$lib/components/Headline.svelte';
 
 	import VideoItem from './VideoItem.svelte';
-	import ContactCard from './ContactCard.svelte';
 	import { PAGES } from '$lib/constants';
 	import hikingAvif from '$lib/assets/images/wandern.avif';
 	import hikingWebp from '$lib/assets/images/wandern.webp';
 	import hikingJpg from '$lib/assets/images/wandern.jpg';
 	import LoadingSpinner from '$lib/components/LoadingSpinner.svelte';
+	import { onMount } from 'svelte';
 
 	export let data;
-	$: isOPhase = new Date().getMonth() === 8 || new Date().getMonth() === 9;
+
+	let iframe: HTMLIFrameElement;
+	function resizeIFrame() {
+		if (iframe && iframe.contentWindow) {
+			iframe.style.height = iframe.contentWindow.document.body.scrollHeight + 'px';
+		}
+	}
+	onMount(resizeIFrame);
 </script>
 
 <section>
@@ -38,7 +45,13 @@
 		<picture class="flex-shrink-0 max-w-1/2">
 			<source type="image/avif" srcset={groupAvif} />
 			<source type="image/webp" srcset={groupWebp} />
-			<img class="md:h-[300px] object-contain object-top" src={groupJpg} alt="Gruppenfoto" height="300" width="450"/>
+			<img
+				class="md:h-[300px] object-contain object-top"
+				src={groupJpg}
+				alt="Gruppenfoto"
+				height="300"
+				width="450"
+			/>
 		</picture>
 	</div>
 </section>
@@ -77,31 +90,21 @@
 		<picture class="flex-shrink-0 max-w-1/2">
 			<source type="image/avif" srcset={hikingAvif} />
 			<source type="image/webp" srcset={hikingWebp} />
-			<img class="md:h-[300px] object-contain object-top" src={hikingJpg} alt="Akk Rave" height="300" width="400"/>
+			<img
+				class="md:h-[300px] object-contain object-top"
+				src={hikingJpg}
+				alt="Akk Rave"
+				height="300"
+				width="400"
+			/>
 		</picture>
 	</div>
 </section>
-{#if isOPhase}
-	<section>
-		<Headline>Kontakt</Headline>
-		Bei
-		<strong>Fragen, Problemen, etc.</strong> schreibt am besten in der
-		<strong>WhatsApp-Gruppe,</strong>
-		per
-		<strong>Direktnachricht</strong> oder sprecht einfach einen der <strong>Tutoren</strong> an. Für
-		den absoluten Notfall findet ihr hier noch einmal die Nummern der
-		<strong>Hauptverantwortlichen: </strong>
-		{#await data.contactsPromise}
-			<div class="flex w-full p-10 items-center justify-center h-full">
-				<LoadingSpinner />
-			</div>
-		{:then contacts}
-			{#each contacts as contact}
-				<ContactCard {contact} />
-			{/each}
-		{/await}
-	</section>
+
+{#if data.isOPhase}
+	<iframe bind:this={iframe} src="contacts" title="contacts" on:load={resizeIFrame} />
 {/if}
+
 <section>
 	<Headline>O-Phasenvideos</Headline>
 	{#await data.videosPromise}

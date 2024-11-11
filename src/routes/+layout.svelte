@@ -2,11 +2,6 @@
 	import '../app.css';
 	import '../icons.css';
 	import { onMount } from 'svelte';
-	import { fade } from 'svelte/transition';
-
-	import { page } from '$app/stores';
-	import BottomNav from '$lib/components/nav/BottomNav.svelte';
-	import Header from '$lib/components/nav/Header.svelte';
 	import { darkMode } from '$lib/stores';
 
 	onMount(() => {
@@ -42,24 +37,10 @@
 	</script>
 </svelte:head>
 
-<div class="dark:bg-backgroundDark-500 w-full min-h-screen transition-all duration-200 flex flex-col">
-	<Header />
-	<main
-		in:fade={{ duration: 200, delay: 200 }}
-		out:fade={{ duration: 200 }}
-		class="flex justify-center dark:text-white flex-grow"
-	>
-		<div class="xl:w-[55%] h-full w-full mb-0 m-7 md:mb-0 xl:mt-0 md:m-10 flex gap-10 flex-col">
-			<slot />
-		</div>
-	</main>
-	{#if $page.route.id !== '/imprint'}
-		<footer class="p-3 mt-2 flex justify-center">
-			<a href="/imprint">Impressum</a>
-		</footer>
-	{/if}
-	<div class="h-[80px] sm:h-0"/>
-	<BottomNav />
+<div
+	class="dark:bg-backgroundDark-500 dark:text-white w-full min-h-screen transition-all duration-200 flex flex-col"
+>
+	<slot />
 </div>
 
 <style lang="postcss">

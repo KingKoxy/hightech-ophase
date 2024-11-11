@@ -41,7 +41,7 @@
 	});
 </script>
 
-<div class="sticky top-0 w-full flex z-50 select-none">
+<div class="sticky top-0 w-full flex z-50 select-none text-black">
 	<div
 		class="md:block hidden bg-grasshopperGreen-700 p-2 rounded-br-xl w-[280px] h-[140px] object-cover z-20 shadow-lg shadow-black/30"
 	>
