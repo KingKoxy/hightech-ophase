@@ -3,7 +3,7 @@ import lightModeAnim from '@/assets/animations/lightMode.json'
 import TopNavigationLinks from '@/components/nav/TopNavigationLinks.vue'
 import { onMounted, ref } from 'vue'
 import { darkMode } from '@/states.ts'
-import lottie from 'lottie-web'
+import lottie from 'lottie-web/build/player/lottie_light'
 import { contentfulClient } from '@/client.ts'
 
 const logo = ref<string>()
@@ -11,8 +11,8 @@ const animationContainer = ref<Element>()
 
 let toggleDarkMode: () => void = () => {}
 
-onMounted(()=>{
-  if (!animationContainer.value) return;
+onMounted(() => {
+  if (!animationContainer.value) return
   const animation = lottie.loadAnimation({
     container: animationContainer.value,
     renderer: 'svg',
@@ -34,9 +34,9 @@ onMounted(()=>{
 })
 
 contentfulClient.getAsset('7dtuCnKBcp0Qw62DjPCW5F').then((asset) => {
-  if (!asset.fields.file) return;
-  logo.value = asset.fields.file.url;
-});
+  if (!asset.fields.file) return
+  logo.value = asset.fields.file.url
+})
 </script>
 
 <template>
