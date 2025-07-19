@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  /*Colors*/
+  --color-background-dark-500: #00040e;
+
+  --color-grasshopper-green-500: #4ab93d;
+  --color-grasshopper-green-700: #37942b;
+  --color-grasshopper-green-900: #1f5d1a;
+
+  /*Fonts*/
+  --font-sans: 'Poppins', sans-serif;
+}
+
+a:not(.navlink) {
+  @apply relative font-bold text-grasshopper-green-500;
+}
+
+a:not(.navlink)::after{
+  content: '';
+  @apply absolute transition-all duration-300 h-px w-0 left-0 bottom-0 bg-grasshopper-green-500;
+}
+a:not(.navlink):hover::after {
+  @apply w-full;
+}

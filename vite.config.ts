@@ -1,8 +1,21 @@
-import { sveltekit } from '@sveltejs/kit/vite';
-import { defineConfig } from 'vite';
-import houdini from 'houdini/vite';
+import { fileURLToPath, URL } from 'node:url'
 
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+import vueDevTools from 'vite-plugin-vue-devtools'
+import tailwindcss from '@tailwindcss/vite'
+
+// https://vite.dev/config/
 export default defineConfig({
-	envPrefix: ['VITE_', "CONTENTFUL_"],
-	plugins: [houdini(), sveltekit()]
-});
+  envPrefix: ['VITE_', 'CONTENTFUL_'],
+  plugins: [
+    tailwindcss(),
+    vue(),
+    vueDevTools(),
+  ],
+  resolve: {
+    alias: {
+      '@': fileURLToPath(new URL('./src', import.meta.url))
+    },
+  },
+})
