@@ -121,7 +121,7 @@ const images = computed(() => {
     <div v-if="imageQuery.loading.value" class="flex w-full p-10 items-center justify-center h-full">
       <LoadingSpinner />
     </div>
-    <div v-else-if="images" e class="flex flex-wrap justify-center m-[-0.75rem]">
+    <div v-else-if="images" class="flex flex-wrap justify-center m-[-0.75rem]">
       <div v-for="image in images" :key='image.url' class="md:w-1/3 p-3 sm:w-1/2 w-full">
         <img
           :src="`${image.url}?w=480`"

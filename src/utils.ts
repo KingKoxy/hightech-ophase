@@ -157,8 +157,11 @@ export function queryToImages(data: GetAllImagesQuery | undefined) {
   const images = data.imageCollection.items
   const ret = []
   for (const image of images) {
-    if (!image?.asset) continue
-    ret.push(image.asset)
+    if (!image?.asset || !image.asset.url || !image.asset.fileName) continue
+    ret.push({
+      url: image.asset.url,
+      fileName: image.asset.fileName,
+    })
   }
   return ret
 }

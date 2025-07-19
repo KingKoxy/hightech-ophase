@@ -40,7 +40,7 @@ function resizeIFrame() {
   }
 }
 
-function handleIFrameResize(event) {
+function handleIFrameResize(event: MessageEvent) {
   if (event.data?.type === 'iframe-resize') {
     resizeIFrame()
   }

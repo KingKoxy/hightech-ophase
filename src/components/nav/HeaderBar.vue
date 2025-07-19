@@ -12,8 +12,9 @@ const animationContainer = ref<Element>()
 let toggleDarkMode: () => void = () => {}
 
 onMounted(()=>{
+  if (!animationContainer.value) return;
   const animation = lottie.loadAnimation({
-    container: animationContainer,
+    container: animationContainer.value,
     renderer: 'svg',
     loop: false,
     animationData: lightModeAnim,
