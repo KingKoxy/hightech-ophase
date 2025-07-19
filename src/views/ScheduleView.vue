@@ -11,7 +11,7 @@ import { queryToEvents, queryToSchedule } from '@/utils.ts'
 const allEventsQuery = useQuery(
   graphql(`
     query GetAllEvents {
-      eventCollection(where: { startTime_gt: "2024-01-01T00:00:00+00:00" }) {
+      eventCollection(where: { startTime_gt: "2025-01-01T00:00:00+00:00" }) {
         items {
           title
           startTime

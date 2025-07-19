@@ -17,13 +17,13 @@ type Documents = {
     "\n    query GetAllContacts {\n      contactCollection {\n        items {\n          name\n          phone\n        }\n      }\n    }\n  ": typeof types.GetAllContactsDocument,
     "\n    query GetAllVideos {\n      videoCollection {\n        items {\n          title\n          url\n        }\n      }\n    }\n  ": typeof types.GetAllVideosDocument,
     "\nquery GetAllImages {\n    imageCollection {\n        items {\n            asset {\n              url\n              fileName\n            }\n        }\n    }\n}\n  ": typeof types.GetAllImagesDocument,
-    "\n    query GetAllEvents {\n      eventCollection(where: { startTime_gt: \"2024-01-01T00:00:00+00:00\" }) {\n        items {\n          title\n          startTime\n          locationName\n          locationGoogleMapsLink\n        }\n      }\n    }\n  ": typeof types.GetAllEventsDocument,
+    "\n    query GetAllEvents {\n      eventCollection(where: { startTime_gt: \"2025-01-01T00:00:00+00:00\" }) {\n        items {\n          title\n          startTime\n          locationName\n          locationGoogleMapsLink\n        }\n      }\n    }\n  ": typeof types.GetAllEventsDocument,
 };
 const documents: Documents = {
     "\n    query GetAllContacts {\n      contactCollection {\n        items {\n          name\n          phone\n        }\n      }\n    }\n  ": types.GetAllContactsDocument,
     "\n    query GetAllVideos {\n      videoCollection {\n        items {\n          title\n          url\n        }\n      }\n    }\n  ": types.GetAllVideosDocument,
     "\nquery GetAllImages {\n    imageCollection {\n        items {\n            asset {\n              url\n              fileName\n            }\n        }\n    }\n}\n  ": types.GetAllImagesDocument,
-    "\n    query GetAllEvents {\n      eventCollection(where: { startTime_gt: \"2024-01-01T00:00:00+00:00\" }) {\n        items {\n          title\n          startTime\n          locationName\n          locationGoogleMapsLink\n        }\n      }\n    }\n  ": types.GetAllEventsDocument,
+    "\n    query GetAllEvents {\n      eventCollection(where: { startTime_gt: \"2025-01-01T00:00:00+00:00\" }) {\n        items {\n          title\n          startTime\n          locationName\n          locationGoogleMapsLink\n        }\n      }\n    }\n  ": types.GetAllEventsDocument,
 };
 
 /**
@@ -55,7 +55,7 @@ export function graphql(source: "\nquery GetAllImages {\n    imageCollection {\n
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n    query GetAllEvents {\n      eventCollection(where: { startTime_gt: \"2024-01-01T00:00:00+00:00\" }) {\n        items {\n          title\n          startTime\n          locationName\n          locationGoogleMapsLink\n        }\n      }\n    }\n  "): (typeof documents)["\n    query GetAllEvents {\n      eventCollection(where: { startTime_gt: \"2024-01-01T00:00:00+00:00\" }) {\n        items {\n          title\n          startTime\n          locationName\n          locationGoogleMapsLink\n        }\n      }\n    }\n  "];
+export function graphql(source: "\n    query GetAllEvents {\n      eventCollection(where: { startTime_gt: \"2025-01-01T00:00:00+00:00\" }) {\n        items {\n          title\n          startTime\n          locationName\n          locationGoogleMapsLink\n        }\n      }\n    }\n  "): (typeof documents)["\n    query GetAllEvents {\n      eventCollection(where: { startTime_gt: \"2025-01-01T00:00:00+00:00\" }) {\n        items {\n          title\n          startTime\n          locationName\n          locationGoogleMapsLink\n        }\n      }\n    }\n  "];
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {};

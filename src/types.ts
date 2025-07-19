@@ -8,7 +8,7 @@ export interface IEvent {
   title: string;
   startTime: string;
   location: string;
-  locationLink?: string;
+  locationLink?: string | null;
   date: Date;
 }
 

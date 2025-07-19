@@ -24,11 +24,11 @@ watch(darkMode, (newValue: boolean) => {
 })
 
 const resizeObserver = new ResizeObserver(() => {
-  const height = document.documentElement.scrollHeight;
-  parent.postMessage({ type: 'iframe-resize', height }, '*');
-});
+  const height = document.documentElement.scrollHeight
+  parent.postMessage({ type: 'iframe-resize', height }, '*')
+})
 
-resizeObserver.observe(document.body);
+resizeObserver.observe(document.body)
 </script>
 
 <template>
@@ -39,7 +39,11 @@ resizeObserver.observe(document.body);
       <HeaderBar />
       <main class="flex justify-center flex-grow">
         <div class="xl:w-[55%] h-full w-full mb-0 m-7 md:mb-0 xl:mt-0 md:m-10 flex gap-10 flex-col">
-          <RouterView />
+          <router-view v-slot="{ Component, route }">
+            <transition name="fade">
+              <component :is="Component" :key="route.path"/>
+            </transition>
+          </router-view>
         </div>
       </main>
 

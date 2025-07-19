@@ -12,4 +12,5 @@ const app = createApp(App)
 setupApolloClient()
 app.use(router)
 
+await router.isReady()
 app.mount('#app')

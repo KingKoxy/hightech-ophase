@@ -18,8 +18,7 @@ export function queryToSchedule(data: GetAllEventsQuery | undefined): IDay[] {
       !item ||
       !item.startTime ||
       !item.title ||
-      !item.locationName ||
-      !item.locationGoogleMapsLink
+      !item.locationName
     )
       continue
     const date = new Date(item.startTime)
