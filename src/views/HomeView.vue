@@ -92,7 +92,7 @@ onBeforeUnmount(() => {
     <CustomHeadline>Wer sind wir?</CustomHeadline>
     <div class="md:flex">
       <div class="md:mr-8 text-justify md:mb-0 mb-5">
-        Unsere Gruppe ist <strong>seit 2014</strong> (also schon {new Date().getFullYear() - 2014}
+        Unsere Gruppe ist <strong>seit 2014</strong> (also schon {{new Date().getFullYear() - 2014}}
         Jahre!) erfolgreich dabei, die <strong>elektronische Feierkultur</strong> in die O-Phase zu
         integrieren. Dabei bieten wir euch nicht nur <strong>Freibier</strong> (solange der Vorrat
         reicht 😉), sondern auch eine Möglichkeit <strong>neue Freunde</strong> fürs Studium und
