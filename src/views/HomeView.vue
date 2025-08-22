@@ -92,14 +92,15 @@ onBeforeUnmount(() => {
     <CustomHeadline>Wer sind wir?</CustomHeadline>
     <div class="md:flex">
       <div class="md:mr-8 text-justify md:mb-0 mb-5">
-        Unsere Gruppe ist <strong>seit 2014</strong> (also schon {{new Date().getFullYear() - 2014}}
-        Jahre!) erfolgreich dabei, die <strong>elektronische Feierkultur</strong> in die O-Phase zu
-        integrieren. Dabei bieten wir euch nicht nur <strong>Freibier</strong> (solange der Vorrat
-        reicht 😉), sondern auch eine Möglichkeit <strong>neue Freunde</strong> fürs Studium und
-        fürs Leben zu finden. Wir organisieren verschiedene <strong>Techno-Partys</strong> und
-        <strong>Raves</strong>, haben aber auch für Nicht-Raver einiges zu bieten. So gibt es zum
-        Beispiel eine <strong>Kneipentour</strong>, bei der wir euch die wichtigsten Kneipen und
-        Bars Karlsruhes zeigen. Aber das ist noch nicht alles!
+        Unsere Gruppe ist <strong>seit 2014</strong> (also schon
+        {{ new Date().getFullYear() - 2014 }} Jahre!) erfolgreich dabei, die
+        <strong>elektronische Feierkultur</strong> in die O-Phase zu integrieren. Dabei bieten wir
+        euch nicht nur <strong>Freibier</strong> (solange der Vorrat reicht 😉), sondern auch eine
+        Möglichkeit <strong>neue Freunde</strong> fürs Studium und fürs Leben zu finden. Wir
+        organisieren verschiedene <strong>Techno-Partys</strong> und <strong>Raves</strong>, haben
+        aber auch für Nicht-Raver einiges zu bieten. So gibt es zum Beispiel eine
+        <strong>Kneipentour</strong>, bei der wir euch die wichtigsten Kneipen und Bars Karlsruhes
+        zeigen. Aber das ist noch nicht alles!
         <br />
         Neben den ausgelassenen Feiern, haben wir auch ein
         <strong>vielfältiges Programm</strong> parat. Du kannst mit uns <strong>wandern</strong>,
@@ -116,8 +117,9 @@ onBeforeUnmount(() => {
         <strong>weit über die O-Phase hinaus</strong>
         geht. Mehr dazu kannst du unter
         <RouterLink to="/later">{{ PAGES['/later'].name }}</RouterLink>
-        nachlesen.
-        <br /><br />
+        nachlesen. Oder du schaust auf unserem
+        <a href="https://www.instagram.com/hightech_kit">Instagram-Account</a> vorbei. Dort kannst
+        du ein Paar Eindrücke von den letzten O-Phasen finden. <br /><br />
         Und nicht vergessen: Wir sind <strong class="text-2xl">HiGH!</strong> ...<span
           class="text-xs"
           >tech</span
