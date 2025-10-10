@@ -6,14 +6,15 @@ import { PAGES } from '@/constants.ts'
 import LoadingSpinner from '@/components/LoadingSpinner.vue'
 import { computed, onMounted, ref, onBeforeUnmount } from 'vue'
 import { isOPhase } from '@/states.ts'
-import hikingAvif from '@/assets/images/wandern.avif'
-import hikingWebp from '@/assets/images/wandern.webp'
-import hikingJpg from '@/assets/images/wandern.jpg'
-import groupAvif from '@/assets/images/gruppenfoto.avif'
-import groupWebp from '@/assets/images/gruppenfoto.webp'
-import groupJpg from '@/assets/images/gruppenfoto.jpg'
+// import hikingAvif from '@/assets/images/wandern.avif'
+// import hikingWebp from '@/assets/images/wandern.webp'
+// import hikingJpg from '@/assets/images/wandern.jpg'
+// import groupAvif from '@/assets/images/gruppenfoto.avif'
+// import groupWebp from '@/assets/images/gruppenfoto.webp'
+// import groupJpg from '@/assets/images/gruppenfoto.jpg'
 import VideoItem from '@/components/views/home/VideoItem.vue'
 import { queryToVideos } from '@/utils.ts'
+import { contentfulClient } from '@/client.ts'
 
 const videoQuery = useQuery(
   graphql(`
@@ -54,6 +55,19 @@ onMounted(() => {
 onBeforeUnmount(() => {
   window.removeEventListener('message', handleIFrameResize)
 })
+
+const groupJpg = ref<string>()
+const hikingJpg = ref<string>()
+
+contentfulClient.getAsset('3dibY0EyuefvgRJGFXsYGM').then((asset) => {
+  if (!asset.fields.file) return
+  groupJpg.value = asset.fields.file.url
+})
+
+contentfulClient.getAsset('5uyAVTaEaz979dlNBFYBBb').then((asset) => {
+  if (!asset.fields.file) return
+  hikingJpg.value = asset.fields.file.url
+})
 </script>
 
 <template>
@@ -76,8 +90,8 @@ onBeforeUnmount(() => {
       </div>
 
       <picture class="flex-shrink-0 max-w-1/2">
-        <source type="image/avif" :srcset="groupAvif" />
-        <source type="image/webp" :srcset="groupWebp" />
+<!--        <source type="image/avif" :srcset="groupAvif" />-->
+<!--        <source type="image/webp" :srcset="groupWebp" />-->
         <img
           class="md:h-[300px] object-contain object-top"
           :src="groupJpg"
@@ -126,8 +140,8 @@ onBeforeUnmount(() => {
         >
       </div>
       <picture class="flex-shrink-0 max-w-1/2">
-        <source type="image/avif" :srcset="hikingAvif" />
-        <source type="image/webp" :srcset="hikingWebp" />
+<!--        <source type="image/avif" :srcset="hikingAvif" />-->
+<!--        <source type="image/webp" :srcset="hikingWebp" />-->
         <img
           class="md:h-[300px] object-contain object-top"
           :src="hikingJpg"

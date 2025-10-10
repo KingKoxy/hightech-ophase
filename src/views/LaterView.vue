@@ -1,13 +1,14 @@
 <script setup lang="ts">
-import raveAvif from '@/assets/images/akkRave2022.avif'
-import raveWebp from '@/assets/images/akkRave2022.webp'
-import raveJpg from '@/assets/images/akkRave2022.jpg'
+// import raveAvif from '@/assets/images/akkRave2022.avif'
+// import raveWebp from '@/assets/images/akkRave2022.webp'
+// import raveJpg from '@/assets/images/akkRave2022.jpg'
 import LoadingSpinner from '@/components/LoadingSpinner.vue'
 import CustomHeadline from '@/components/CustomHeadline.vue'
 import { useQuery } from '@vue/apollo-composable'
 import { graphql } from '@/gql'
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { queryToImages } from '@/utils.ts'
+import { contentfulClient } from '@/client.ts'
 
 const imageQuery = useQuery(
   graphql(`
@@ -25,6 +26,11 @@ query GetAllImages {
   ),
 )
 
+const raveJpg = ref<string>()
+contentfulClient.getAsset('1JLiYPSkhwfGGTpBS2sBJm').then((asset) => {
+  if (!asset.fields.file) return
+  raveJpg.value = asset.fields.file.url
+})
 const images = computed(() => {
   return queryToImages(imageQuery.result.value)
 })
@@ -35,11 +41,11 @@ const images = computed(() => {
     <CustomHeadline>Die Naturfreunde am KIT</CustomHeadline>
     <div class="text-justify">
       <picture>
-        <source :srcset="raveAvif" type="image/avif" />
-        <source :srcset="raveWebp" type="image/webp" />
+<!--        <source :srcset="raveAvif" type="image/avif" />-->
+<!--        <source :srcset="raveWebp" type="image/webp" />-->
         <img
           :src="raveJpg"
-          alt="Wandern"
+          alt="Rave am AKK"
           class="md:float-right md:h-[250px] md:ml-4 md:mb-2 mb-5 w-full md:w-auto"
           height="250"
           width="375"
