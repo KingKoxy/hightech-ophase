@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
-import { watch } from 'vue'
+import { watch, onMounted, onUnmounted } from 'vue'
 import { darkMode } from '@/states.ts'
 import BottomNavigation from '@/components/nav/BottomNavigation.vue'
 import HeaderBar from '@/components/nav/HeaderBar.vue'
@@ -28,7 +28,13 @@ const resizeObserver = new ResizeObserver(() => {
   parent.postMessage({ type: 'iframe-resize', height }, '*')
 })
 
-resizeObserver.observe(document.body)
+onMounted(() => {
+  resizeObserver.observe(document.body)
+})
+
+onUnmounted(() => {
+  resizeObserver.disconnect()
+})
 </script>
 
 <template>

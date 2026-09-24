@@ -27,7 +27,6 @@ async function exportCalendar() {
   if (!icalEvents.value) return
   const calendar = ical({ name: 'Wochenplan O-Phase' })
   for (const calendarEvent of icalEvents.value) {
-    // check if calendarEvent is IEvent
     calendar.createEvent(calendarEvent)
   }
   const calendarText = calendar.toString()
@@ -78,7 +77,7 @@ onMounted(() => {
         v-for="(day, i) in [...schedule].sort((a, b) => {
           return a.date.toISOString().localeCompare(b.date.toISOString())
         })"
-        :key="day"
+        :key="day.date.toISOString()"
       >
         <div :class="{ 'mb-10': i < schedule.length - 1 }">
           <DayItem :day="day" :current-date="currentDate" />

@@ -1,7 +1,4 @@
 <script setup lang="ts">
-// import raveAvif from '@/assets/images/akkRave2022.avif'
-// import raveWebp from '@/assets/images/akkRave2022.webp'
-// import raveJpg from '@/assets/images/akkRave2022.jpg'
 import LoadingSpinner from '@/components/LoadingSpinner.vue'
 import CustomHeadline from '@/components/CustomHeadline.vue'
 import { useQuery } from '@vue/apollo-composable'
@@ -41,8 +38,6 @@ const images = computed(() => {
     <CustomHeadline>Die Naturfreunde am KIT</CustomHeadline>
     <div class="text-justify">
       <picture>
-<!--        <source :srcset="raveAvif" type="image/avif" />-->
-<!--        <source :srcset="raveWebp" type="image/webp" />-->
         <img
           :src="raveJpg"
           alt="Rave am AKK"
