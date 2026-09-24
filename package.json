@@ -16,12 +16,12 @@
     "lint:check": "eslint .",
     "format": "prettier --write src/",
     "format:check": "prettier --check src/",
-    "codegen": "graphql-codegen --config codegen.ts"
+    "codegen": "graphql-codegen --config codegen.ts",
+    "schema:pull": "graphql-codegen --config schema.codegen.ts"
   },
   "dependencies": {
     "@apollo/client": "^3.14.1",
     "@vue/apollo-composable": "^4.2.2",
-    "contentful": "^11.12.10",
     "graphql": "^16.14.2",
     "vue": "^3.5.43",
     "vue-router": "^5.3.1"
@@ -29,6 +29,7 @@
   "devDependencies": {
     "@graphql-codegen/cli": "7.4.3",
     "@graphql-codegen/client-preset": "6.2.0",
+    "@graphql-codegen/schema-ast": "^6.1.0",
     "@parcel/watcher": "^2.6.0",
     "@tailwindcss/vite": "^4.3.3",
     "@tsconfig/node22": "^22.0.6",

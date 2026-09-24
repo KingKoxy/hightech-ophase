@@ -1,4 +1,6 @@
-directive @contentSourceMaps on QUERY
+directive @contentSourceMaps(outsidePreview: Boolean) on QUERY
+
+directive @contentfulSchemaMetadata(contentTypePublishedCounters: JSON) on SCHEMA
 
 directive @delegatedResourceLink(contentTypeId: String, field: JSON) on FIELD_DEFINITION | OBJECT
 
@@ -8,26 +10,24 @@ directive @featureFlag(featureName: String) on FIELD
 
 directive @fieldResolver(data: JSON, kind: String) on FIELD_DEFINITION
 
-"""
-Indicates exactly one field must be supplied and this field must not be `null`.
-"""
-directive @oneOf on INPUT_OBJECT
+directive @timeline(where: TimelineFilterInput!) on QUERY
 
 directive @typeIdentifier(contentTypeId: String) on OBJECT
 
 """Represents a binary file in a space. An asset can be any file type."""
-type Asset {
-  contentType(locale: String): String
+type Asset implements _Node {
+  _id: ID!
+  contentType(locale: String, useFallbackLocale: Boolean): String
   contentfulMetadata: ContentfulMetadata!
-  description(locale: String): String
-  fileName(locale: String): String
-  height(locale: String): Int
+  description(locale: String, useFallbackLocale: Boolean): String
+  fileName(locale: String, useFallbackLocale: Boolean): String
+  height(locale: String, useFallbackLocale: Boolean): Int
   linkedFrom(allowedLocales: [String]): AssetLinkingCollections
-  size(locale: String): Int
+  size(locale: String, useFallbackLocale: Boolean): Int
   sys: Sys!
-  title(locale: String): String
-  url(locale: String, transform: ImageTransformOptions): String
-  width(locale: String): Int
+  title(locale: String, useFallbackLocale: Boolean): String
+  url(locale: String, transform: ImageTransformOptions, useFallbackLocale: Boolean): String
+  width(locale: String, useFallbackLocale: Boolean): Int
 }
 
 type AssetCollection {
@@ -35,6 +35,12 @@ type AssetCollection {
   limit: Int!
   skip: Int!
   total: Int!
+}
+
+type AssetCursorCollection {
+  items: [Asset]!
+  limit: Int!
+  pages: CursorPages!
 }
 
 input AssetFilter {
@@ -107,8 +113,12 @@ input AssetFilter {
 }
 
 type AssetLinkingCollections {
-  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
-  imageCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ImageCollection
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): EntryCollection
+  entryCursorCollection(limit: Int = 100, locale: String, pageNext: String, pagePrev: String, preview: Boolean, useFallbackLocale: Boolean): EntryCursorCollection
+  imageCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): ImageCollection
+  imageCursorCollection(limit: Int = 100, locale: String, pageNext: String, pagePrev: String, preview: Boolean, useFallbackLocale: Boolean): ImageCursorCollection
+  siteAssetsCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): SiteAssetsCollection
+  siteAssetsCursorCollection(limit: Int = 100, locale: String, pageNext: String, pagePrev: String, preview: Boolean, useFallbackLocale: Boolean): SiteAssetsCursorCollection
 }
 
 enum AssetOrder {
@@ -141,8 +151,8 @@ type Contact implements Entry & _Node {
   _id: ID!
   contentfulMetadata: ContentfulMetadata!
   linkedFrom(allowedLocales: [String]): ContactLinkingCollections
-  name(locale: String): String
-  phone(locale: String): String
+  name(locale: String, useFallbackLocale: Boolean): String
+  phone(locale: String, useFallbackLocale: Boolean): String
   sys: Sys!
 }
 
@@ -151,6 +161,12 @@ type ContactCollection {
   limit: Int!
   skip: Int!
   total: Int!
+}
+
+type ContactCursorCollection {
+  items: [Contact]!
+  limit: Int!
+  pages: CursorPages!
 }
 
 input ContactFilter {
@@ -175,7 +191,8 @@ input ContactFilter {
 }
 
 type ContactLinkingCollections {
-  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): EntryCollection
+  entryCursorCollection(limit: Int = 100, locale: String, pageNext: String, pagePrev: String, preview: Boolean, useFallbackLocale: Boolean): EntryCursorCollection
 }
 
 enum ContactOrder {
@@ -233,6 +250,11 @@ type ContentfulTag {
   name: String
 }
 
+type CursorPages {
+  next: String
+  prev: String
+}
+
 """
 A date-time string at UTC, such as 2007-12-03T10:15:30Z,
     compliant with the 'date-time' format outlined in section 5.6 of
@@ -256,6 +278,12 @@ type EntryCollection {
   limit: Int!
   skip: Int!
   total: Int!
+}
+
+type EntryCursorCollection {
+  items: [Entry]!
+  limit: Int!
+  pages: CursorPages!
 }
 
 input EntryFilter {
@@ -283,11 +311,11 @@ type Event implements Entry & _Node {
   _id: ID!
   contentfulMetadata: ContentfulMetadata!
   linkedFrom(allowedLocales: [String]): EventLinkingCollections
-  locationGoogleMapsLink(locale: String): String
-  locationName(locale: String): String
-  startTime(locale: String): DateTime
+  locationGoogleMapsLink(locale: String, useFallbackLocale: Boolean): String
+  locationName(locale: String, useFallbackLocale: Boolean): String
+  startTime(locale: String, useFallbackLocale: Boolean): DateTime
   sys: Sys!
-  title(locale: String): String
+  title(locale: String, useFallbackLocale: Boolean): String
 }
 
 type EventCollection {
@@ -295,6 +323,12 @@ type EventCollection {
   limit: Int!
   skip: Int!
   total: Int!
+}
+
+type EventCursorCollection {
+  items: [Event]!
+  limit: Int!
+  pages: CursorPages!
 }
 
 input EventFilter {
@@ -335,7 +369,8 @@ input EventFilter {
 }
 
 type EventLinkingCollections {
-  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): EntryCollection
+  entryCursorCollection(limit: Int = 100, locale: String, pageNext: String, pagePrev: String, preview: Boolean, useFallbackLocale: Boolean): EntryCursorCollection
 }
 
 enum EventOrder {
@@ -365,7 +400,7 @@ scalar HexColor
 """
 type Image implements Entry & _Node {
   _id: ID!
-  asset(locale: String, preview: Boolean): Asset
+  asset(locale: String, preview: Boolean, useFallbackLocale: Boolean): Asset
   contentfulMetadata: ContentfulMetadata!
   linkedFrom(allowedLocales: [String]): ImageLinkingCollections
   sys: Sys!
@@ -376,6 +411,12 @@ type ImageCollection {
   limit: Int!
   skip: Int!
   total: Int!
+}
+
+type ImageCursorCollection {
+  items: [Image]!
+  limit: Int!
+  pages: CursorPages!
 }
 
 input ImageFilter {
@@ -415,7 +456,8 @@ enum ImageFormat {
 }
 
 type ImageLinkingCollections {
-  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): EntryCollection
+  entryCursorCollection(limit: Int = 100, locale: String, pageNext: String, pagePrev: String, preview: Boolean, useFallbackLocale: Boolean): EntryCursorCollection
 }
 
 enum ImageOrder {
@@ -541,19 +583,82 @@ The 'Quality' type represents quality as whole numeric values between `1` and `1
 scalar Quality
 
 type Query {
-  _node(id: ID!, locale: String, preview: Boolean): _Node
-  _nodes(ids: [ID!]!, locale: String, preview: Boolean): [_Node]!
-  asset(id: String!, locale: String, preview: Boolean): Asset
-  assetCollection(limit: Int = 100, locale: String, order: [AssetOrder], preview: Boolean, skip: Int = 0, where: AssetFilter): AssetCollection
-  contact(id: String!, locale: String, preview: Boolean): Contact
-  contactCollection(limit: Int = 100, locale: String, order: [ContactOrder], preview: Boolean, skip: Int = 0, where: ContactFilter): ContactCollection
-  entryCollection(limit: Int = 100, locale: String, order: [EntryOrder], preview: Boolean, skip: Int = 0, where: EntryFilter): EntryCollection
-  event(id: String!, locale: String, preview: Boolean): Event
-  eventCollection(limit: Int = 100, locale: String, order: [EventOrder], preview: Boolean, skip: Int = 0, where: EventFilter): EventCollection
-  image(id: String!, locale: String, preview: Boolean): Image
-  imageCollection(limit: Int = 100, locale: String, order: [ImageOrder], preview: Boolean, skip: Int = 0, where: ImageFilter): ImageCollection
-  video(id: String!, locale: String, preview: Boolean): Video
-  videoCollection(limit: Int = 100, locale: String, order: [VideoOrder], preview: Boolean, skip: Int = 0, where: VideoFilter): VideoCollection
+  _node(id: ID!, locale: String, preview: Boolean, useFallbackLocale: Boolean): _Node
+  _nodes(ids: [ID!]!, locale: String, preview: Boolean, useFallbackLocale: Boolean): [_Node]!
+  asset(id: String!, locale: String, preview: Boolean, useFallbackLocale: Boolean): Asset
+  assetCollection(limit: Int = 100, locale: String, order: [AssetOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean, where: AssetFilter): AssetCollection
+  assetCursorCollection(limit: Int = 100, locale: String, order: [AssetOrder], pageNext: String, pagePrev: String, preview: Boolean, useFallbackLocale: Boolean, where: AssetFilter): AssetCursorCollection
+  contact(id: String!, locale: String, preview: Boolean, useFallbackLocale: Boolean): Contact
+  contactCollection(limit: Int = 100, locale: String, order: [ContactOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean, where: ContactFilter): ContactCollection
+  contactCursorCollection(limit: Int = 100, locale: String, order: [ContactOrder], pageNext: String, pagePrev: String, preview: Boolean, useFallbackLocale: Boolean, where: ContactFilter): ContactCursorCollection
+  entryCollection(limit: Int = 100, locale: String, order: [EntryOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean, where: EntryFilter): EntryCollection
+  entryCursorCollection(limit: Int = 100, locale: String, order: [EntryOrder], pageNext: String, pagePrev: String, preview: Boolean, useFallbackLocale: Boolean, where: EntryFilter): EntryCursorCollection
+  event(id: String!, locale: String, preview: Boolean, useFallbackLocale: Boolean): Event
+  eventCollection(limit: Int = 100, locale: String, order: [EventOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean, where: EventFilter): EventCollection
+  eventCursorCollection(limit: Int = 100, locale: String, order: [EventOrder], pageNext: String, pagePrev: String, preview: Boolean, useFallbackLocale: Boolean, where: EventFilter): EventCursorCollection
+  image(id: String!, locale: String, preview: Boolean, useFallbackLocale: Boolean): Image
+  imageCollection(limit: Int = 100, locale: String, order: [ImageOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean, where: ImageFilter): ImageCollection
+  imageCursorCollection(limit: Int = 100, locale: String, order: [ImageOrder], pageNext: String, pagePrev: String, preview: Boolean, useFallbackLocale: Boolean, where: ImageFilter): ImageCursorCollection
+  siteAssets(id: String!, locale: String, preview: Boolean, useFallbackLocale: Boolean): SiteAssets
+  siteAssetsCollection(limit: Int = 100, locale: String, order: [SiteAssetsOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean, where: SiteAssetsFilter): SiteAssetsCollection
+  siteAssetsCursorCollection(limit: Int = 100, locale: String, order: [SiteAssetsOrder], pageNext: String, pagePrev: String, preview: Boolean, useFallbackLocale: Boolean, where: SiteAssetsFilter): SiteAssetsCursorCollection
+  video(id: String!, locale: String, preview: Boolean, useFallbackLocale: Boolean): Video
+  videoCollection(limit: Int = 100, locale: String, order: [VideoOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean, where: VideoFilter): VideoCollection
+  videoCursorCollection(limit: Int = 100, locale: String, order: [VideoOrder], pageNext: String, pagePrev: String, preview: Boolean, useFallbackLocale: Boolean, where: VideoFilter): VideoCursorCollection
+}
+
+"""
+[See type definition](https://app.contentful.com/spaces/us4kti3xfg3y/content_types/siteAssets)
+"""
+type SiteAssets implements Entry & _Node {
+  _id: ID!
+  contentfulMetadata: ContentfulMetadata!
+  groupPhoto(locale: String, preview: Boolean, useFallbackLocale: Boolean): Asset
+  hikingPhoto(locale: String, preview: Boolean, useFallbackLocale: Boolean): Asset
+  linkedFrom(allowedLocales: [String]): SiteAssetsLinkingCollections
+  logo(locale: String, preview: Boolean, useFallbackLocale: Boolean): Asset
+  ravePhoto(locale: String, preview: Boolean, useFallbackLocale: Boolean): Asset
+  sys: Sys!
+}
+
+type SiteAssetsCollection {
+  items: [SiteAssets]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+type SiteAssetsCursorCollection {
+  items: [SiteAssets]!
+  limit: Int!
+  pages: CursorPages!
+}
+
+input SiteAssetsFilter {
+  AND: [SiteAssetsFilter]
+  OR: [SiteAssetsFilter]
+  contentfulMetadata: ContentfulMetadataFilter
+  groupPhoto_exists: Boolean
+  hikingPhoto_exists: Boolean
+  logo_exists: Boolean
+  ravePhoto_exists: Boolean
+  sys: SysFilter
+}
+
+type SiteAssetsLinkingCollections {
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): EntryCollection
+  entryCursorCollection(limit: Int = 100, locale: String, pageNext: String, pagePrev: String, preview: Boolean, useFallbackLocale: Boolean): EntryCursorCollection
+}
+
+enum SiteAssetsOrder {
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
 }
 
 type Sys {
@@ -613,6 +718,14 @@ type TaxonomyConcept {
   id: String
 }
 
+input TimelineFilterInput {
+  """Preview content starting from a given release date"""
+  release_lte: String
+
+  """Preview content starting from a given timestamp"""
+  timestamp_lte: DateTime
+}
+
 """
 [See type definition](https://app.contentful.com/spaces/us4kti3xfg3y/content_types/video)
 """
@@ -621,8 +734,8 @@ type Video implements Entry & _Node {
   contentfulMetadata: ContentfulMetadata!
   linkedFrom(allowedLocales: [String]): VideoLinkingCollections
   sys: Sys!
-  title(locale: String): String
-  url(locale: String): String
+  title(locale: String, useFallbackLocale: Boolean): String
+  url(locale: String, useFallbackLocale: Boolean): String
 }
 
 type VideoCollection {
@@ -630,6 +743,12 @@ type VideoCollection {
   limit: Int!
   skip: Int!
   total: Int!
+}
+
+type VideoCursorCollection {
+  items: [Video]!
+  limit: Int!
+  pages: CursorPages!
 }
 
 input VideoFilter {
@@ -654,7 +773,8 @@ input VideoFilter {
 }
 
 type VideoLinkingCollections {
-  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): EntryCollection
+  entryCursorCollection(limit: Int = 100, locale: String, pageNext: String, pagePrev: String, preview: Boolean, useFallbackLocale: Boolean): EntryCursorCollection
 }
 
 enum VideoOrder {

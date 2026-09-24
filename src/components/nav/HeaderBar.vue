@@ -3,10 +3,11 @@ import lightModeAnim from '@/assets/animations/lightMode.json'
 import TopNavigationLinks from '@/components/nav/TopNavigationLinks.vue'
 import { onMounted, ref } from 'vue'
 import { useDarkMode } from '@/composables/useDarkMode.ts'
+import { useSiteAssets } from '@/composables/useSiteAssets.ts'
 import lottie from 'lottie-web/build/player/lottie_light'
-import { contentfulClient } from '@/client.ts'
 
 const { darkMode, toggleDarkMode: flipDarkMode } = useDarkMode()
+const { logo } = useSiteAssets()
 
 // The lightMode.json Lottie animation runs from frame 0 (light-mode icon) to
 // its midpoint at frame 14 (dark-mode icon) to frame 28 (its end, which loops
@@ -15,7 +16,6 @@ const LIGHT_MODE_FRAME = 0
 const DARK_MODE_FRAME = 14
 const ANIMATION_END_FRAME = 28
 
-const logo = ref<string>()
 const animationContainer = ref<Element>()
 
 let toggleDarkMode: () => void = () => {}
@@ -41,14 +41,6 @@ onMounted(() => {
     flipDarkMode()
   }
 })
-
-contentfulClient
-  .getAsset('7dtuCnKBcp0Qw62DjPCW5F')
-  .then((asset) => {
-    if (!asset.fields.file) return
-    logo.value = asset.fields.file.url
-  })
-  .catch((error: unknown) => console.error('Failed to load logo from Contentful', error))
 </script>
 
 <template>

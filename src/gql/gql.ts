@@ -14,12 +14,14 @@ import type { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-
  * Learn more about it here: https://the-guild.dev/graphql/codegen/plugins/presets/preset-client#reducing-bundle-size
  */
 type Documents = {
+    "\n      query GetSiteAssets {\n        siteAssetsCollection(limit: 1) {\n          items {\n            logo {\n              url\n            }\n            groupPhoto {\n              url\n            }\n            hikingPhoto {\n              url\n            }\n            ravePhoto {\n              url\n            }\n          }\n        }\n      }\n    ": typeof types.GetSiteAssetsDocument,
     "\n    query GetAllImages {\n      imageCollection {\n        items {\n          asset {\n            url\n            fileName\n          }\n        }\n      }\n    }\n  ": typeof types.GetAllImagesDocument,
     "\n    query GetAllContacts {\n      contactCollection {\n        items {\n          name\n          phone\n        }\n      }\n    }\n  ": typeof types.GetAllContactsDocument,
     "\n    query GetAllVideos {\n      videoCollection {\n        items {\n          title\n          url\n        }\n      }\n    }\n  ": typeof types.GetAllVideosDocument,
     "\n    query GetAllEvents($startTime: DateTime!) {\n      eventCollection(where: { startTime_gt: $startTime }) {\n        items {\n          title\n          startTime\n          locationName\n          locationGoogleMapsLink\n        }\n      }\n    }\n  ": typeof types.GetAllEventsDocument,
 };
 const documents: Documents = {
+    "\n      query GetSiteAssets {\n        siteAssetsCollection(limit: 1) {\n          items {\n            logo {\n              url\n            }\n            groupPhoto {\n              url\n            }\n            hikingPhoto {\n              url\n            }\n            ravePhoto {\n              url\n            }\n          }\n        }\n      }\n    ": types.GetSiteAssetsDocument,
     "\n    query GetAllImages {\n      imageCollection {\n        items {\n          asset {\n            url\n            fileName\n          }\n        }\n      }\n    }\n  ": types.GetAllImagesDocument,
     "\n    query GetAllContacts {\n      contactCollection {\n        items {\n          name\n          phone\n        }\n      }\n    }\n  ": types.GetAllContactsDocument,
     "\n    query GetAllVideos {\n      videoCollection {\n        items {\n          title\n          url\n        }\n      }\n    }\n  ": types.GetAllVideosDocument,
@@ -40,6 +42,10 @@ const documents: Documents = {
  */
 export function graphql(source: string): unknown;
 
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n      query GetSiteAssets {\n        siteAssetsCollection(limit: 1) {\n          items {\n            logo {\n              url\n            }\n            groupPhoto {\n              url\n            }\n            hikingPhoto {\n              url\n            }\n            ravePhoto {\n              url\n            }\n          }\n        }\n      }\n    "): (typeof documents)["\n      query GetSiteAssets {\n        siteAssetsCollection(limit: 1) {\n          items {\n            logo {\n              url\n            }\n            groupPhoto {\n              url\n            }\n            hikingPhoto {\n              url\n            }\n            ravePhoto {\n              url\n            }\n          }\n        }\n      }\n    "];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
