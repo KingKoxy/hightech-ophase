@@ -3,7 +3,7 @@ import { graphql } from '@/gql'
 import { useQuery } from '@vue/apollo-composable'
 import CustomHeadline from '@/components/CustomHeadline.vue'
 import { PAGES } from '@/constants.ts'
-import LoadingSpinner from '@/components/LoadingSpinner.vue'
+import QueryState from '@/components/QueryState.vue'
 import { computed, onMounted, ref, onBeforeUnmount } from 'vue'
 import { isOPhase } from '@/states.ts'
 import VideoItem from '@/components/views/home/VideoItem.vue'
@@ -25,6 +25,10 @@ const videoQuery = useQuery(
 
 const videos = computed(() => {
   return queryToVideos(videoQuery.result.value)
+})
+
+const sortedVideos = computed(() => {
+  return [...videos.value].sort((b, a) => a.title.localeCompare(b.title))
 })
 
 const iframe = ref<HTMLIFrameElement | null>(null)
@@ -153,21 +157,12 @@ contentfulClient.getAsset('5uyAVTaEaz979dlNBFYBBb').then((asset) => {
 
   <section>
     <CustomHeadline>O-Phasenvideos</CustomHeadline>
-    <div
-      v-if="videoQuery.loading.value"
-      class="flex w-full p-10 items-center justify-center h-full"
-    >
-      <LoadingSpinner />
-    </div>
-    <div v-else-if="videos" class="flex flex-col items-center max-w-[800px]">
-      <template
-        v-for="(video, i) in [...videos].sort((b, a) => {
-          return a?.title?.localeCompare(b?.title ?? '') ?? 0
-        })"
-        :key="video.title"
-      >
-        <VideoItem :class="i < (videos.length ?? 0) - 1 ? 'mb-10' : ''" :video="video" />
-      </template>
-    </div>
+    <QueryState :loading="videoQuery.loading.value" :error="videoQuery.error.value">
+      <div class="flex flex-col items-center max-w-[800px]">
+        <template v-for="(video, i) in sortedVideos" :key="video.title">
+          <VideoItem :class="i < sortedVideos.length - 1 ? 'mb-10' : ''" :video="video" />
+        </template>
+      </div>
+    </QueryState>
   </section>
 </template>

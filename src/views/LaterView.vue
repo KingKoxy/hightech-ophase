@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import LoadingSpinner from '@/components/LoadingSpinner.vue'
+import QueryState from '@/components/QueryState.vue'
 import CustomHeadline from '@/components/CustomHeadline.vue'
 import { useQuery } from '@vue/apollo-composable'
 import { graphql } from '@/gql'
@@ -119,19 +119,18 @@ const images = computed(() => {
   </section>
   <section>
     <CustomHeadline>Eindrücke von Events</CustomHeadline>
-    <div v-if="imageQuery.loading.value" class="flex w-full p-10 items-center justify-center h-full">
-      <LoadingSpinner />
-    </div>
-    <div v-else-if="images" class="flex flex-wrap justify-center m-[-0.75rem]">
-      <div v-for="image in images" :key='image.url' class="md:w-1/3 p-3 sm:w-1/2 w-full">
-        <img
-          :src="`${image.url}?w=480`"
-          class="object-contain w-full h-auto"
-          :alt="image.fileName"
-          width="480"
-        />
+    <QueryState :loading="imageQuery.loading.value" :error="imageQuery.error.value">
+      <div class="flex flex-wrap justify-center m-[-0.75rem]">
+        <div v-for="image in images" :key='image.url' class="md:w-1/3 p-3 sm:w-1/2 w-full">
+          <img
+            :src="`${image.url}?w=480`"
+            class="object-contain w-full h-auto"
+            :alt="image.fileName"
+            width="480"
+          />
+        </div>
       </div>
-    </div>
+    </QueryState>
   </section>
 </template>
 

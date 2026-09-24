@@ -2,7 +2,7 @@
 import { isOPhase } from '@/states.ts'
 import ContactCard from '@/components/views/contacts/ContactCard.vue'
 import CustomHeadline from '@/components/CustomHeadline.vue'
-import LoadingSpinner from '@/components/LoadingSpinner.vue'
+import QueryState from '@/components/QueryState.vue'
 import { useQuery } from '@vue/apollo-composable'
 import { graphql } from '@/gql'
 import { computed } from 'vue'
@@ -36,18 +36,13 @@ const contacts = computed(() => {
     <strong>Direktnachricht</strong> oder sprecht einfach einen der <strong>Tutoren</strong> an. Für
     den absoluten Notfall findet ihr hier noch einmal die Nummern der
     <strong>Hauptverantwortlichen: </strong>
-    <div
-      v-if="contactsQuery.loading.value"
-      class="flex w-full p-10 items-center justify-center h-full"
-    >
-      <LoadingSpinner />
-    </div>
-    <ContactCard
-      v-else-if="contacts"
-      v-for="(contact, i) in contacts"
-      :key="contact.name ?? i"
-      :contact="contact"
-    />
+    <QueryState :loading="contactsQuery.loading.value" :error="contactsQuery.error.value">
+      <ContactCard
+        v-for="(contact, i) in contacts"
+        :key="contact.name ?? i"
+        :contact="contact"
+      />
+    </QueryState>
   </section>
 </template>
 
