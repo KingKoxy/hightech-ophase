@@ -19,9 +19,10 @@ const activeIndex = ref(-1)
 const todayMinus3 = new Date()
 todayMinus3.setTime(currentDate.getTime() - 3 * 60 * 60 * 1000)
 
-if (day.date.toISOString().split('T')[0] === todayMinus3.toISOString().split('T')[0]) {
+if (day.date.toISOString().slice(0, 10) === todayMinus3.toISOString().slice(0, 10)) {
   for (let i = 0; i < events.length - 1; i++) {
-    if (currentDate < events[i + 1].date) {
+    const nextEvent = events[i + 1]
+    if (nextEvent && currentDate < nextEvent.date) {
       activeIndex.value = i
       break
     }

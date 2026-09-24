@@ -26,7 +26,7 @@ export function queryToSchedule(data: GetAllEventsQuery | undefined): Day[] {
       minute: '2-digit',
       timeZone: 'Europe/Berlin',
     })
-    const mappingDateKey = mappingDate.toISOString().split('T')[0]
+    const mappingDateKey = mappingDate.toISOString().slice(0, 10)
 
     const events: ScheduleEvent[] = dayMap.get(mappingDateKey) ?? []
     events.push({
