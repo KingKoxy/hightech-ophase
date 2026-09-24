@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import type { IDay } from '@/types.ts'
+import type { Day } from '@/types.ts'
 import { ref } from 'vue'
 import { DAY_MAP } from '@/constants.ts'
 import EventItem from './EventItem.vue'
 
 const { day, currentDate } = defineProps<{
-  day: IDay
+  day: Day
   currentDate: Date
 }>()
 

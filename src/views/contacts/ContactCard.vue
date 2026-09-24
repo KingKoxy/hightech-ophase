@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { IContact } from '@/types.ts'
+import type { Contact } from '@/types.ts'
 
 const {contact} = defineProps<{
-  contact: IContact
+  contact: Contact
 }>()
 </script>
 

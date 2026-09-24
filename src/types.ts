@@ -1,10 +1,10 @@
-export interface IDay {
+export interface Day {
   date: Date;
   weekdayIndex: number;
-  events: IEvent[];
+  events: ScheduleEvent[];
 }
 
-export interface IEvent {
+export interface ScheduleEvent {
   title: string;
   startTime: string;
   location: string;
@@ -12,12 +12,12 @@ export interface IEvent {
   date: Date;
 }
 
-export interface IContact {
+export interface Contact {
   name: string;
   phone: string;
 }
 
-export interface IVideo {
+export interface Video {
   title: string;
   url: string;
 }

@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { IEvent } from '@/types.ts'
+import type { ScheduleEvent } from '@/types.ts'
 const { event, active } = defineProps<{
-  event: IEvent
+  event: ScheduleEvent
   active?: boolean
 }>()
 </script>

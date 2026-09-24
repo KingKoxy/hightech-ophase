@@ -1,6 +1,6 @@
 import type { ICalEventData } from 'ical-generator'
 
-import type { IContact, IDay, IEvent, IVideo } from '@/types'
+import type { Contact, Day, ScheduleEvent, Video } from '@/types'
 import type {
   GetAllContactsQuery,
   GetAllEventsQuery,
@@ -8,10 +8,10 @@ import type {
   GetAllVideosQuery,
 } from '@/gql/graphql.ts'
 
-export function queryToSchedule(data: GetAllEventsQuery | undefined): IDay[] {
-  if (!data || !data.eventCollection) return [] as IDay[]
+export function queryToSchedule(data: GetAllEventsQuery | undefined): Day[] {
+  if (!data || !data.eventCollection) return [] as Day[]
   const items = [...data.eventCollection.items]
-  const dayMap = new Map<string, IEvent[]>()
+  const dayMap = new Map<string, ScheduleEvent[]>()
 
   for (const item of items) {
     if (
@@ -34,7 +34,7 @@ export function queryToSchedule(data: GetAllEventsQuery | undefined): IDay[] {
     })
     const mappingDateKey = mappingDate.toISOString().split('T')[0]
 
-    const events: IEvent[] = dayMap.get(mappingDateKey) ?? []
+    const events: ScheduleEvent[] = dayMap.get(mappingDateKey) ?? []
     events.push({
       title: item.title,
       startTime,
@@ -45,7 +45,7 @@ export function queryToSchedule(data: GetAllEventsQuery | undefined): IDay[] {
     dayMap.set(mappingDateKey, events)
   }
 
-  const days: IDay[] = []
+  const days: Day[] = []
   for (const [dateString, events] of dayMap) {
     events.sort((a, b) => a.date.toISOString().localeCompare(b.date.toISOString()))
     const date = new Date(dateString)
@@ -123,10 +123,10 @@ export function queryToEvents(data: GetAllEventsQuery | undefined): ICalEventDat
   return ret
 }
 
-export function queryToContacts(data: GetAllContactsQuery | undefined): IContact[] {
-  if (!data || !data.contactCollection) return [] as IContact[]
+export function queryToContacts(data: GetAllContactsQuery | undefined): Contact[] {
+  if (!data || !data.contactCollection) return [] as Contact[]
   const contacts = data.contactCollection.items
-  const ret: IContact[] = []
+  const ret: Contact[] = []
   for (const contact of contacts) {
     if (!contact || !contact.name || !contact.phone) continue
     ret.push({
@@ -137,10 +137,10 @@ export function queryToContacts(data: GetAllContactsQuery | undefined): IContact
   return ret
 }
 
-export function queryToVideos(data: GetAllVideosQuery | undefined): IVideo[] {
-  if (!data || !data.videoCollection) return [] as IVideo[]
+export function queryToVideos(data: GetAllVideosQuery | undefined): Video[] {
+  if (!data || !data.videoCollection) return [] as Video[]
   const videos = data.videoCollection.items
-  const ret: IVideo[] = []
+  const ret: Video[] = []
   for (const video of videos) {
     if (!video || !video.title || !video.url) continue
     ret.push({

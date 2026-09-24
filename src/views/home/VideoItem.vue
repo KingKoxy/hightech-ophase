@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { IVideo } from '@/types.ts'
+import type { Video } from '@/types.ts'
 
 const { video } = defineProps<{
-  video: IVideo
+  video: Video
 }>()
 </script>
 

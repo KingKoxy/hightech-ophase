@@ -4,7 +4,7 @@ import CustomHeadline from '@/components/CustomHeadline.vue'
 import QueryState from '@/components/QueryState.vue'
 import { useQuery } from '@vue/apollo-composable'
 import { graphql } from '@/gql'
-import { computed, onMounted, ref } from 'vue'
+import { computed, onMounted, onUnmounted, ref } from 'vue'
 import DayItem from './DayItem.vue'
 import { queryToEvents, queryToSchedule } from '@/gql/mappers.ts'
 
@@ -57,11 +57,14 @@ const icalEvents = computed(() => {
   return queryToEvents(allEventsQuery.result.value)
 })
 
+const CURRENT_TIME_REFRESH_INTERVAL_MS = 10_000
+
 onMounted(() => {
   const interval = setInterval(() => {
     currentDate.value = new Date()
-  }, 10000)
-  return () => clearInterval(interval)
+  }, CURRENT_TIME_REFRESH_INTERVAL_MS)
+
+  onUnmounted(() => clearInterval(interval))
 })
 </script>
 

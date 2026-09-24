@@ -8,6 +8,13 @@ import { contentfulClient } from '@/client.ts'
 
 const { darkMode, toggleDarkMode: flipDarkMode } = useDarkMode()
 
+// The lightMode.json Lottie animation runs from frame 0 (light-mode icon) to
+// its midpoint at frame 14 (dark-mode icon) to frame 28 (its end, which loops
+// back to the same pose as frame 0).
+const LIGHT_MODE_FRAME = 0
+const DARK_MODE_FRAME = 14
+const ANIMATION_END_FRAME = 28
+
 const logo = ref<string>()
 const animationContainer = ref<Element>()
 
@@ -21,15 +28,15 @@ onMounted(() => {
     loop: false,
     animationData: lightModeAnim,
   })
-  animation.goToAndStop(darkMode.value ? 14 : 0, true)
+  animation.goToAndStop(darkMode.value ? DARK_MODE_FRAME : LIGHT_MODE_FRAME, true)
   animation.pause()
 
   toggleDarkMode = () => {
     animation.stop()
     if (darkMode.value) {
-      animation.playSegments([14, 28], true)
+      animation.playSegments([DARK_MODE_FRAME, ANIMATION_END_FRAME], true)
     } else {
-      animation.playSegments([0, 14], true)
+      animation.playSegments([LIGHT_MODE_FRAME, DARK_MODE_FRAME], true)
     }
     flipDarkMode()
   }
