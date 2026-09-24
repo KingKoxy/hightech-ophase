@@ -1,6 +1,7 @@
 import { globalIgnores } from 'eslint/config'
 import { defineConfigWithVueTs, vueTsConfigs } from '@vue/eslint-config-typescript'
 import pluginVue from 'eslint-plugin-vue'
+import pluginVueA11y from 'eslint-plugin-vuejs-accessibility'
 import skipFormatting from '@vue/eslint-config-prettier/skip-formatting'
 
 // To allow more languages other than `ts` in `.vue` files, uncomment the following lines:
@@ -17,6 +18,17 @@ export default defineConfigWithVueTs(
   globalIgnores(['**/dist/**', '**/dist-ssr/**', '**/coverage/**']),
 
   pluginVue.configs['flat/recommended'],
+  pluginVueA11y.configs['flat/recommended'],
   vueTsConfigs.recommendedTypeChecked,
   skipFormatting,
+
+  {
+    name: 'app/import-conventions',
+    rules: {
+      // Use the '@/' alias instead of climbing out of the current
+      // directory; relative imports within the same folder (./Foo.vue)
+      // are still fine.
+      'no-restricted-imports': ['error', { patterns: ['../*'] }],
+    },
+  },
 )
