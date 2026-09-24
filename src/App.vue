@@ -1,27 +1,14 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
-import { watch, onMounted, onUnmounted } from 'vue'
-import { darkMode } from '@/states.ts'
+import { onMounted, onUnmounted } from 'vue'
+import { useDarkMode } from '@/composables/useDarkMode.ts'
 import BottomNavigation from '@/components/nav/BottomNavigation.vue'
 import HeaderBar from '@/components/nav/HeaderBar.vue'
 
-if (localStorage.getItem('theme') === 'dark') {
-  darkMode.value = true
-} else if (localStorage.getItem('theme') === 'light') {
-  darkMode.value = false
-} else {
-  darkMode.value = window.matchMedia('(prefers-color-scheme: dark)').matches
-}
-
-watch(darkMode, (newValue: boolean) => {
-  if (newValue) {
-    document.documentElement.classList.add('dark')
-    localStorage.setItem('theme', 'dark')
-  } else {
-    document.documentElement.classList.remove('dark')
-    localStorage.setItem('theme', 'light')
-  }
-})
+// Activates the dark-mode watcher (adds/removes the `dark` class on <html>
+// and syncs localStorage) for the whole app, regardless of which route or
+// layout is active.
+useDarkMode()
 
 const resizeObserver = new ResizeObserver(() => {
   const height = document.documentElement.scrollHeight

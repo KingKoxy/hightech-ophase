@@ -2,9 +2,11 @@
 import lightModeAnim from '@/assets/animations/lightMode.json'
 import TopNavigationLinks from '@/components/nav/TopNavigationLinks.vue'
 import { onMounted, ref } from 'vue'
-import { darkMode } from '@/states.ts'
+import { useDarkMode } from '@/composables/useDarkMode.ts'
 import lottie from 'lottie-web/build/player/lottie_light'
 import { contentfulClient } from '@/client.ts'
+
+const { darkMode, toggleDarkMode: flipDarkMode } = useDarkMode()
 
 const logo = ref<string>()
 const animationContainer = ref<Element>()
@@ -29,7 +31,7 @@ onMounted(() => {
     } else {
       animation.playSegments([0, 14], true)
     }
-    darkMode.value = !darkMode.value
+    flipDarkMode()
   }
 })
 

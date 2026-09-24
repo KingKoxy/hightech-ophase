@@ -4,7 +4,7 @@ import CustomHeadline from '@/components/CustomHeadline.vue'
 import { useQuery } from '@vue/apollo-composable'
 import { graphql } from '@/gql'
 import { computed, ref } from 'vue'
-import { queryToImages } from '@/utils.ts'
+import { queryToImages } from '@/gql/mappers.ts'
 import { contentfulClient } from '@/client.ts'
 
 const imageQuery = useQuery(

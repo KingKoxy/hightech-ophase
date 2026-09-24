@@ -5,8 +5,8 @@ import QueryState from '@/components/QueryState.vue'
 import { useQuery } from '@vue/apollo-composable'
 import { graphql } from '@/gql'
 import { computed, onMounted, ref } from 'vue'
-import DayItem from '@/components/views/schedule/DayItem.vue'
-import { queryToEvents, queryToSchedule } from '@/utils.ts'
+import DayItem from './DayItem.vue'
+import { queryToEvents, queryToSchedule } from '@/gql/mappers.ts'
 
 // Only show events from this year onward, so last year's O-Phase schedule
 // doesn't leak into the current one without needing a yearly code change.

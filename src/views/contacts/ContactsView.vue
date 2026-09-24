@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { isOPhase } from '@/states.ts'
-import ContactCard from '@/components/views/contacts/ContactCard.vue'
+import { isOPhase } from '@/config.ts'
+import ContactCard from './ContactCard.vue'
 import CustomHeadline from '@/components/CustomHeadline.vue'
 import QueryState from '@/components/QueryState.vue'
 import { useQuery } from '@vue/apollo-composable'
 import { graphql } from '@/gql'
 import { computed } from 'vue'
-import { queryToContacts } from '@/utils.ts'
+import { queryToContacts } from '@/gql/mappers.ts'
 
 const contactsQuery = useQuery(
   graphql(`

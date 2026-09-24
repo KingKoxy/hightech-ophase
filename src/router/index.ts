@@ -1,10 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
-import ScheduleView from '../views/ScheduleView.vue'
-import LaterView from '../views/LaterView.vue'
-import LinksView from '../views/LinksView.vue'
-import ImprintView from '../views/ImprintView.vue'
-import ContactsView from '@/views/ContactsView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -12,32 +6,32 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: HomeView,
+      component: () => import('@/views/home/HomeView.vue'),
     },
     {
       path: '/schedule',
       name: 'schedule',
-      component: ScheduleView,
+      component: () => import('@/views/schedule/ScheduleView.vue'),
     },
     {
       path: '/later',
       name: 'later',
-      component: LaterView,
+      component: () => import('@/views/LaterView.vue'),
     },
     {
       path: '/links',
       name: 'links',
-      component: LinksView,
+      component: () => import('@/views/LinksView.vue'),
     },
     {
       path: '/imprint',
       name: 'imprint',
-      component: ImprintView,
+      component: () => import('@/views/ImprintView.vue'),
     },
     {
       path: '/contacts',
       name: 'contacts',
-      component: ContactsView,
+      component: () => import('@/views/contacts/ContactsView.vue'),
       meta: {
         onlyContent: true,
       },

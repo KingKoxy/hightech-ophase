@@ -5,9 +5,9 @@ import CustomHeadline from '@/components/CustomHeadline.vue'
 import { PAGES } from '@/constants.ts'
 import QueryState from '@/components/QueryState.vue'
 import { computed, onMounted, ref, onBeforeUnmount } from 'vue'
-import { isOPhase } from '@/states.ts'
-import VideoItem from '@/components/views/home/VideoItem.vue'
-import { queryToVideos } from '@/utils.ts'
+import { isOPhase } from '@/config.ts'
+import VideoItem from './VideoItem.vue'
+import { queryToVideos } from '@/gql/mappers.ts'
 import { contentfulClient } from '@/client.ts'
 
 const videoQuery = useQuery(
