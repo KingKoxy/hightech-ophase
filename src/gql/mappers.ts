@@ -14,13 +14,7 @@ export function queryToSchedule(data: GetAllEventsQuery | undefined): Day[] {
   const dayMap = new Map<string, ScheduleEvent[]>()
 
   for (const item of items) {
-    if (
-      !item ||
-      !item.startTime ||
-      !item.title ||
-      !item.locationName
-    )
-      continue
+    if (!item || !item.startTime || !item.title || !item.locationName) continue
     const date = new Date(item.startTime)
 
     // Map for example 01:00 club events to the day before

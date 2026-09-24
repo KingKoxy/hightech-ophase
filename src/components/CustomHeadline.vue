@@ -1,15 +1,11 @@
-<script setup lang="ts">
-
-</script>
+<script setup lang="ts"></script>
 
 <template>
-  <div class="border-grasshopper-green-500 border-l-8 pl-2 mb-4">
-    <h2 class="dark:text-white text-3xl font-semibold">
-      <slot/>
+  <div class="border-grasshopper-green-500 mb-4 border-l-8 pl-2">
+    <h2 class="text-3xl font-semibold dark:text-white">
+      <slot />
     </h2>
   </div>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

@@ -9,18 +9,17 @@ import { contentfulClient } from '@/client.ts'
 
 const imageQuery = useQuery(
   graphql(`
-query GetAllImages {
-    imageCollection {
+    query GetAllImages {
+      imageCollection {
         items {
-            asset {
-              url
-              fileName
-            }
+          asset {
+            url
+            fileName
+          }
         }
+      }
     }
-}
-  `,
-  ),
+  `),
 )
 
 const raveJpg = ref<string>()
@@ -44,7 +43,7 @@ const images = computed(() => {
         <img
           :src="raveJpg"
           alt="Rave am AKK"
-          class="md:float-right md:h-[250px] md:ml-4 md:mb-2 mb-5 w-full md:w-auto"
+          class="mb-5 w-full md:float-right md:mb-2 md:ml-4 md:h-[250px] md:w-auto"
           height="250"
           width="375"
         />
@@ -76,7 +75,7 @@ const images = computed(() => {
   </section>
   <section>
     <CustomHeadline>Unsere Social Media</CustomHeadline>
-    <ul class="ml-4 mt-2">
+    <ul class="mt-2 ml-4">
       <li>
         <a href="https://www.instagram.com/naturfreunde.kit">Instagram</a>
       </li>
@@ -90,7 +89,7 @@ const images = computed(() => {
   </section>
   <section>
     <CustomHeadline>Unsere DJs</CustomHeadline>
-    <ul class="ml-4 mt-2">
+    <ul class="mt-2 ml-4">
       <li>
         <a href="https://soundcloud.com/luis-reissenweber">Luis Reissenweber</a>
       </li>
@@ -123,11 +122,11 @@ const images = computed(() => {
   <section>
     <CustomHeadline>Eindrücke von Events</CustomHeadline>
     <QueryState :loading="imageQuery.loading.value" :error="imageQuery.error.value">
-      <div class="flex flex-wrap justify-center m-[-0.75rem]">
-        <div v-for="image in images" :key='image.url' class="md:w-1/3 p-3 sm:w-1/2 w-full">
+      <div class="m-[-0.75rem] flex flex-wrap justify-center">
+        <div v-for="image in images" :key="image.url" class="w-full p-3 sm:w-1/2 md:w-1/3">
           <img
             :src="`${image.url}?w=480`"
-            class="object-contain w-full h-auto"
+            class="h-auto w-full object-contain"
             alt="Impression von einer O-Phase-Veranstaltung"
             width="480"
           />

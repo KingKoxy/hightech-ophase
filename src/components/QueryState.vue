@@ -8,10 +8,10 @@ defineProps<{
 </script>
 
 <template>
-  <div v-if="loading" class="flex w-full p-10 items-center justify-center h-full">
+  <div v-if="loading" class="flex h-full w-full items-center justify-center p-10">
     <LoadingSpinner />
   </div>
-  <div v-else-if="error" class="flex w-full p-10 items-center justify-center h-full text-center">
+  <div v-else-if="error" class="flex h-full w-full items-center justify-center p-10 text-center">
     Beim Laden der Daten ist ein Fehler aufgetreten. Bitte versuche es später erneut.
   </div>
   <slot v-else />

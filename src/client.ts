@@ -7,7 +7,7 @@ export const contentfulClient = contentful.createClient({
   accessToken: import.meta.env.CONTENTFUL_ACCESS_TOKEN,
 })
 
-export const apolloClient =  new ApolloClient({
+export const apolloClient = new ApolloClient({
   link: createHttpLink({
     headers: {
       Authorization: `Bearer ${import.meta.env.CONTENTFUL_ACCESS_TOKEN}`,

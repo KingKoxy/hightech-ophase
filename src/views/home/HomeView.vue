@@ -78,7 +78,7 @@ contentfulClient
   <section>
     <CustomHeadline>Willkommen</CustomHeadline>
     <div class="md:flex">
-      <div class="inline-block md:mr-8 text-justify md:mb-0 mb-5">
+      <div class="mb-5 inline-block text-justify md:mr-8 md:mb-0">
         Da du das hier liest, heißt das wohl, dass du bald anfängst
         <strong>Informatik oder Mathe am KIT</strong> zu studieren. Bei uns in Karlsruhe beginnt das
         Studium immer mit einer Woche ohne Vorlesungen, der sog.
@@ -93,9 +93,9 @@ contentfulClient
         <a href="/schedule">Wochenplan</a> für die O-Phase nach.
       </div>
 
-      <picture class="flex-shrink-0 max-w-1/2">
+      <picture class="max-w-1/2 flex-shrink-0">
         <img
-          class="md:h-[300px] object-contain object-top"
+          class="object-contain object-top md:h-[300px]"
           :src="groupJpg"
           alt="Gruppenfoto"
           height="300"
@@ -107,7 +107,7 @@ contentfulClient
   <section>
     <CustomHeadline>Wer sind wir?</CustomHeadline>
     <div class="md:flex">
-      <div class="md:mr-8 text-justify md:mb-0 mb-5">
+      <div class="mb-5 text-justify md:mr-8 md:mb-0">
         Unsere Gruppe ist <strong>seit 2014</strong> (also schon
         {{ new Date().getFullYear() - 2014 }} Jahre!) erfolgreich dabei, die
         <strong>elektronische Feierkultur</strong> in die O-Phase zu integrieren. Dabei bieten wir
@@ -141,9 +141,9 @@ contentfulClient
           >tech</span
         >
       </div>
-      <picture class="flex-shrink-0 max-w-1/2">
+      <picture class="max-w-1/2 flex-shrink-0">
         <img
-          class="md:h-[300px] object-contain object-top"
+          class="object-contain object-top md:h-[300px]"
           :src="hikingJpg"
           alt="Wanderung"
           height="300"
@@ -164,7 +164,7 @@ contentfulClient
   <section>
     <CustomHeadline>O-Phasenvideos</CustomHeadline>
     <QueryState :loading="videoQuery.loading.value" :error="videoQuery.error.value">
-      <div class="flex flex-col items-center max-w-[800px]">
+      <div class="flex max-w-[800px] flex-col items-center">
         <template v-for="(video, i) in sortedVideos" :key="video.title">
           <VideoItem :class="i < sortedVideos.length - 1 ? 'mb-10' : ''" :video="video" />
         </template>

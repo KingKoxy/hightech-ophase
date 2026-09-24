@@ -37,11 +37,7 @@ const contacts = computed(() => {
     den absoluten Notfall findet ihr hier noch einmal die Nummern der
     <strong>Hauptverantwortlichen: </strong>
     <QueryState :loading="contactsQuery.loading.value" :error="contactsQuery.error.value">
-      <ContactCard
-        v-for="(contact, i) in contacts"
-        :key="contact.name ?? i"
-        :contact="contact"
-      />
+      <ContactCard v-for="(contact, i) in contacts" :key="contact.name ?? i" :contact="contact" />
     </QueryState>
   </section>
 </template>

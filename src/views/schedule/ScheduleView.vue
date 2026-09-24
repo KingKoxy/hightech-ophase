@@ -51,7 +51,9 @@ const schedule = computed(() => {
 })
 
 const sortedSchedule = computed(() => {
-  return [...schedule.value].sort((a, b) => a.date.toISOString().localeCompare(b.date.toISOString()))
+  return [...schedule.value].sort((a, b) =>
+    a.date.toISOString().localeCompare(b.date.toISOString()),
+  )
 })
 const icalEvents = computed(() => {
   return queryToEvents(allEventsQuery.result.value)
@@ -71,12 +73,12 @@ onMounted(() => {
 <template>
   <section>
     <CustomHeadline>
-      <button class="text-3xl font-semibold flex gap-2" @click="exportCalendar">
+      <button class="flex gap-2 text-3xl font-semibold" @click="exportCalendar">
         Wochenplan
         <i class="icon-export"></i>
       </button>
     </CustomHeadline>
-    <div class="md:mx-10 mt-5">
+    <div class="mt-5 md:mx-10">
       <QueryState :loading="allEventsQuery.loading.value" :error="allEventsQuery.error.value">
         <template v-for="(day, i) in sortedSchedule" :key="day.date.toISOString()">
           <div :class="{ 'mb-10': i < sortedSchedule.length - 1 }">

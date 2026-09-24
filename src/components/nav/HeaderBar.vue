@@ -52,37 +52,37 @@ contentfulClient
 </script>
 
 <template>
-  <div class="sticky top-0 w-full flex z-50 select-none text-black">
+  <div class="sticky top-0 z-50 flex w-full text-black select-none">
     <div
-      class="md:block hidden bg-grasshopper-green-700 p-2 rounded-br-xl w-[280px] h-[140px] object-cover z-20 shadow-lg shadow-black/30"
+      class="bg-grasshopper-green-700 z-20 hidden h-[140px] w-[280px] rounded-br-xl object-cover p-2 shadow-lg shadow-black/30 md:block"
     >
       <img
         v-if="logo"
         :src="logo"
-        class="object-contain w-full h-full"
+        class="h-full w-full object-contain"
         alt="HiGHtech O-Phasen Logo"
       />
     </div>
     <header class="flex-grow">
       <div
-        class="h-[70px] lg:h-[50%] flex justify-between items-center p-2 pr-5 bg-grasshopper-green-500 shadow-lg shadow-black/30 z-10"
+        class="bg-grasshopper-green-500 z-10 flex h-[70px] items-center justify-between p-2 pr-5 shadow-lg shadow-black/30 lg:h-[50%]"
       >
-        <div class="h-full flex items-center">
-          <div class="md:hidden h-full">
+        <div class="flex h-full items-center">
+          <div class="h-full md:hidden">
             <img
               v-if="logo"
               :src="logo"
-              class="object-contain h-full"
+              class="h-full object-contain"
               alt="HIGHtech O-Phasen Logo"
             />
           </div>
-          <h1 class="sm:hidden font-bold text-lg">O-Phase {{ new Date().getFullYear() }}</h1>
+          <h1 class="text-lg font-bold sm:hidden">O-Phase {{ new Date().getFullYear() }}</h1>
           <TopNavigationLinks />
         </div>
         <button
           ref="animationContainer"
           aria-label="Toggle Dark Mode"
-          class="flex items-center relative h-[24px] w-[24px] cursor-pointer"
+          class="relative flex h-[24px] w-[24px] cursor-pointer items-center"
           @click="toggleDarkMode"
         ></button>
       </div>
