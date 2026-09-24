@@ -17,7 +17,8 @@
     "format": "prettier --write src/",
     "format:check": "prettier --check src/",
     "codegen": "graphql-codegen --config codegen.ts",
-    "schema:pull": "graphql-codegen --config schema.codegen.ts"
+    "schema:pull": "graphql-codegen --config schema.codegen.ts",
+    "schedule:import": "node scripts/import-schedule.mjs"
   },
   "dependencies": {
     "@apollo/client": "^3.14.1",
@@ -38,6 +39,8 @@
     "@vue/eslint-config-prettier": "^10.2.0",
     "@vue/eslint-config-typescript": "^14.9.0",
     "@vue/tsconfig": "^0.7.0",
+    "contentful-management": "^12.18.2",
+    "csv-parse": "^7.0.2",
     "eslint": "^10.11.0",
     "eslint-plugin-vue": "^10.11.1",
     "eslint-plugin-vuejs-accessibility": "^2.6.0",
