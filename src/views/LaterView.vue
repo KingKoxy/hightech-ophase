@@ -24,10 +24,13 @@ query GetAllImages {
 )
 
 const raveJpg = ref<string>()
-contentfulClient.getAsset('1JLiYPSkhwfGGTpBS2sBJm').then((asset) => {
-  if (!asset.fields.file) return
-  raveJpg.value = asset.fields.file.url
-})
+contentfulClient
+  .getAsset('1JLiYPSkhwfGGTpBS2sBJm')
+  .then((asset) => {
+    if (!asset.fields.file) return
+    raveJpg.value = asset.fields.file.url
+  })
+  .catch((error: unknown) => console.error('Failed to load rave photo from Contentful', error))
 const images = computed(() => {
   return queryToImages(imageQuery.result.value)
 })

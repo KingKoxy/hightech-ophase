@@ -28,7 +28,7 @@ const allEventsQuery = useQuery(
   { startTime: currentYearStart },
 )
 
-async function exportCalendar() {
+function exportCalendar() {
   if (!icalEvents.value) return
   const calendar = ical({ name: 'Wochenplan O-Phase' })
   for (const calendarEvent of icalEvents.value) {

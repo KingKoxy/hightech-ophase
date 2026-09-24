@@ -42,10 +42,13 @@ onMounted(() => {
   }
 })
 
-contentfulClient.getAsset('7dtuCnKBcp0Qw62DjPCW5F').then((asset) => {
-  if (!asset.fields.file) return
-  logo.value = asset.fields.file.url
-})
+contentfulClient
+  .getAsset('7dtuCnKBcp0Qw62DjPCW5F')
+  .then((asset) => {
+    if (!asset.fields.file) return
+    logo.value = asset.fields.file.url
+  })
+  .catch((error: unknown) => console.error('Failed to load logo from Contentful', error))
 </script>
 
 <template>
@@ -77,10 +80,10 @@ contentfulClient.getAsset('7dtuCnKBcp0Qw62DjPCW5F').then((asset) => {
           <TopNavigationLinks />
         </div>
         <button
+          ref="animationContainer"
           aria-label="Toggle Dark Mode"
           class="flex items-center relative h-[24px] w-[24px] cursor-pointer"
           @click="toggleDarkMode"
-          ref="animationContainer"
         ></button>
       </div>
     </header>

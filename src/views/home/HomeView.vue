@@ -57,15 +57,21 @@ onBeforeUnmount(() => {
 const groupJpg = ref<string>()
 const hikingJpg = ref<string>()
 
-contentfulClient.getAsset('3dibY0EyuefvgRJGFXsYGM').then((asset) => {
-  if (!asset.fields.file) return
-  groupJpg.value = asset.fields.file.url
-})
+contentfulClient
+  .getAsset('3dibY0EyuefvgRJGFXsYGM')
+  .then((asset) => {
+    if (!asset.fields.file) return
+    groupJpg.value = asset.fields.file.url
+  })
+  .catch((error: unknown) => console.error('Failed to load group photo from Contentful', error))
 
-contentfulClient.getAsset('5uyAVTaEaz979dlNBFYBBb').then((asset) => {
-  if (!asset.fields.file) return
-  hikingJpg.value = asset.fields.file.url
-})
+contentfulClient
+  .getAsset('5uyAVTaEaz979dlNBFYBBb')
+  .then((asset) => {
+    if (!asset.fields.file) return
+    hikingJpg.value = asset.fields.file.url
+  })
+  .catch((error: unknown) => console.error('Failed to load hiking photo from Contentful', error))
 </script>
 
 <template>
