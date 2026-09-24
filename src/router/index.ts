@@ -1,7 +1,16 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
+// Matches the .fade transition's duration (main.css) so the scroll jump
+// happens once the outgoing page has finished fading out, not before.
+const TRANSITION_DURATION_MS = 200
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
+  scrollBehavior(_to, _from, savedPosition) {
+    return new Promise((resolve) => {
+      setTimeout(() => resolve(savedPosition ?? { top: 0 }), TRANSITION_DURATION_MS)
+    })
+  },
   routes: [
     {
       path: '/',

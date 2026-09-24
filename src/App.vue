@@ -33,7 +33,7 @@ onUnmounted(() => {
       <main class="flex flex-grow justify-center">
         <div class="m-7 mb-0 flex h-full w-full flex-col gap-10 md:m-10 md:mb-0 xl:mt-0 xl:w-[55%]">
           <router-view v-slot="{ Component, route }">
-            <transition name="fade">
+            <transition name="fade" mode="out-in">
               <component :is="Component" :key="route.path" />
             </transition>
           </router-view>
