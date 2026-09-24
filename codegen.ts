@@ -13,6 +13,13 @@ const config: CodegenConfig = {
   },
   config: {
     useTypeImports: true,
+    scalars: {
+      DateTime: 'string',
+      Dimension: 'number',
+      HexColor: 'string',
+      JSON: 'Record<string, unknown>',
+      Quality: 'number',
+    },
   }
 };
 
