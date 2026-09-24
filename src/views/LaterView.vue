@@ -125,7 +125,7 @@ const images = computed(() => {
           <img
             :src="`${image.url}?w=480`"
             class="object-contain w-full h-auto"
-            :alt="image.fileName"
+            alt="Impression von einer O-Phase-Veranstaltung"
             width="480"
           />
         </div>
