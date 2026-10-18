@@ -1,30 +1,27 @@
 title,startTime,locationName,locationGoogleMapsLink
-Begrüßung,2026-10-19 11:00,Audimax,
-Essen,2026-10-19 12:00,Audimax,
-Campusführung,2026-10-19 14:00,<TODO>,
-Fachschaftsgrillen,2026-10-19 18:00,Infobau,
-Cocktailabend,2026-10-19 20:00,K2-Bar,
-Mensaführung und Frühstücken,2026-10-20 11:00,Mensa am Adenauerring,
-AKK-Führung,2026-10-20 12:00,AKK,
-FBIs,2026-10-20 14:00,<TODO>,
-Bierkastenlauf,2026-10-20 16:00,<TODO>,
-AKK-Schlonz,2026-10-20 22:00,AKK,
-AStA-Führung,2026-10-21 14:00,AStA-Container,
-Bierpongturnier,2026-10-21 15:00,Infobau,
-Abendessen,2026-10-21 18:00,K2-Bar,
-Barabend,2026-10-21 21:00,K2-Bar,
-Techn-O-Phase™,2026-10-21 23:00,C2-Ost,
-Katerfrühstück,2026-10-22 11:00,Kippe23,
-Studienberatung,2026-10-22 14:00,Infobau,
-Ragecage-Turnier,2026-10-22 15:00,Infobau,
-Abendessen,2026-10-22 20:00,Infobau,
-<TODO>,2026-10-22 22:00,<TODO>,
-Kaffee und Waffeln,2026-10-23 10:00,<TODO>,
-Scotland Yard,2026-10-23 14:00,<TODO>,
-Kneipentour™,2026-10-23 19:00,<TODO>,
-Mädelsbrunch,2026-10-24 10:00,<TODO>,
-Utopia-Brunch,2026-10-24 12:00,Fasanengarten,
-Döner,2026-10-24 18:00,<TODO>,
-<TODO>,2026-10-24 22:00,<TODO>,
-Wanderung,2026-10-25 12:00,<TODO>,
-Grillen,2026-10-25 16:00,<TODO>,
+Begrüßung,2026-10-19 11:00,Audimax,https://maps.app.goo.gl/v8RwMYxRZnpvj1YH7
+Essen,2026-10-19 12:00,Audimax,https://maps.app.goo.gl/v8RwMYxRZnpvj1YH7
+Campusführung,2026-10-19 14:00,Schlossgarten,https://maps.app.goo.gl/CZDKPWVajCjCnh1B9
+Fachschaftsgrillen,2026-10-19 18:00,Infobau,https://maps.app.goo.gl/uvQsNvBPMpf1FrJG8
+Cocktailabend,2026-10-19 20:00,K2-Bar,https://maps.app.goo.gl/6wPzhGu6gwqw81Tv6
+Mensaführung und Frühstücken,2026-10-20 11:00,Mensa am Adenauerring,https://maps.app.goo.gl/884YBVqdAjZcR1uNA
+AKK-Führung,2026-10-20 12:00,AKK,https://maps.app.goo.gl/v7HWSJizyjoXhSBJA
+FBIs,2026-10-20 14:00,AKK,https://maps.app.goo.gl/v7HWSJizyjoXhSBJA
+Bierkastenlauf,2026-10-20 16:00,Seminarraum,https://maps.app.goo.gl/uvQsNvBPMpf1FrJG8
+AKK-Schlonz,2026-10-20 20:00,AKK,https://maps.app.goo.gl/v7HWSJizyjoXhSBJA
+Kaffee am AKK,2026-10-21 12:00,AKK,https://maps.app.goo.gl/v7HWSJizyjoXhSBJA
+AStA-Führung,2026-10-21 14:00,AStA-Container,https://maps.app.goo.gl/y1BzvE7bdGqE8GGH8
+Bierpongturnier,2026-10-21 15:00,Seminarraum,https://maps.app.goo.gl/uvQsNvBPMpf1FrJG8
+Abendessen,2026-10-21 17:00,K2-Bar,https://maps.app.goo.gl/6wPzhGu6gwqw81Tv6
+Barabend,2026-10-21 20:00,K2-Bar,https://maps.app.goo.gl/6wPzhGu6gwqw81Tv6
+Techn-O-Phase™,2026-10-21 22:00,C2-Ost,https://maps.app.goo.gl/QwT6KcTy6KR7gDta7
+Katerfrühstück,2026-10-22 12:00,<TODO>,
+Studienberatung,2026-10-22 14:00,Seminarraum,https://maps.app.goo.gl/uvQsNvBPMpf1FrJG8
+Ragecage-Turnier,2026-10-22 15:00,Seminarraum,https://maps.app.goo.gl/uvQsNvBPMpf1FrJG8
+Abendessen,2026-10-22 19:00,Seminarraum,https://maps.app.goo.gl/uvQsNvBPMpf1FrJG8
+Ubu Bar,2026-10-22 21:00,uBu-Bar,https://maps.app.goo.gl/nGQUwXiLmkiHzCYU9
+Scotland Yard,2026-10-23 11:30,Gerthsenhörsaal,https://maps.app.goo.gl/BWxVAr7CFBhtt8Cr7
+Kaffee und Waffeln,2026-10-23 15:30,Seminarraum,https://maps.app.goo.gl/uvQsNvBPMpf1FrJG8
+Kneipentour™,2026-10-23 18:00,Kühler Krug,https://maps.app.goo.gl/QHPbKZuYwcUk678J9
+Utopia-Brunch,2026-10-24 12:00,Fasanengarten,https://maps.app.goo.gl/4SQLBVzxdCwopRk57
+Wanderung mit Grillen,2026-10-25 11:00,Albtalbahnhof,https://maps.app.goo.gl/idhx8urPFNoJnKxx6

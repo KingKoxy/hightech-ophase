@@ -68,7 +68,7 @@ onMounted(() => {
               alt="HIGHtech O-Phasen Logo"
             />
           </div>
-          <h1 class="text-lg font-bold sm:hidden">O-Phase {{ new Date().getFullYear() }}</h1>
+          <h1 class="text-lg font-bold sm:hidden ml-3">O-Phase {{ new Date().getFullYear() }}</h1>
           <TopNavigationLinks />
         </div>
         <button
